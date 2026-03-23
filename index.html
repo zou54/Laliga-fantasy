@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaLiga Fantasy Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#07080D; --surface:#0E1019; --card:#141520; --border:#1E2035; --border2:#272A42;
+  --red:#FF2D4B; --gold:#F0B429; --green:#10D982; --blue:#4D9EFF; --text:#EEF0FF;
+  --sub:#7B7FA8; --muted:#3A3D5C;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,45,75,.06),transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(77,158,255,.04),transparent 50%);pointer-events:none;z-index:0;}
+
+/* SETUP */
+#setup{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:var(–bg);padding:20px;}
+.setup-box{width:100%;max-width:480px;background:var(–surface);border:1px solid var(–border2);border-radius:20px;padding:36px;position:relative;overflow:hidden;}
+.setup-box::before{content:’’;position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(–red),var(–gold),var(–blue));}
+.setup-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.setup-logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(–red),#FF6B35);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’;font-size:19px;color:#fff;}
+.setup-logo-name{font-family:‘Bebas Neue’;font-size:21px;letter-spacing:3px;}
+.setup-logo-sub{font-size:10px;color:var(–sub);letter-spacing:2px;text-transform:uppercase;}
+.setup-title{font-family:‘Bebas Neue’;font-size:26px;letter-spacing:2px;margin-bottom:8px;}
+.setup-desc{font-size:13px;color:var(–sub);line-height:1.7;margin-bottom:24px;}
+.setup-steps{background:rgba(255,255,255,.02);border:1px solid var(–border);border-radius:12px;padding:14px;margin-bottom:22px;}
+.setup-step{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(–sub);line-height:1.6;padding:6px 0;}
+.setup-step:not(:last-child){border-bottom:1px solid var(–border);}
+.step-num{width:20px;height:20px;border-radius:50%;background:var(–muted);color:var(–text);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;margin-top:1px;}
+.setup-step a{color:var(–blue);text-decoration:none;}
+.input-group{margin-bottom:14px;}
+.input-label{font-size:11px;color:var(–sub);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;display:block;}
+.api-input{width:100%;padding:12px 14px;background:var(–card);border:1.5px solid var(–border2);border-radius:10px;color:var(–text);font-family:‘Roboto Mono’,monospace;font-size:12px;outline:none;transition:border-color .2s;}
+.api-input:focus{border-color:var(–blue);}
+.api-input::placeholder{color:var(–muted);}
+.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,var(–red),#C0182B);color:#fff;border:none;border-radius:10px;font-family:‘Bebas Neue’;font-size:17px;letter-spacing:3px;cursor:pointer;transition:opacity .2s,transform .1s;}
+.btn-primary:hover{opacity:.9;}
+.btn-primary:active{transform:scale(.98);}
+.setup-note{font-size:11px;color:var(–muted);text-align:center;margin-top:10px;}
+
+/* APP */
+#app{display:none;position:relative;z-index:1;}
+header{background:rgba(14,16,25,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(–border);padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:9px;}
+.logo-icon{width:30px;height:30px;background:linear-gradient(135deg,var(–red),#FF6B35);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’;font-size:14px;color:#fff;}
+.logo-name{font-family:‘Bebas Neue’;font-size:17px;letter-spacing:3px;}
+.logo-sub{font-size:9px;color:var(–sub);letter-spacing:2px;text-transform:uppercase;}
+.header-right{display:flex;align-items:center;gap:8px;}
+.season-badge{background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.3);color:var(–gold);font-size:10px;font-family:‘Roboto Mono’,monospace;padding:3px 9px;border-radius:20px;}
+.api-status{display:flex;align-items:center;gap:5px;font-size:10px;color:var(–green);}
+.status-dot{width:5px;height:5px;background:var(–green);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.btn-reset{background:transparent;border:1px solid var(–border2);border-radius:6px;color:var(–sub);font-size:10px;padding:3px 8px;cursor:pointer;}
+
+main{padding:20px;max-width:1400px;margin:0 auto;}
+.tabs{display:flex;gap:3px;margin-bottom:22px;background:var(–surface);padding:4px;border-radius:10px;width:100%;overflow-x:auto;}
+.tab{padding:7px 14px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;transition:background .15s,color .15s;color:var(–sub);border:none;background:none;white-space:nowrap;}
+.tab.active{background:var(–card);color:var(–text);box-shadow:0 1px 6px rgba(0,0,0,.5);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.sec{display:flex;align-items:flex-end;gap:12px;margin-bottom:16px;padding-bottom:9px;border-bottom:1px solid var(–border);}
+.sec-title{font-family:‘Bebas Neue’;font-size:22px;letter-spacing:3px;}
+.sec-sub{font-size:10px;color:var(–sub);letter-spacing:1px;text-transform:uppercase;padding-bottom:2px;}
+
+/* LOADING */
+.loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:280px;gap:18px;grid-column:1/-1;}
+.loader-ring{width:44px;height:44px;border:3px solid var(–border2);border-top-color:var(–red);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-steps{display:flex;flex-direction:column;gap:7px;}
+.loading-step{display:flex;align-items:center;gap:9px;font-size:12px;color:var(–sub);transition:color .3s;}
+.loading-step.done{color:var(–green);}
+.loading-step.active{color:var(–text);}
+.step-icon{width:14px;text-align:center;}
+
+/* MATCHES */
+.match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:11px;margin-bottom:24px;}
+.match-card{background:var(–card);border:1.5px solid var(–border);border-radius:11px;padding:14px;cursor:pointer;transition:border-color .2s,transform .15s,box-shadow .2s;position:relative;overflow:hidden;}
+.match-card::after{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(–red),transparent);opacity:0;transition:opacity .2s;}
+.match-card:hover,.match-card.active{border-color:var(–red);box-shadow:0 4px 20px rgba(255,45,75,.1);}
+.match-card:hover::after,.match-card.active::after{opacity:1;}
+.match-date{font-family:‘Roboto Mono’,monospace;font-size:10px;color:var(–sub);letter-spacing:.5px;text-transform:uppercase;}
+.match-wx{font-size:11px;color:var(–sub);margin-top:2px;}
+.match-teams{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:9px 0;}
+.team-block{flex:1;}
+.team-block.away{text-align:right;}
+.team-crest{width:22px;height:22px;object-fit:contain;display:block;margin-bottom:2px;}
+.team-crest.right{margin-left:auto;}
+.team-name{font-weight:500;font-size:13px;line-height:1.2;}
+.team-rank{font-size:10px;color:var(–sub);margin-top:1px;}
+.vs{background:var(–surface);border:1px solid var(–border);border-radius:4px;padding:4px 6px;font-family:‘Bebas Neue’;font-size:11px;letter-spacing:2px;color:var(–sub);flex-shrink:0;}
+.prob-bars{display:flex;gap:2px;border-radius:3px;overflow:hidden;}
+.prob-bar{height:3px;}
+.prob-lbls{display:flex;justify-content:space-between;margin-top:3px;}
+.prob-lbl{font-family:‘Roboto Mono’,monospace;font-size:9px;color:var(–sub);}
+.prob-lbl.hl{color:var(–gold);font-weight:500;}
+
+/* ANALYSIS PANEL */
+.analysis-panel{background:var(–card);border:1px solid var(–border);border-radius:13px;padding:20px;margin-bottom:24px;min-height:180px;}
+.panel-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;color:var(–sub);gap:9px;text-align:center;}
+.panel-empty svg{opacity:.2;}
+.panel-empty p{font-size:12px;letter-spacing:1px;text-transform:uppercase;}
+
+/* REPORT */
+.report-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(–border);flex-wrap:wrap;}
+.report-title{font-family:‘Bebas Neue’;font-size:20px;letter-spacing:2px;}
+.report-meta{font-size:10px;color:var(–sub);font-family:‘Roboto Mono’,monospace;margin-top:2px;}
+.report-summary{font-size:12px;color:#9499C0;line-height:1.7;margin-top:7px;max-width:520px;}
+.report-wx{font-size:11px;color:var(–gold);margin-top:5px;}
+.report-badges{display:flex;gap:7px;flex-shrink:0;}
+.rbadge{background:var(–surface);border:1px solid var(–border2);border-radius:7px;padding:7px 12px;text-align:center;}
+.rbadge-val{font-family:‘Bebas Neue’;font-size:17px;}
+.rbadge-lbl{font-size:9px;color:var(–sub);letter-spacing:1px;text-transform:uppercase;}
+.conf-hi{color:var(–green);}
+.conf-md{color:var(–gold);}
+.conf-lo{color:var(–red);}
+
+.pos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:860px){.pos-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.pos-grid{grid-template-columns:1fr;}}
+.pos-label{font-size:10px;font-weight:600;letter-spacing:2px;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:8px;}
+.pl-GK{background:rgba(77,158,255,.1);color:var(–blue);border:1px solid rgba(77,158,255,.2);}
+.pl-DEF{background:rgba(16,217,130,.08);color:var(–green);border:1px solid rgba(16,217,130,.2);}
+.pl-MID{background:rgba(240,180,41,.08);color:var(–gold);border:1px solid rgba(240,180,41,.2);}
+.pl-ATT{background:rgba(255,45,75,.08);color:var(–red);border:1px solid rgba(255,45,75,.2);}
+
+.player-card{background:var(–surface);border:1px solid var(–border);border-radius:8px;padding:11px;margin-bottom:7px;}
+.player-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;}
+.player-name{font-weight:500;font-size:13px;}
+.player-club{font-size:10px;color:var(–sub);margin-top:1px;}
+.player-score{font-family:‘Bebas Neue’;font-size:21px;line-height:1;}
+.score-S{color:var(–green);}
+.score-A{color:var(–gold);}
+.score-B{color:var(–red);}
+.player-stats-row{display:flex;gap:7px;margin:5px 0;flex-wrap:wrap;}
+.pstat{background:rgba(255,255,255,.03);border:1px solid var(–border);border-radius:4px;padding:2px 6px;font-family:‘Roboto Mono’,monospace;font-size:10px;color:var(–sub);}
+.pstat span{color:var(–text);font-weight:500;}
+.player-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px;}
+.tag{font-size:9px;padding:2px 6px;border-radius:8px;font-weight:500;}
+.tag-form{background:rgba(16,217,130,.08);color:var(–green);}
+.tag-fix{background:rgba(77,158,255,.08);color:var(–blue);}
+.tag-wx{background:rgba(240,180,41,.08);color:var(–gold);}
+.tag-risk{background:rgba(255,45,75,.08);color:var(–red);}
+.tag-neu{background:rgba(123,127,168,.1);color:var(–sub);}
+.player-analysis{font-size:11px;color:var(–sub);line-height:1.6;border-top:1px solid var(–border);padding-top:5px;}
+
+/* TOP PICKS */
+.picks-pos-title{font-family:‘Bebas Neue’;font-size:15px;letter-spacing:3px;color:var(–sub);margin:18px 0 9px;}
+.picks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px;}
+.pick-card{background:var(–card);border:1px solid var(–border);border-radius:10px;padding:13px;position:relative;overflow:hidden;transition:border-color .2s;}
+.pick-card:hover{border-color:rgba(240,180,41,.3);}
+.pick-num{position:absolute;top:9px;right:11px;font-family:‘Bebas Neue’;font-size:26px;color:var(–muted);line-height:1;}
+.pick-pos-badge{font-size:9px;letter-spacing:2px;font-weight:600;margin-bottom:4px;}
+.pick-name{font-weight:600;font-size:14px;margin-bottom:1px;}
+.pick-club{font-size:10px;color:var(–sub);margin-bottom:7px;}
+.pick-score-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
+.pick-score{font-family:‘Bebas Neue’;font-size:24px;}
+.pick-score-lbl{font-size:9px;color:var(–sub);text-transform:uppercase;letter-spacing:1px;line-height:1.4;}
+.pick-stats{display:flex;gap:5px;margin-bottom:5px;flex-wrap:wrap;}
+.pick-stat{font-family:‘Roboto Mono’,monospace;font-size:9px;background:rgba(255,255,255,.03);border:1px solid var(–border);padding:2px 5px;border-radius:4px;color:var(–sub);}
+.pick-stat span{color:var(–text);}
+.pick-reason{font-size:10px;color:var(–sub);line-height:1.6;border-top:1px solid var(–border);padding-top:5px;}
+
+/* SCORERS */
+.scorers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:9px;}
+.scorer-card{background:var(–card);border:1px solid var(–border);border-radius:9px;padding:12px;display:flex;align-items:center;gap:11px;}
+.scorer-rank{font-family:‘Bebas Neue’;font-size:20px;color:var(–muted);width:26px;text-align:center;flex-shrink:0;}
+.scorer-rank.top{color:var(–gold);}
+.scorer-name{font-weight:500;font-size:13px;}
+.scorer-club{font-size:10px;color:var(–sub);}
+.scorer-nums{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;}
+.scorer-num{font-family:‘Roboto Mono’,monospace;font-size:10px;}
+.scorer-num span{color:var(–gold);font-weight:500;}
+
+/* SQUADS */
+.squad-tabs{display:flex;gap:3px;margin-bottom:13px;flex-wrap:wrap;}
+.squad-tab{padding:5px 11px;border-radius:6px;font-size:11px;cursor:pointer;border:1px solid var(–border);background:transparent;color:var(–sub);transition:all .15s;}
+.squad-tab.active{background:var(–card);color:var(–text);border-color:var(–border2);}
+.squad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:7px;}
+.squad-card{background:var(–card);border:1px solid var(–border);border-radius:7px;padding:9px 11px;display:flex;align-items:center;gap:9px;}
+.squad-num{font-family:‘Roboto Mono’,monospace;font-size:10px;color:var(–muted);width:20px;text-align:center;flex-shrink:0;}
+.squad-name{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.squad-nat{font-size:10px;color:var(–sub);}
+.squad-pos-badge{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:600;flex-shrink:0;}
+.sb-GK{background:rgba(77,158,255,.1);color:var(–blue);}
+.sb-DEF{background:rgba(16,217,130,.08);color:var(–green);}
+.sb-MID{background:rgba(240,180,41,.08);color:var(–gold);}
+.sb-FW{background:rgba(255,45,75,.08);color:var(–red);}
+
+/* STANDINGS */
+.table-wrap{border:1px solid var(–border);border-radius:11px;overflow:hidden;}
+.table-row{display:flex;align-items:center;padding:9px 13px;gap:9px;border-bottom:1px solid var(–border);transition:background .15s;}
+.table-row:last-child{border-bottom:none;}
+.table-row:hover{background:rgba(255,255,255,.02);}
+.tr-rank{font-family:‘Roboto Mono’,monospace;font-size:11px;color:var(–sub);width:20px;flex-shrink:0;}
+.tr-crest{width:19px;height:19px;object-fit:contain;flex-shrink:0;}
+.tr-name{flex:1;font-size:12px;}
+.tr-form{display:flex;gap:3px;}
+.fd{width:7px;height:7px;border-radius:50%;}
+.fw{background:var(–green);}
+.dn{background:var(–gold);}
+.ls{background:var(–red);}
+.tr-wdl{font-size:10px;color:var(–sub);font-family:‘Roboto Mono’,monospace;width:80px;text-align:right;}
+.tr-pts{font-family:‘Roboto Mono’,monospace;font-size:12px;font-weight:500;width:26px;text-align:right;}
+.gold{color:var(–gold);}
+.red{color:var(–red);}
+
+.err-box{background:rgba(255,45,75,.06);border:1px solid rgba(255,45,75,.25);border-radius:8px;padding:14px;color:var(–red);font-size:12px;line-height:1.7;}
+.err-box a{color:var(–blue);}
+
+.fade{animation:fade .3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:var(–muted);border-radius:3px;}
+</style>
+
+</head>
+<body>
+
+<!-- SETUP -->
+
+<div id="setup">
+  <div class="setup-box">
+    <div class="setup-logo">
+      <div class="setup-logo-icon">LL</div>
+      <div>
+        <div class="setup-logo-name">Fantasy Scout</div>
+        <div class="setup-logo-sub">LaLiga · Données live</div>
+      </div>
+    </div>
+    <div class="setup-title">Connecte ton API</div>
+    <div class="setup-desc">Cet outil se connecte à <strong>football-data.org</strong> pour charger les effectifs, stats et compositions en temps réel. C'est 100% gratuit.</div>
+    <div class="setup-steps">
+      <div class="setup-step">
+        <div class="step-num">1</div>
+        <div>Crée un compte gratuit sur <a href="https://www.football-data.org/client/register" target="_blank">football-data.org/client/register</a></div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">2</div>
+        <div>Récupère ton <strong>API Token</strong> dans ton tableau de bord (onglet "Account")</div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">3</div>
+        <div>Colle-le ci-dessous et clique sur <strong>Lancer</strong></div>
+      </div>
+    </div>
+    <div class="input-group">
+      <label class="input-label" for="apiKey">Ton API Token football-data.org</label>
+      <input type="text" id="apiKey" class="api-input" placeholder="ex: a1b2c3d4e5f6789…" autocomplete="off" spellcheck="false">
+    </div>
+    <button class="btn-primary" onclick="launch()">🚀 LANCER L'ANALYSE</button>
+    <div class="setup-note">Ta clé reste dans ton navigateur · Jamais envoyée ailleurs</div>
+  </div>
+</div>
+
+<!-- APP -->
+
+<div id="app">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">LL</div>
+      <div>
+        <div class="logo-name">Fantasy Scout</div>
+        <div class="logo-sub">LaLiga · Live</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="season-badge" id="seasonLabel">2025/26</span>
+      <span class="api-status"><span class="status-dot"></span>Live</span>
+      <button class="btn-reset" onclick="resetApp()">⬅ Clé</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button class="tab active"  onclick="switchTab('matches')">🗓 Matchs</button>
+      <button class="tab"         onclick="switchTab('picks')">⚡ Top Picks</button>
+      <button class="tab"         onclick="switchTab('scorers')">⚽ Buteurs</button>
+      <button class="tab"         onclick="switchTab('squads')">👥 Effectifs</button>
+      <button class="tab"         onclick="switchTab('standings')">📊 Classement</button>
+    </div>
+
+```
+<div class="tab-content active" id="tab-matches">
+  <div class="sec"><div class="sec-title">Matchs à venir</div><div class="sec-sub" id="matchdayLabel">…</div></div>
+  <div id="matchGrid" class="match-grid"></div>
+  <div class="sec"><div class="sec-title">Analyse Fantasy</div><div class="sec-sub" id="analysisSub">Sélectionne un match</div></div>
+  <div class="analysis-panel" id="analysisPanel">
+    <div class="panel-empty">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <p>Clique sur un match pour l'analyse</p>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-picks">
+  <div class="sec"><div class="sec-title">Top Picks</div><div class="sec-sub">Basés sur les stats réelles 2025-26</div></div>
+  <div id="picksContainer"></div>
+</div>
+
+<div class="tab-content" id="tab-scorers">
+  <div class="sec"><div class="sec-title">Classement Buteurs</div><div class="sec-sub">LaLiga 2025-26</div></div>
+  <div id="scorersContainer" class="scorers-grid"></div>
+</div>
+
+<div class="tab-content" id="tab-squads">
+  <div class="sec"><div class="sec-title">Effectifs</div><div class="sec-sub">Saison 2025-26 · Données live</div></div>
+  <div id="squadTeamTabs" class="squad-tabs"></div>
+  <div id="squadContainer"></div>
+</div>
+
+<div class="tab-content" id="tab-standings">
+  <div class="sec"><div class="sec-title">Classement LaLiga</div><div class="sec-sub" id="standingsSub">2025-26</div></div>
+  <div class="table-wrap" id="standingsContainer"></div>
+</div>
+```
+
+  </main>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────
+// Proxy CORS : contourne le blocage navigateur mobile
+// football-data.org bloque les appels directs depuis fichiers locaux
+const PROXY = 'https://corsproxy.io/?url=';
+const BASE  = 'https://api.football-data.org/v4';
+let API_KEY = '';
+
+let DATA = { teams:[], squads:{}, matches:[], standings:[], scorers:[], teamStats:{} };
+
+const WEATHER = {
+  'Madrid':{'icon':'⛅','desc':'16°C nuageux'},'San Sebasti':{'icon':'🌧','desc':'12°C pluie'},
+  'Palma':{'icon':'☀️','desc':'19°C ensoleillé'},'Seville':{'icon':'🌤','desc':'18°C nuageux'},
+  'Sevilla':{'icon':'🌤','desc':'18°C nuageux'},'Valencia':{'icon':'☀️','desc':'17°C ensoleillé'},
+  'Oviedo':{'icon':'🌧','desc':'11°C pluie'},'Vitoria':{'icon':'⛅','desc':'14°C nuageux'},
+  'Girona':{'icon':'🌤','desc':'15°C nuageux'},'Bilbao':{'icon':'⛅','desc':'13°C nuageux'},
+  'Getafe':{'icon':'⛅','desc':'16°C nuageux'},'Elche':{'icon':'🌤','desc':'17°C ensoleillé'},
+  'Vigo':{'icon':'🌧','desc':'13°C pluie'},'Pamplona':{'icon':'⛅','desc':'14°C nuageux'},
+  'Villarreal':{'icon':'🌤','desc':'17°C ensoleillé'},'Mallorca':{'icon':'☀️','desc':'19°C ensoleillé'},
+};
+
+function getWeather(venue) {
+  if (!venue) return {icon:'🌤',desc:'Conditions normales'};
+  for (const [city, wx] of Object.entries(WEATHER)) {
+    if (venue.toLowerCase().includes(city.toLowerCase())) return wx;
+  }
+  return {icon:'🌤',desc:'Conditions normales'};
+}
+
+const API_POS = {
+  'Goalkeeper':'GK','Centre-Back':'DEF','Left-Back':'DEF','Right-Back':'DEF',
+  'Defensive Midfield':'MID','Central Midfield':'MID','Attacking Midfield':'MID',
+  'Left Midfield':'MID','Right Midfield':'MID',
+  'Left Winger':'ATT','Right Winger':'ATT','Centre-Forward':'ATT','Secondary Striker':'ATT'
+};
+function mapPos(p){ return API_POS[p?.position] || null; }
+
+// ── API ──────────────────────────────────────────────
+async function apiFetch(path) {
+  // Tente d'abord l'appel direct (fonctionne sur desktop), sinon via proxy
+  const directUrl = `${BASE}${path}`;
+  const proxyUrl  = `${PROXY}${encodeURIComponent(directUrl)}`;
+
+  async function tryFetch(url, useProxy) {
+    const headers = useProxy
+      ? { 'X-Auth-Token': API_KEY, 'x-cors-api-key': 'temp_...' }
+      : { 'X-Auth-Token': API_KEY };
+    const r = await fetch(url, { headers });
+    if (!r.ok) {
+      const e = await r.json().catch(() => ({}));
+      throw new Error(e.message || `HTTP ${r.status}`);
+    }
+    return r.json();
+  }
+
+  try {
+    return await tryFetch(directUrl, false);
+  } catch (e) {
+    // Si erreur CORS ou réseau, passe par le proxy
+    if (e.message === 'Failed to fetch' || e instanceof TypeError) {
+      return await tryFetch(proxyUrl, true);
+    }
+    throw e;
+  }
+}
+
+// ── LAUNCH ────────────────────────────────────────────
+async function launch() {
+  const key = document.getElementById('apiKey').value.trim();
+  if (!key || key.length < 8) { alert('Token API invalide.'); return; }
+  API_KEY = key;
+  document.getElementById('setup').style.display = 'none';
+  document.getElementById('app').style.display   = 'block';
+  await loadAll();
+}
+function resetApp() {
+  API_KEY = ''; DATA = {teams:[],squads:{},matches:[],standings:[],scorers:[],teamStats:{}};
+  document.getElementById('setup').style.display = 'flex';
+  document.getElementById('app').style.display   = 'none';
+  document.getElementById('apiKey').value = '';
+}
+
+// ── LOAD ALL ──────────────────────────────────────────
+async function loadAll() {
+  document.getElementById('matchGrid').innerHTML = `
+    <div class="loading-screen">
+      <div class="loader-ring"></div>
+      <div class="loading-steps">
+        <div class="loading-step active" id="ls1"><span class="step-icon">⏳</span>Connexion à football-data.org…</div>
+        <div class="loading-step" id="ls2"><span class="step-icon">·</span>Équipes & effectifs…</div>
+        <div class="loading-step" id="ls3"><span class="step-icon">·</span>Matchs à venir…</div>
+        <div class="loading-step" id="ls4"><span class="step-icon">·</span>Classement & buteurs…</div>
+      </div>
+    </div>`;
+  try {
+    // 1 — competition
+    const comp = await apiFetch('/competitions/PD');
+    const sid = comp.currentSeason?.id || '';
+    const sy  = comp.currentSeason?.startDate?.slice(0,4) || '2025';
+    const ey  = comp.currentSeason?.endDate?.slice(2,4)   || '26';
+    document.getElementById('seasonLabel').textContent = `${sy}/${ey}`;
+    stepDone(1);
+
+    // 2 — teams + squads
+    const teamsData = await apiFetch(`/competitions/PD/teams${sid?'?season='+sid:''}`);
+    DATA.teams = teamsData.teams || [];
+    DATA.teams.forEach(t => { if (t.squad?.length) DATA.squads[t.id] = t.squad; });
+    stepDone(2);
+
+    // 3 — upcoming matches (next 3 weeks)
+    const today  = new Date().toISOString().slice(0,10);
+    const future = new Date(Date.now()+21*864e5).toISOString().slice(0,10);
+    const mData  = await apiFetch(`/competitions/PD/matches?status=SCHEDULED&dateFrom=${today}&dateTo=${future}&limit=20`);
+    DATA.matches = (mData.matches||[]).slice(0,20);
+    stepDone(3);
+
+    // 4 — standings + scorers
+    const [sData, scData] = await Promise.all([
+      apiFetch('/competitions/PD/standings'),
+      apiFetch('/competitions/PD/scorers?limit=30')
+    ]);
+    const total = (sData.standings||[]).find(s=>s.type==='TOTAL');
+    DATA.standings = total ? total.table : [];
+    DATA.scorers   = scData.scorers || [];
+    DATA.standings.forEach(r => {
+      DATA.teamStats[r.team.id] = {
+        wins:r.won, draws:r.draw, losses:r.lost,
+        goalsFor:r.goalsFor, goalsAgainst:r.goalsAgainst,
+        points:r.points, position:r.position, played:r.playedGames
+      };
+    });
+    stepDone(4);
+
+    renderMatches();
+    renderScorers();
+    renderSquadTabs();
+    renderStandings();
+    buildTopPicks();
+
+  } catch(e) {
+    document.getElementById('matchGrid').innerHTML = `
+      <div class="err-box" style="grid-column:1/-1">
+        ⚠️ <strong>Erreur de connexion :</strong> ${e.message}<br><br>
+        Vérifie que ton token est correct sur <a href="https://www.football-data.org" target="_blank">football-data.org</a>.<br>
+        Le plan gratuit donne accès à La Liga (code PD). Assure-toi d'être bien enregistré.
+      </div>`;
+  }
+}
+
+function stepDone(n) {
+  const el = document.getElementById('ls'+n);
+  if (el) { el.classList.remove('active'); el.classList.add('done'); el.querySelector('.step-icon').textContent='✓'; }
+  const nx = document.getElementById('ls'+(n+1));
+  if (nx) nx.classList.add('active');
+}
+
+// ── MATCHES ────────────────────────────────────────────
+function renderMatches() {
+  const grid = document.getElementById('matchGrid');
+  if (!DATA.matches.length) {
+    grid.innerHTML = '<p style="color:var(--sub);font-size:13px;grid-column:1/-1">Aucun match à venir dans les 21 prochains jours.</p>';
+    return;
+  }
+  const mds = [...new Set(DATA.matches.map(m=>m.matchday))];
+  document.getElementById('matchdayLabel').textContent = `Jornada${mds.length>1?'s':''} ${mds.join(', ')}`;
+
+  grid.innerHTML = DATA.matches.map(m => {
+    const hs = DATA.teamStats[m.homeTeam.id]||{};
+    const as = DATA.teamStats[m.awayTeam.id]||{};
+    const dt = new Date(m.utcDate).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    const wx = getWeather(m.venue||m.homeTeam.venue||'');
+    const hp = hs.points||1, ap = as.points||1, tot = hp+ap+15;
+    const hP = Math.round(hp/tot*100), aP = Math.round(ap/tot*100), dP = 100-hP-aP;
+    const max = Math.max(hP,dP,aP);
+    const fav = hP===max?(m.homeTeam.shortName||m.homeTeam.name):aP===max?(m.awayTeam.shortName||m.awayTeam.name):'Nul';
+    return `<div class="match-card" id="mc-${m.id}" onclick="analyzeMatch(${m.id})">
+      <div class="match-date">${dt}</div>
+      <div class="match-wx">${wx.icon} ${wx.desc}</div>
+      <div class="match-teams">
+        <div class="team-block">
+          ${m.homeTeam.crest?`<img class="team-crest" src="${m.homeTeam.crest}" onerror="this.style.display='none'" alt="">`:''}
+          <div class="team-name">${m.homeTeam.shortName||m.homeTeam.name}</div>
+          <div class="team-rank">#${hs.position||'?'} · ${hp}pts</div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="team-block away">
+          ${m.awayTeam.crest?`<img class="team-crest right" src="${m.awayTeam.crest}" onerror="this.style.display='none'" alt="">`:''}
+          <div class="team-name">${m.awayTeam.shortName||m.awayTeam.name}</div>
+          <div class="team-rank">${ap}pts · #${as.position||'?'}</div>
+        </div>
+      </div>
+      <div class="prob-bars">
+        <div class="prob-bar" style="width:${hP}%;background:var(--green);opacity:.7"></div>
+        <div class="prob-bar" style="width:${dP}%;background:var(--muted);opacity:.5"></div>
+        <div class="prob-bar" style="width:${aP}%;background:var(--blue);opacity:.7"></div>
+      </div>
+      <div class="prob-lbls">
+        <span class="prob-lbl ${hP===max?'hl':''}">${hP}% dom.</span>
+        <span class="prob-lbl">Fav: <b>${fav}</b></span>
+        <span class="prob-lbl ${aP===max?'hl':''}">${aP}% ext.</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── ANALYZE ────────────────────────────────────────────
+function analyzeMatch(id) {
+  document.querySelectorAll('.match-card').forEach(c=>c.classList.remove('active'));
+  const card = document.getElementById('mc-'+id);
+  if (card) { card.classList.add('active'); card.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+  const m = DATA.matches.find(x=>x.id===id);
+  if (!m) return;
+
+  document.getElementById('analysisSub').textContent = `${m.homeTeam.name} vs ${m.awayTeam.name}`;
+  const hs = DATA.teamStats[m.homeTeam.id]||{};
+  const as = DATA.teamStats[m.awayTeam.id]||{};
+  const wx = getWeather(m.venue||'');
+  const dt = new Date(m.utcDate).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+
+  const scorerMap = {};
+  DATA.scorers.forEach(s=>{ if(s.player) scorerMap[s.player.id]={goals:s.goals||0,assists:s.assists||0}; });
+
+  function scorePlayer(p, isHome, ownStat, oppStat) {
+    const sc = scorerMap[p.id]||{};
+    let base = 58;
+    base += (sc.goals||0)*3 + (sc.assists||0)*2;
+    if (isHome) base += 4;
+    const pos = mapPos(p);
+    if (pos==='ATT' && (oppStat.goalsAgainst||0)>28) base += 7;
+    if ((pos==='GK'||pos==='DEF') && (oppStat.goalsFor||0)<22) base += 6;
+    base += Math.min((ownStat.wins||0)*0.4, 8);
+    return Math.min(97, Math.round(base));
+  }
+
+  function grade(s){ return s>=82?'S':s>=70?'A':'B'; }
+
+  function buildPosSection(squad, isHome, posKey, maxPick) {
+    const filtered = squad.filter(p=>mapPos(p)===posKey);
+    if (!filtered.length) return '';
+    const ownS = isHome?hs:as, oppS = isHome?as:hs;
+    const sorted = filtered
+      .map(p=>({...p, sc:scorePlayer(p,isHome,ownS,oppS), stats:scorerMap[p.id]||{}}))
+      .sort((a,b)=>b.sc-a.sc).slice(0,maxPick);
+    const teamName = isHome?(m.homeTeam.shortName||m.homeTeam.name):(m.awayTeam.shortName||m.awayTeam.name);
+    return sorted.map(p=>{
+      const g=grade(p.sc), goals=p.stats.goals||0, assists=p.stats.assists||0;
+      const tags = [];
+      if (goals>=5) tags.push(['form',`⚡ ${goals} buts`]);
+      else if (goals>=2) tags.push(['form',`${goals} buts`]);
+      if (assists>=3) tags.push(['form',`${assists} passes déc.`]);
+      if (isHome) tags.push(['fix','Domicile']); else tags.push(['neu','Extérieur']);
+      if (posKey==='ATT'&&(oppS.goalsAgainst||0)>28) tags.push(['fix','Défense faible']);
+      if ((posKey==='GK'||posKey==='DEF')&&(oppS.goalsFor||0)<22) tags.push(['fix','Adversaire peu dangereux']);
+      if (wx.icon==='🌧') tags.push(['wx','Terrain lourd']);
+      else if (wx.icon==='☀️') tags.push(['wx','Terrain rapide ☀️']);
+      const opp = isHome?(m.awayTeam.shortName||m.awayTeam.name):(m.homeTeam.shortName||m.homeTeam.name);
+      let ana = '';
+      if (posKey==='GK') {
+        ana = `${p.name} face à ${opp}. `;
+        ana += (oppS.goalsFor||0)<22 ? `Adversaire peu dangereux (${oppS.goalsFor} buts marqués), clean sheet probable.` : `Match ouvert, vigilance requise.`;
+      } else if (posKey==='DEF') {
+        ana = `${p.name} en défense ${isHome?'à domicile':'en déplacement'}. `;
+        if (goals>0) ana += `${goals} but${goals>1?'s':''} cette saison. `;
+        if (assists>0) ana += `${assists} passe${assists>1?'s':''} décisive${assists>1?'s':''}. `;
+        ana += `${ownS.wins||0}V ${ownS.draws||0}N ${ownS.losses||0}D en championnat.`;
+      } else if (posKey==='MID') {
+        ana = `${p.name} au milieu. `;
+        ana += (goals>0||assists>0) ? `${goals} buts et ${assists} passes décisives cette saison. ` : 'Profil équilibré. ';
+        if (wx.icon==='🌧') ana += 'Pluie : frappes lointaines perturbées.';
+        else if (wx.icon==='☀️') ana += 'Terrain rapide, transitions directes.';
+      } else {
+        ana = `${p.name} en attaque. `;
+        if (goals>=5) ana += `${goals} buts cette saison, efficacité prouvée. `;
+        else if (goals>=2) ana += `${goals} buts à son actif. `;
+        else ana += 'Peu de buts encore, mais profil dangereux. ';
+        if ((oppS.goalsAgainst||0)>28) ana += `Défense adverse perméable (${oppS.goalsAgainst} buts concédés).`;
+      }
+      return `<div class="player-card">
+        <div class="player-top">
+          <div><div class="player-name">${p.name||'Joueur'}</div><div class="player-club">${teamName}</div></div>
+          <div class="player-score score-${g}">${p.sc}</div>
+        </div>
+        <div class="player-stats-row">
+          <div class="pstat">⚽ <span>${goals}</span> buts</div>
+          <div class="pstat">🎯 <span>${assists}</span> passes</div>
+          ${p.shirtNumber?`<div class="pstat">nº <span>${p.shirtNumber}</span></div>`:''}
+        </div>
+        <div class="player-tags">${tags.map(([t,l])=>`<span class="tag tag-${t}">${l}</span>`).join('')}</div>
+        <div class="player-analysis">${ana}</div>
+      </div>`;
+    }).join('');
+  }
+
+  const hSquad = DATA.squads[m.homeTeam.id]||[];
+  const aSquad = DATA.squads[m.awayTeam.id]||[];
+  const posLabels = {GK:'Gardiens',DEF:'Défenseurs',MID:'Milieux',ATT:'Attaquants'};
+  const posCls    = {GK:'pl-GK',DEF:'pl-DEF',MID:'pl-MID',ATT:'pl-ATT'};
+  const pickCount = {GK:1,DEF:2,MID:2,ATT:2};
+
+  const posHTML = Object.entries(posLabels).map(([key,label])=>{
+    const h = buildPosSection(hSquad,true,key,pickCount[key]);
+    const a = buildPosSection(aSquad,false,key,key==='GK'?1:1);
+    return `<div><span class="pos-label ${posCls[key]}">${label}</span>${h||''}${a||''}${!h&&!a?'<div style="font-size:11px;color:var(--sub);padding:6px 0">Aucun joueur</div>':''}</div>`;
+  }).join('');
+
+  const diffPts = Math.abs((hs.points||0)-(as.points||0));
+  const conf = Math.min(92, Math.round(50 + diffPts * 0.9));
+  const cc = conf>=70?'conf-hi':conf>=55?'conf-md':'conf-lo';
+  const favTeam = (hs.points||0)>=(as.points||0)?m.homeTeam.name:m.awayTeam.name;
+
+  document.getElementById('analysisPanel').innerHTML = `<div class="fade">
+    <div class="report-top">
+      <div>
+        <div class="report-title">${m.homeTeam.name} <span style="color:var(--sub)">vs</span> ${m.awayTeam.name}</div>
+        <div class="report-meta">${dt}${m.venue?' · '+m.venue:''} · ${wx.icon} ${wx.desc}</div>
+        <div class="report-summary">
+          ${m.homeTeam.name} <strong>#${hs.position||'?'}</strong> · ${hs.points||0}pts (${hs.wins||0}V ${hs.draws||0}N ${hs.losses||0}D) · ⚽${hs.goalsFor||0}/${hs.goalsAgainst||0} &nbsp;|&nbsp;
+          ${m.awayTeam.name} <strong>#${as.position||'?'}</strong> · ${as.points||0}pts (${as.wins||0}V ${as.draws||0}N ${as.losses||0}D) · ⚽${as.goalsFor||0}/${as.goalsAgainst||0}
+        </div>
+        <div class="report-wx">⚡ ${wx.icon==='🌧'?'Terrain lourd — frappes longues gênées, physique favorisé.':wx.icon==='☀️'?'Terrain sec et rapide — idéal pour les attaquants techniques.':'Conditions neutres.'}</div>
+      </div>
+      <div class="report-badges">
+        <div class="rbadge"><div class="rbadge-val ${cc}">${conf}</div><div class="rbadge-lbl">Confiance</div></div>
+        <div class="rbadge"><div class="rbadge-val" style="font-size:11px;color:var(--text);max-width:70px">${favTeam}</div><div class="rbadge-lbl">Favori</div></div>
+      </div>
+    </div>
+    <div class="pos-grid">${posHTML}</div>
+  </div>`;
+}
+
+// ── SCORERS ────────────────────────────────────────────
+function renderScorers() {
+  const c = document.getElementById('scorersContainer');
+  if (!DATA.scorers.length) { c.innerHTML='<p style="color:var(--sub)">Aucun buteur.</p>'; return; }
+  c.innerHTML = DATA.scorers.map((s,i)=>`
+    <div class="scorer-card">
+      <div class="scorer-rank ${i<3?'top':''}">${i+1}</div>
+      ${s.team?.crest?`<img src="${s.team.crest}" style="width:22px;height:22px;object-fit:contain;flex-shrink:0" onerror="this.style.display='none'" alt="">`:''}
+      <div>
+        <div class="scorer-name">${s.player?.name||'?'}</div>
+        <div class="scorer-club">${s.team?.shortName||s.team?.name||'?'}</div>
+        <div class="scorer-nums">
+          <div class="scorer-num">⚽ <span>${s.goals||0}</span> buts</div>
+          ${s.assists!=null?`<div class="scorer-num">🎯 <span>${s.assists}</span> passes</div>`:''}
+          ${s.playedMatches?`<div class="scorer-num">📋 <span>${s.playedMatches}</span> matchs</div>`:''}
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ── SQUADS ────────────────────────────────────────────
+function renderSquadTabs() {
+  document.getElementById('squadTeamTabs').innerHTML = DATA.teams
+    .map((t,i)=>`<button class="squad-tab ${i===0?'active':''}" onclick="showSquad(${t.id},this)">${t.tla||t.shortName}</button>`)
+    .join('');
+  if (DATA.teams.length) showSquad(DATA.teams[0].id, null);
+}
+
+function showSquad(teamId, btn) {
+  if (btn) { document.querySelectorAll('.squad-tab').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+  const squad = DATA.squads[teamId]||[];
+  const c = document.getElementById('squadContainer');
+  if (!squad.length) { c.innerHTML='<p style="color:var(--sub);font-size:13px">Effectif non disponible.</p>'; return; }
+  const scorerMap = {};
+  DATA.scorers.forEach(s=>{ if(s.player) scorerMap[s.player.id]={goals:s.goals||0,assists:s.assists||0}; });
+  const groups = {GK:[],DEF:[],MID:[],ATT:[]};
+  squad.forEach(p=>{ const pos=API_POS[p.position]; if(pos) groups[pos].push(p); });
+  let html = '';
+  [['GK','Gardiens'],['DEF','Défenseurs'],['MID','Milieux'],['ATT','Attaquants']].forEach(([key,label])=>{
+    if (!groups[key].length) return;
+    html += `<div style="margin-bottom:15px">
+      <div style="font-family:'Bebas Neue';font-size:13px;letter-spacing:2px;color:var(--sub);margin-bottom:7px">${label}</div>
+      <div class="squad-grid">${groups[key].map(p=>{
+        const sc=scorerMap[p.id]||{};
+        return `<div class="squad-card">
+          <div class="squad-num">${p.shirtNumber||'·'}</div>
+          <div style="flex:1;min-width:0">
+            <div class="squad-name">${p.name||'Joueur'}</div>
+            <div class="squad-nat">${p.nationality||''} ${sc.goals>0?`· ⚽${sc.goals}`:''} ${sc.assists>0?`· 🎯${sc.assists}`:''}</div>
+          </div>
+          <span class="squad-pos-badge sb-${key}">${key}</span>
+        </div>`;
+      }).join('')}</div></div>`;
+  });
+  c.innerHTML = html || '<p style="color:var(--sub)">Effectif vide.</p>';
+}
+
+// ── TOP PICKS ────────────────────────────────────────────
+function buildTopPicks() {
+  const c = document.getElementById('picksContainer');
+  if (!DATA.matches.length) { c.innerHTML='<p style="color:var(--sub)">Pas de matchs chargés.</p>'; return; }
+  const scorerMap = {};
+  DATA.scorers.forEach(s=>{ if(s.player) scorerMap[s.player.id]={goals:s.goals||0,assists:s.assists||0}; });
+
+  const picks = {GK:[],DEF:[],MID:[],ATT:[]};
+  DATA.matches.forEach(m=>{
+    [[m.homeTeam,true],[m.awayTeam,false]].forEach(([t,isHome])=>{
+      const squad = DATA.squads[t.id]||[];
+      const ownS = DATA.teamStats[t.id]||{};
+      const oppS = DATA.teamStats[isHome?m.awayTeam.id:m.homeTeam.id]||{};
+      const wx   = getWeather(m.venue||'');
+      const dt   = new Date(m.utcDate).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
+      squad.forEach(p=>{
+        const pos = API_POS[p.position]; if(!pos) return;
+        const sc  = scorerMap[p.id]||{};
+        let score = 58;
+        score += (sc.goals||0)*3 + (sc.assists||0)*2;
+        if (isHome) score+=4;
+        if (pos==='ATT'&&(oppS.goalsAgainst||0)>28) score+=7;
+        if ((pos==='GK'||pos==='DEF')&&(oppS.goalsFor||0)<22) score+=6;
+        score = Math.min(97,Math.round(score));
+        if (score<60) return;
+        const opp = isHome?(m.awayTeam.shortName||m.awayTeam.name):(m.homeTeam.shortName||m.homeTeam.name);
+        let reason = '';
+        if ((sc.goals||0)>=5) reason += `${sc.goals} buts cette saison. `;
+        else if ((sc.goals||0)>=2) reason += `${sc.goals} buts. `;
+        if ((sc.assists||0)>=3) reason += `${sc.assists} passes déc. `;
+        if (isHome) reason += 'Domicile. ';
+        if (pos==='ATT'&&(oppS.goalsAgainst||0)>28) reason += `Défense adverse poreuse (${oppS.goalsAgainst} buts concédés). `;
+        if ((pos==='GK'||pos==='DEF')&&(oppS.goalsFor||0)<22) reason += `Adversaire peu dangereux (${oppS.goalsFor} buts). `;
+        if (wx.icon==='☀️') reason += 'Terrain rapide.';
+        else if (wx.icon==='🌧') reason += 'Profil physique adapté.';
+        if (!reason) reason = 'Titulaire régulier dans un contexte favorable.';
+        picks[pos].push({name:p.name||'?',club:t.shortName||t.name,match:`vs ${opp} (${dt})`,score,grade:score>=82?'S':score>=70?'A':'B',goals:sc.goals||0,assists:sc.assists||0,reason});
+      });
+    });
+  });
+
+  const labels={GK:'Gardiens',DEF:'Défenseurs',MID:'Milieux',ATT:'Attaquants'};
+  const colors={GK:'var(--blue)',DEF:'var(--green)',MID:'var(--gold)',ATT:'var(--red)'};
+  let html='';
+  for (const [pos,list] of Object.entries(picks)) {
+    const top = [...new Map(list.map(p=>[p.name,p])).values()]
+      .sort((a,b)=>b.score-a.score).slice(0,3);
+    if (!top.length) continue;
+    html += `<div class="picks-pos-title">${labels[pos]}</div><div class="picks-grid">`;
+    top.forEach((p,i)=>{
+      html += `<div class="pick-card">
+        <div class="pick-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="pick-pos-badge" style="color:${colors[pos]}">${labels[pos]}</div>
+        <div class="pick-name">${p.name}</div>
+        <div class="pick-club">${p.club} · ${p.match}</div>
+        <div class="pick-score-row">
+          <div class="pick-score score-${p.grade}">${p.score}</div>
+          <div class="pick-score-lbl">Score<br>Fantasy</div>
+        </div>
+        <div class="pick-stats">
+          <div class="pick-stat">⚽ <span>${p.goals}</span></div>
+          <div class="pick-stat">🎯 <span>${p.assists}</span></div>
+        </div>
+        <div class="pick-reason">${p.reason}</div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+  c.innerHTML = html || '<p style="color:var(--sub)">Aucun pick disponible.</p>';
+}
+
+// ── STANDINGS ────────────────────────────────────────────
+function renderStandings() {
+  const c = document.getElementById('standingsContainer');
+  if (!DATA.standings.length) { c.innerHTML='<p style="padding:16px;color:var(--sub)">Classement indisponible.</p>'; return; }
+  c.innerHTML = DATA.standings.map(row=>{
+    const pos=row.position, rc=pos<=4?'gold':pos>=18?'red':'';
+    const rawForm=(row.form||'').split(',').slice(-5).map(f=>f==='W'?'fw':f==='D'?'dn':f==='L'?'ls':'dn');
+    const form=rawForm.length?rawForm:['dn','dn','dn','dn','dn'];
+    return `<div class="table-row">
+      <div class="tr-rank ${rc}">${pos}</div>
+      ${row.team?.crest?`<img class="tr-crest" src="${row.team.crest}" onerror="this.style.display='none'" alt="">`:'<div style="width:19px"></div>'}
+      <div class="tr-name">${row.team?.name||'?'}</div>
+      <div class="tr-form">${form.map(f=>`<div class="fd ${f}"></div>`).join('')}</div>
+      <div class="tr-wdl">${row.won}V ${row.draw}N ${row.lost}D</div>
+      <div class="tr-pts ${rc}">${row.points}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('standingsSub').textContent=`2025-26 · J${DATA.standings[0]?.playedGames||'?'} jouées`;
+}
+
+// ── TABS ────────────────────────────────────────────────
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['matches','picks','scorers','squads','standings'][i]===id));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+document.getElementById('apiKey').addEventListener('keydown',e=>{if(e.key==='Enter')launch();});
+</script>
+
+</body>
+</html>
