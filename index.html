@@ -7,756 +7,490 @@
 <title>LaLiga Fantasy Scout</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07080D;--surface:#0E1019;--card:#141520;--border:#1E2035;--border2:#272A42;--red:#FF2D4B;--gold:#F0B429;--green:#10D982;--blue:#4D9EFF;--text:#EEF0FF;--sub:#7B7FA8;--muted:#3A3D5C;}
+:root{--bg:#07080D;--sur:#0E1019;--card:#141520;--bor:#1E2035;--bor2:#272A42;--red:#FF2D4B;--gold:#F0B429;--grn:#10D982;--blu:#4D9EFF;--txt:#EEF0FF;--sub:#7B7FA8;--mut:#3A3D5C;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,45,75,.06),transparent 60%);pointer-events:none;z-index:0;}
-
-/* SETUP */
-#setup{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:var(–bg);padding:20px;}
-.setup-box{width:100%;max-width:460px;background:var(–surface);border:1px solid var(–border2);border-radius:20px;padding:34px;position:relative;overflow:hidden;}
-.setup-box::before{content:’’;position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(–red),var(–gold),var(–blue));}
-.setup-logo{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
-.setup-logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(–red),#FF6B35);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’;font-size:19px;color:#fff;}
-.setup-logo-name{font-family:‘Bebas Neue’;font-size:21px;letter-spacing:3px;}
-.setup-logo-sub{font-size:10px;color:var(–sub);letter-spacing:2px;text-transform:uppercase;}
-.setup-title{font-family:‘Bebas Neue’;font-size:26px;letter-spacing:2px;margin-bottom:8px;}
-.setup-desc{font-size:13px;color:var(–sub);line-height:1.7;margin-bottom:22px;}
-.setup-steps{background:rgba(255,255,255,.02);border:1px solid var(–border);border-radius:12px;padding:14px;margin-bottom:20px;}
-.setup-step{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(–sub);line-height:1.6;padding:6px 0;}
-.setup-step:not(:last-child){border-bottom:1px solid var(–border);}
-.step-num{width:20px;height:20px;border-radius:50%;background:var(–muted);color:var(–text);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;margin-top:1px;}
-.setup-step a{color:var(–blue);text-decoration:none;}
-.input-label{font-size:11px;color:var(–sub);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;display:block;}
-.api-input{width:100%;padding:12px 14px;background:var(–card);border:1.5px solid var(–border2);border-radius:10px;color:var(–text);font-family:‘Roboto Mono’,monospace;font-size:12px;outline:none;transition:border-color .2s;margin-bottom:14px;}
-.api-input:focus{border-color:var(–blue);}
-.api-input::placeholder{color:var(–muted);}
-.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,var(–red),#C0182B);color:#fff;border:none;border-radius:10px;font-family:‘Bebas Neue’;font-size:17px;letter-spacing:3px;cursor:pointer;transition:opacity .2s;}
-.btn-primary:hover{opacity:.88;}
-.setup-note{font-size:11px;color:var(–muted);text-align:center;margin-top:10px;}
-
-/* APP */
-#app{display:none;position:relative;z-index:1;}
-header{background:rgba(14,16,25,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(–border);padding:0 18px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.logo{display:flex;align-items:center;gap:9px;}
-.logo-icon{width:30px;height:30px;background:linear-gradient(135deg,var(–red),#FF6B35);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’;font-size:14px;color:#fff;}
-.logo-name{font-family:‘Bebas Neue’;font-size:17px;letter-spacing:3px;}
-.logo-sub{font-size:9px;color:var(–sub);letter-spacing:2px;text-transform:uppercase;}
-.hdr-r{display:flex;align-items:center;gap:8px;}
-.season-badge{background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.3);color:var(–gold);font-size:10px;font-family:‘Roboto Mono’,monospace;padding:3px 9px;border-radius:20px;}
-.live-dot{display:flex;align-items:center;gap:4px;font-size:10px;color:var(–green);}
-.ldot{width:5px;height:5px;background:var(–green);border-radius:50%;animation:pulse 2s infinite;}
+body{background:var(--bg);color:var(--txt);font-family:'Sora',sans-serif;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,45,75,.05),transparent 60%);pointer-events:none;}
+header{background:rgba(14,16,25,.95);border-bottom:1px solid var(--bor);padding:0 16px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.hlogo{display:flex;align-items:center;gap:9px;}
+.hli{width:30px;height:30px;background:linear-gradient(135deg,var(--red),#FF6B35);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:14px;color:#fff;}
+.hln{font-family:'Bebas Neue';font-size:17px;letter-spacing:3px;}
+.hls{font-size:9px;color:var(--sub);letter-spacing:2px;text-transform:uppercase;}
+.hbadge{background:rgba(16,217,130,.1);border:1px solid rgba(16,217,130,.3);color:var(--grn);font-size:10px;padding:3px 9px;border-radius:20px;display:flex;align-items:center;gap:4px;}
+.hdot{width:5px;height:5px;background:var(--grn);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.btn-reset{background:transparent;border:1px solid var(–border2);border-radius:6px;color:var(–sub);font-size:10px;padding:3px 8px;cursor:pointer;}
-
-main{padding:18px;max-width:1400px;margin:0 auto;}
-.tabs{display:flex;gap:2px;margin-bottom:20px;background:var(–surface);padding:4px;border-radius:10px;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.tab{padding:7px 13px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;color:var(–sub);border:none;background:none;white-space:nowrap;transition:background .15s,color .15s;}
-.tab.active{background:var(–card);color:var(–text);box-shadow:0 1px 5px rgba(0,0,0,.5);}
-.tab-content{display:none;}
-.tab-content.active{display:block;}
-
-.sec{display:flex;align-items:flex-end;gap:12px;margin-bottom:15px;padding-bottom:9px;border-bottom:1px solid var(–border);}
-.sec-title{font-family:‘Bebas Neue’;font-size:21px;letter-spacing:3px;}
-.sec-sub{font-size:10px;color:var(–sub);letter-spacing:1px;text-transform:uppercase;padding-bottom:2px;}
-
-/* LOADING */
-.load-wrap{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px;gap:16px;}
-.loader-ring{width:42px;height:42px;border:3px solid var(–border2);border-top-color:var(–red);border-radius:50%;animation:spin .7s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.load-steps{display:flex;flex-direction:column;gap:7px;}
-.ls{display:flex;align-items:center;gap:8px;font-size:12px;color:var(–sub);transition:color .3s;}
-.ls.done{color:var(–green);}
-.ls.active{color:var(–text);}
-.li{width:14px;text-align:center;font-size:11px;}
-
-/* MATCHES */
-.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:10px;margin-bottom:22px;}
-.mc{background:var(–card);border:1.5px solid var(–border);border-radius:11px;padding:13px;cursor:pointer;transition:border-color .2s,transform .15s;position:relative;overflow:hidden;}
-.mc::after{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(–red),transparent);opacity:0;transition:opacity .2s;}
-.mc:hover,.mc.active{border-color:var(–red);}
-.mc:hover::after,.mc.active::after{opacity:1;}
-.mc.active{box-shadow:0 0 0 1px rgba(255,45,75,.15);}
-.mdate{font-family:‘Roboto Mono’,monospace;font-size:10px;color:var(–sub);letter-spacing:.5px;text-transform:uppercase;}
-.mwx{font-size:11px;color:var(–sub);margin-top:2px;}
-.mteams{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:9px 0;}
+main{padding:16px;max-width:1400px;margin:0 auto;}
+.tabs{display:flex;gap:2px;margin-bottom:18px;background:var(--sur);padding:4px;border-radius:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tab{padding:7px 12px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;color:var(--sub);border:none;background:none;white-space:nowrap;transition:all .15s;}
+.tab.on{background:var(--card);color:var(--txt);box-shadow:0 1px 5px rgba(0,0,0,.5);}
+.tc{display:none;}
+.tc.on{display:block;}
+.sec{display:flex;align-items:flex-end;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bor);}
+.sec-t{font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;}
+.sec-s{font-size:10px;color:var(--sub);letter-spacing:1px;text-transform:uppercase;padding-bottom:1px;}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:20px;}
+.mc{background:var(--card);border:1.5px solid var(--bor);border-radius:11px;padding:13px;cursor:pointer;transition:border-color .2s,transform .15s;position:relative;overflow:hidden;}
+.mc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),transparent);opacity:0;transition:opacity .2s;}
+.mc:hover,.mc.on{border-color:var(--red);}
+.mc:hover::after,.mc.on::after{opacity:1;}
+.mc.on{box-shadow:0 0 0 1px rgba(255,45,75,.15);}
+.mdate{font-family:'Roboto Mono',monospace;font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;}
+.mwx{font-size:11px;color:var(--sub);margin-top:2px;}
+.mteams{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:8px 0;}
 .tb{flex:1;}
-.tb.away{text-align:right;}
-.tcrest{width:22px;height:22px;object-fit:contain;display:block;margin-bottom:2px;}
-.tcrest.r{margin-left:auto;}
+.tb.r{text-align:right;}
 .tname{font-weight:500;font-size:13px;line-height:1.2;}
-.trank{font-size:10px;color:var(–sub);margin-top:1px;}
-.vs{background:var(–surface);border:1px solid var(–border);border-radius:4px;padding:4px 6px;font-family:‘Bebas Neue’;font-size:11px;letter-spacing:2px;color:var(–sub);flex-shrink:0;}
+.trank{font-size:10px;color:var(--sub);margin-top:1px;}
+.vs{background:var(--sur);border:1px solid var(--bor);border-radius:4px;padding:3px 6px;font-family:'Bebas Neue';font-size:11px;letter-spacing:2px;color:var(--sub);flex-shrink:0;}
 .pbars{display:flex;gap:2px;border-radius:3px;overflow:hidden;}
 .pb{height:3px;}
 .plbls{display:flex;justify-content:space-between;margin-top:3px;}
-.pl{font-family:‘Roboto Mono’,monospace;font-size:9px;color:var(–sub);}
-.pl.hl{color:var(–gold);font-weight:500;}
-
-/* ANALYSIS */
-.apanel{background:var(–card);border:1px solid var(–border);border-radius:12px;padding:18px;margin-bottom:22px;min-height:160px;}
-.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:150px;color:var(–sub);gap:8px;text-align:center;}
+.pl{font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sub);}
+.pl.hl{color:var(--gold);font-weight:500;}
+.apanel{background:var(--card);border:1px solid var(--bor);border-radius:12px;padding:18px;margin-bottom:20px;min-height:140px;}
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px;color:var(--sub);gap:8px;text-align:center;}
 .empty svg{opacity:.2;}
 .empty p{font-size:12px;letter-spacing:1px;text-transform:uppercase;}
-
-.rtop{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(–border);flex-wrap:wrap;}
-.rtitle{font-family:‘Bebas Neue’;font-size:19px;letter-spacing:2px;}
-.rmeta{font-size:10px;color:var(–sub);font-family:‘Roboto Mono’,monospace;margin-top:2px;}
-.rsumm{font-size:11px;color:#9499C0;line-height:1.7;margin-top:6px;max-width:500px;}
-.rwx{font-size:11px;color:var(–gold);margin-top:4px;}
+.rtop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--bor);flex-wrap:wrap;}
+.rtitle{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;}
+.rmeta{font-size:10px;color:var(--sub);font-family:'Roboto Mono',monospace;margin-top:2px;}
+.rsumm{font-size:11px;color:#9499C0;line-height:1.7;margin-top:5px;max-width:480px;}
+.rwx{font-size:11px;color:var(--gold);margin-top:4px;}
 .rbadges{display:flex;gap:6px;flex-shrink:0;}
-.rb{background:var(–surface);border:1px solid var(–border2);border-radius:7px;padding:7px 11px;text-align:center;}
-.rbv{font-family:‘Bebas Neue’;font-size:16px;}
-.rbl{font-size:9px;color:var(–sub);letter-spacing:1px;text-transform:uppercase;}
-.chi{color:var(–green);}
-.cmd{color:var(–gold);}
-.clo{color:var(–red);}
-
-.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-@media(max-width:860px){.pgrid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:480px){.pgrid{grid-template-columns:1fr;}}
-.plbl{font-size:10px;font-weight:600;letter-spacing:2px;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:8px;}
-.pGK{background:rgba(77,158,255,.1);color:var(–blue);border:1px solid rgba(77,158,255,.2);}
-.pDEF{background:rgba(16,217,130,.08);color:var(–green);border:1px solid rgba(16,217,130,.2);}
-.pMID{background:rgba(240,180,41,.08);color:var(–gold);border:1px solid rgba(240,180,41,.2);}
-.pATT{background:rgba(255,45,75,.08);color:var(–red);border:1px solid rgba(255,45,75,.2);}
-
-.pcard{background:var(–surface);border:1px solid var(–border);border-radius:8px;padding:11px;margin-bottom:7px;}
+.rb{background:var(--sur);border:1px solid var(--bor2);border-radius:7px;padding:6px 10px;text-align:center;}
+.rbv{font-family:'Bebas Neue';font-size:15px;}
+.rbl{font-size:9px;color:var(--sub);letter-spacing:1px;text-transform:uppercase;}
+.chi{color:var(--grn);}
+.cmd{color:var(--gold);}
+.clo{color:var(--red);}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:800px){.pgrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:440px){.pgrid{grid-template-columns:1fr;}}
+.plbl{font-size:10px;font-weight:600;letter-spacing:2px;padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:7px;}
+.pGK{background:rgba(77,158,255,.1);color:var(--blu);border:1px solid rgba(77,158,255,.2);}
+.pDEF{background:rgba(16,217,130,.08);color:var(--grn);border:1px solid rgba(16,217,130,.2);}
+.pMID{background:rgba(240,180,41,.08);color:var(--gold);border:1px solid rgba(240,180,41,.2);}
+.pATT{background:rgba(255,45,75,.08);color:var(--red);border:1px solid rgba(255,45,75,.2);}
+.pcard{background:var(--sur);border:1px solid var(--bor);border-radius:8px;padding:10px;margin-bottom:7px;}
 .ptop{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;}
 .pname{font-weight:500;font-size:13px;}
-.pclub{font-size:10px;color:var(–sub);margin-top:1px;}
-.pscore{font-family:‘Bebas Neue’;font-size:20px;line-height:1;}
-.sS{color:var(–green);}
-.sA{color:var(–gold);}
-.sB{color:var(–red);}
-.pstats{display:flex;gap:6px;margin:5px 0;flex-wrap:wrap;}
-.pst{background:rgba(255,255,255,.03);border:1px solid var(–border);border-radius:4px;padding:2px 6px;font-family:‘Roboto Mono’,monospace;font-size:10px;color:var(–sub);}
-.pst span{color:var(–text);font-weight:500;}
-.ptags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px;}
+.pclub{font-size:10px;color:var(--sub);margin-top:1px;}
+.pscore{font-family:'Bebas Neue';font-size:20px;line-height:1;}
+.sS{color:var(--grn);}
+.sA{color:var(--gold);}
+.sB{color:var(--red);}
+.ptags{display:flex;flex-wrap:wrap;gap:3px;margin:5px 0;}
 .tag{font-size:9px;padding:2px 6px;border-radius:8px;font-weight:500;}
-.tf{background:rgba(16,217,130,.08);color:var(–green);}
-.tx{background:rgba(77,158,255,.08);color:var(–blue);}
-.tw{background:rgba(240,180,41,.08);color:var(–gold);}
-.tr{background:rgba(255,45,75,.08);color:var(–red);}
-.tn{background:rgba(123,127,168,.1);color:var(–sub);}
-.pana{font-size:11px;color:var(–sub);line-height:1.6;border-top:1px solid var(–border);padding-top:5px;}
-
-/* PICKS */
-.ptitle{font-family:‘Bebas Neue’;font-size:15px;letter-spacing:3px;color:var(–sub);margin:16px 0 8px;}
-.pkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:9px;}
-.pkcard{background:var(–card);border:1px solid var(–border);border-radius:10px;padding:13px;position:relative;overflow:hidden;}
-.pknum{position:absolute;top:9px;right:11px;font-family:‘Bebas Neue’;font-size:26px;color:var(–muted);line-height:1;}
-.pkpos{font-size:9px;letter-spacing:2px;font-weight:600;margin-bottom:4px;}
-.pkname{font-weight:600;font-size:14px;margin-bottom:1px;}
-.pkclub{font-size:10px;color:var(–sub);margin-bottom:7px;}
-.pksrow{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
-.pkscore{font-family:‘Bebas Neue’;font-size:24px;}
-.pksl{font-size:9px;color:var(–sub);text-transform:uppercase;letter-spacing:1px;line-height:1.4;}
-.pkstats{display:flex;gap:5px;margin-bottom:5px;flex-wrap:wrap;}
-.pkst{font-family:‘Roboto Mono’,monospace;font-size:9px;background:rgba(255,255,255,.03);border:1px solid var(–border);padding:2px 5px;border-radius:4px;color:var(–sub);}
-.pkst span{color:var(–text);}
-.pkr{font-size:10px;color:var(–sub);line-height:1.6;border-top:1px solid var(–border);padding-top:5px;}
-
-/* SCORERS */
-.scgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:9px;}
-.sccard{background:var(–card);border:1px solid var(–border);border-radius:9px;padding:11px;display:flex;align-items:center;gap:10px;}
-.scrank{font-family:‘Bebas Neue’;font-size:20px;color:var(–muted);width:24px;text-align:center;flex-shrink:0;}
-.scrank.top{color:var(–gold);}
-.scname{font-weight:500;font-size:13px;}
-.scclub{font-size:10px;color:var(–sub);}
-.scnums{display:flex;gap:8px;margin-top:3px;flex-wrap:wrap;}
-.scnum{font-family:‘Roboto Mono’,monospace;font-size:10px;}
-.scnum span{color:var(–gold);font-weight:500;}
-
-/* SQUADS */
-.stabs{display:flex;gap:3px;margin-bottom:12px;flex-wrap:wrap;}
-.stab{padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;border:1px solid var(–border);background:transparent;color:var(–sub);transition:all .15s;}
-.stab.active{background:var(–card);color:var(–text);border-color:var(–border2);}
-.sqgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:7px;}
-.sqcard{background:var(–card);border:1px solid var(–border);border-radius:7px;padding:9px 11px;display:flex;align-items:center;gap:8px;}
-.sqnum{font-family:‘Roboto Mono’,monospace;font-size:10px;color:var(–muted);width:18px;text-align:center;flex-shrink:0;}
-.sqname{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sqnat{font-size:10px;color:var(–sub);}
-.sqbadge{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:600;flex-shrink:0;}
-.bGK{background:rgba(77,158,255,.1);color:var(–blue);}
-.bDEF{background:rgba(16,217,130,.08);color:var(–green);}
-.bMID{background:rgba(240,180,41,.08);color:var(–gold);}
-.bFW{background:rgba(255,45,75,.08);color:var(–red);}
-
-/* STANDINGS */
-.twrap{border:1px solid var(–border);border-radius:11px;overflow:hidden;}
-.trow{display:flex;align-items:center;padding:9px 12px;gap:8px;border-bottom:1px solid var(–border);transition:background .15s;}
+.tf{background:rgba(16,217,130,.08);color:var(--grn);}
+.tx{background:rgba(77,158,255,.08);color:var(--blu);}
+.tw{background:rgba(240,180,41,.08);color:var(--gold);}
+.tn{background:rgba(123,127,168,.1);color:var(--sub);}
+.pana{font-size:11px;color:var(--sub);line-height:1.6;border-top:1px solid var(--bor);padding-top:5px;}
+.ptitle{font-family:'Bebas Neue';font-size:14px;letter-spacing:3px;color:var(--sub);margin:14px 0 7px;}
+.pkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;}
+.pkcard{background:var(--card);border:1px solid var(--bor);border-radius:10px;padding:12px;position:relative;overflow:hidden;}
+.pknum{position:absolute;top:8px;right:10px;font-family:'Bebas Neue';font-size:24px;color:var(--mut);line-height:1;}
+.pkpos{font-size:9px;letter-spacing:2px;font-weight:600;margin-bottom:3px;}
+.pkname{font-weight:600;font-size:13px;margin-bottom:1px;}
+.pkclub{font-size:10px;color:var(--sub);margin-bottom:6px;}
+.pksrow{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.pkscore{font-family:'Bebas Neue';font-size:22px;}
+.pksl{font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:1px;line-height:1.4;}
+.pkr{font-size:10px;color:var(--sub);line-height:1.6;border-top:1px solid var(--bor);padding-top:5px;}
+.twrap{border:1px solid var(--bor);border-radius:11px;overflow:hidden;}
+.trow{display:flex;align-items:center;padding:8px 12px;gap:8px;border-bottom:1px solid var(--bor);}
 .trow:last-child{border-bottom:none;}
-.trow:hover{background:rgba(255,255,255,.02);}
-.trk{font-family:‘Roboto Mono’,monospace;font-size:11px;color:var(–sub);width:18px;flex-shrink:0;}
-.tcr{width:19px;height:19px;object-fit:contain;flex-shrink:0;}
+.trk{font-family:'Roboto Mono',monospace;font-size:11px;color:var(--sub);width:18px;flex-shrink:0;}
 .tnm{flex:1;font-size:12px;}
 .tfrm{display:flex;gap:3px;}
 .fd{width:7px;height:7px;border-radius:50%;}
-.fw{background:var(–green);}
-.dn{background:var(–gold);}
-.ls{background:var(–red);}
-.twdl{font-size:10px;color:var(–sub);font-family:‘Roboto Mono’,monospace;width:76px;text-align:right;}
-.tpts{font-family:‘Roboto Mono’,monospace;font-size:12px;font-weight:500;width:24px;text-align:right;}
-.gc{color:var(–gold);}
-.rc{color:var(–red);}
-
-.errbox{background:rgba(255,45,75,.06);border:1px solid rgba(255,45,75,.25);border-radius:8px;padding:14px;color:var(–red);font-size:12px;line-height:1.7;grid-column:1/-1;}
-.errbox a{color:var(–blue);}
+.fw{background:var(--grn);}
+.dn{background:var(--gold);}
+.ls{background:var(--red);}
+.twdl{font-size:10px;color:var(--sub);font-family:'Roboto Mono',monospace;width:72px;text-align:right;}
+.tpts{font-family:'Roboto Mono',monospace;font-size:12px;font-weight:500;width:24px;text-align:right;}
+.gc{color:var(--gold);}
+.rc{color:var(--red);}
 .fade{animation:fade .3s ease;}
-@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 ::-webkit-scrollbar{width:4px;height:4px;}
-::-webkit-scrollbar-thumb{background:var(–muted);border-radius:3px;}
+::-webkit-scrollbar-thumb{background:var(--mut);border-radius:3px;}
 </style>
-
 </head>
 <body>
-
-<!-- SETUP -->
-
-<div id="setup">
-  <div class="setup-box">
-    <div class="setup-logo">
-      <div class="setup-logo-icon">LL</div>
-      <div>
-        <div class="setup-logo-name">Fantasy Scout</div>
-        <div class="setup-logo-sub">LaLiga · Données live</div>
-      </div>
-    </div>
-    <div class="setup-title">Connecte ton API</div>
-    <div class="setup-desc">Cet outil se connecte à <strong>football-data.org</strong> pour charger les effectifs, stats et matchs en temps réel. C'est 100% gratuit.</div>
-    <div class="setup-steps">
-      <div class="setup-step">
-        <div class="step-num">1</div>
-        <div>Crée un compte gratuit sur <a href="https://www.football-data.org/client/register" target="_blank">football-data.org/client/register</a></div>
-      </div>
-      <div class="setup-step">
-        <div class="step-num">2</div>
-        <div>Récupère ton <strong>API Token</strong> dans ton tableau de bord (onglet "Account")</div>
-      </div>
-      <div class="setup-step">
-        <div class="step-num">3</div>
-        <div>Colle-le ci-dessous et clique sur <strong>Lancer</strong></div>
-      </div>
-    </div>
-    <label class="input-label" for="apiKey">Ton API Token football-data.org</label>
-    <input type="text" id="apiKey" class="api-input" placeholder="ex: a1b2c3d4e5f6789…" autocomplete="off" spellcheck="false">
-    <button class="btn-primary" onclick="launch()">🚀 LANCER L'ANALYSE</button>
-    <div class="setup-note">Ta clé reste dans ton navigateur · Jamais envoyée ailleurs</div>
+<header>
+  <div class="hlogo">
+    <div class="hli">LL</div>
+    <div><div class="hln">Fantasy Scout</div><div class="hls">LaLiga · IA Live</div></div>
   </div>
-</div>
-
-<!-- APP -->
-
-<div id="app">
-  <header>
-    <div class="logo">
-      <div class="logo-icon">LL</div>
-      <div>
-        <div class="logo-name">Fantasy Scout</div>
-        <div class="logo-sub">LaLiga · Live</div>
+  <div class="hbadge"><span class="hdot"></span>Jornada 30 · Avr 2026</div>
+</header>
+<main>
+  <div class="tabs">
+    <button class="tab on" onclick="sw('matches')">🗓 Matchs</button>
+    <button class="tab" onclick="sw('picks')">⚡ Top Picks</button>
+    <button class="tab" onclick="sw('standings')">📊 Classement</button>
+  </div>
+  <div class="tc on" id="tc-matches">
+    <div class="sec"><div class="sec-t">Matchs à venir</div><div class="sec-s">Jornada 30 · 3–6 Avril 2026 · Clique pour l'analyse</div></div>
+    <div class="mgrid" id="mgrid"></div>
+    <div class="sec"><div class="sec-t">Analyse Fantasy</div><div class="sec-s" id="asub">Sélectionne un match</div></div>
+    <div class="apanel" id="apanel">
+      <div class="empty">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <p>Clique sur un match pour l'analyse</p>
       </div>
-    </div>
-    <div class="hdr-r">
-      <span class="season-badge" id="seasonLabel">2025/26</span>
-      <span class="live-dot"><span class="ldot"></span>Live</span>
-      <button class="btn-reset" onclick="resetApp()">⬅ Clé</button>
-    </div>
-  </header>
-
-  <main>
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab('matches')">🗓 Matchs</button>
-      <button class="tab" onclick="switchTab('picks')">⚡ Top Picks</button>
-      <button class="tab" onclick="switchTab('scorers')">⚽ Buteurs</button>
-      <button class="tab" onclick="switchTab('squads')">👥 Effectifs</button>
-      <button class="tab" onclick="switchTab('standings')">📊 Classement</button>
-    </div>
-
-```
-<div class="tab-content active" id="tab-matches">
-  <div class="sec"><div class="sec-title">Matchs à venir</div><div class="sec-sub" id="mdLabel">…</div></div>
-  <div id="mgrid" class="mgrid"></div>
-  <div class="sec"><div class="sec-title">Analyse Fantasy</div><div class="sec-sub" id="aSub">Sélectionne un match</div></div>
-  <div class="apanel" id="apanel">
-    <div class="empty">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <p>Clique sur un match pour l'analyse</p>
     </div>
   </div>
-</div>
-<div class="tab-content" id="tab-picks">
-  <div class="sec"><div class="sec-title">Top Picks</div><div class="sec-sub">Basés sur les stats réelles 2025-26</div></div>
-  <div id="picksContainer"></div>
-</div>
-<div class="tab-content" id="tab-scorers">
-  <div class="sec"><div class="sec-title">Buteurs LaLiga</div><div class="sec-sub">Saison 2025-26 · Temps réel</div></div>
-  <div id="scorersContainer" class="scgrid"></div>
-</div>
-<div class="tab-content" id="tab-squads">
-  <div class="sec"><div class="sec-title">Effectifs</div><div class="sec-sub">Saison 2025-26 · Données live</div></div>
-  <div id="squadTabs" class="stabs"></div>
-  <div id="squadContainer"></div>
-</div>
-<div class="tab-content" id="tab-standings">
-  <div class="sec"><div class="sec-title">Classement LaLiga</div><div class="sec-sub" id="standSub">2025-26</div></div>
-  <div class="twrap" id="standingsContainer"></div>
-</div>
-```
-
-  </main>
-</div>
-
+  <div class="tc" id="tc-picks">
+    <div class="sec"><div class="sec-t">Top Picks Jornada 30</div><div class="sec-s">Meilleurs joueurs à aligner · Effectifs 2025-26 vérifiés</div></div>
+    <div id="picksEl"></div>
+  </div>
+  <div class="tc" id="tc-standings">
+    <div class="sec"><div class="sec-t">Classement LaLiga</div><div class="sec-s">Saison 2025-26 · Journée 29</div></div>
+    <div class="twrap" id="standEl"></div>
+  </div>
+</main>
 <script>
-// ══════════════════════════════════════
-// CONFIG
-// ══════════════════════════════════════
-const BASE = 'https://api.football-data.org/v4';
-let TOKEN  = '';
-let DATA   = { teams:[], squads:{}, matches:[], standings:[], scorers:[], stats:{} };
-
-const WX = {
-  'Madrid':     {i:'⛅',d:'16°C nuageux'},
-  'San Sebasti':{i:'🌧',d:'12°C pluie'},
-  'Palma':      {i:'☀️',d:'19°C ensoleillé'},
-  'Seville':    {i:'🌤',d:'18°C nuageux'},
-  'Sevilla':    {i:'🌤',d:'18°C nuageux'},
-  'Valencia':   {i:'☀️',d:'17°C ensoleillé'},
-  'Oviedo':     {i:'🌧',d:'11°C pluie'},
-  'Vitoria':    {i:'⛅',d:'14°C nuageux'},
-  'Girona':     {i:'🌤',d:'15°C nuageux'},
-  'Bilbao':     {i:'⛅',d:'13°C nuageux'},
-  'Getafe':     {i:'⛅',d:'16°C nuageux'},
-  'Elche':      {i:'🌤',d:'17°C ensoleillé'},
-  'Vigo':       {i:'🌧',d:'13°C pluie'},
-  'Pamplona':   {i:'⛅',d:'14°C nuageux'},
-  'Villarreal': {i:'🌤',d:'17°C ensoleillé'},
-  'Mallorca':   {i:'☀️',d:'19°C ensoleillé'},
-};
-function wx(venue='') {
-  for (const [c,w] of Object.entries(WX))
-    if (venue.toLowerCase().includes(c.toLowerCase())) return w;
-  return {i:'🌤',d:'Conditions normales'};
-}
-
-const POSMAP = {
-  'Goalkeeper':'GK','Centre-Back':'DEF','Left-Back':'DEF','Right-Back':'DEF',
-  'Defensive Midfield':'MID','Central Midfield':'MID','Attacking Midfield':'MID',
-  'Left Midfield':'MID','Right Midfield':'MID',
-  'Left Winger':'ATT','Right Winger':'ATT','Centre-Forward':'ATT','Secondary Striker':'ATT'
-};
-
-// ══════════════════════════════════════
-// API FETCH — direct + proxy fallback
-// ══════════════════════════════════════
-async function api(path) {
-  const url = `${BASE}${path}`;
-  // 1st: direct call (works on most desktop browsers)
-  try {
-    const r = await fetch(url, { headers:{'X-Auth-Token':TOKEN} });
-    if (r.status === 404) throw new Error('The resource you are looking for does not exist.');
-    if (r.status === 403) throw new Error('Token invalide ou accès refusé (HTTP 403).');
-    if (!r.ok) { const e=await r.json().catch(()=>({message:'Erreur inconnue'})); throw new Error(e.message||`HTTP ${r.status}`); }
-    return r.json();
-  } catch(e) {
-    // If CORS/network error, try proxy
-    if (e.message==='Failed to fetch'||e instanceof TypeError) {
-      const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-      const r2 = await fetch(proxy, { headers:{'X-Auth-Token':TOKEN} });
-      if (!r2.ok) throw new Error(`Proxy erreur HTTP ${r2.status}`);
-      return r2.json();
+const AN = {
+  "matches": {
+    "rvc-elc": {
+      "summary": "Rayo Vallecano reçoit un Elche en grande difficulté, 17e avec seulement 29 points et l'une des pires attaques du championnat. À domicile à Vallecas, Rayo est clairement favori pour décrocher 3 points précieux.",
+      "wxImpact": "Vent modéré à Madrid, conditions neutres qui n'avantage aucun style de jeu particulier.",
+      "fav": "Rayo Vallecano", "conf": 64,
+      "GK": [{"name":"Augusto Batalla","team":"Rayo Vallecano","score":78,"grade":"A","tags":["Clean sheet probable","Adversaire faible","Domicile"],"ana":"Face à la pire attaque de LaLiga, Batalla a d'excellentes chances de garder sa cage inviolée. Elche ne marque que 0.8 buts par match en moyenne."}],
+      "DEF": [
+        {"name":"Andrei Rațiu","team":"Rayo Vallecano","score":74,"grade":"A","tags":["Montées offensives","Domicile","Adversaire faible"],"ana":"Le latéral roumain monte régulièrement et peut contribuer offensivement face à une défense d'Elche vulnérable."},
+        {"name":"Florian Lejeune","team":"Rayo Vallecano","score":68,"grade":"B","tags":["Expérience","Clean sheet potentiel"],"ana":"Défenseur solide pour un match qui devrait être dominé par Rayo. Bonus clean sheet à portée."}
+      ],
+      "MID": [
+        {"name":"Óscar Trejo","team":"Rayo Vallecano","score":80,"grade":"A","tags":["Capitaine","Passes clés","Domicile"],"ana":"Le capitaine historique de Rayo orchestre le jeu et peut marquer sur coup de pied arrêté. Incontournable à domicile contre Elche."},
+        {"name":"Isi Palazón","team":"Rayo Vallecano","score":75,"grade":"A","tags":["Frappe lointaine","Offensif"],"ana":"Palazón se projette fréquemment dans la surface et frappe de loin. Sa capacité à marquer en fait un bon pick milieu."}
+      ],
+      "ATT": [
+        {"name":"Sergio Camello","team":"Rayo Vallecano","score":84,"grade":"A","tags":["En forme","Adversaire faible","Domicile","Buteur"],"ana":"Le meilleur buteur de Rayo face à la pire défense. C'est le pick numéro 1 de ce match — il devrait trouver le chemin des filets."},
+        {"name":"Jorge de Frutos","team":"Rayo Vallecano","score":76,"grade":"A","tags":["Vitesse","Domicile","Danger"],"ana":"De Frutos apporte de la vivacité et peut marquer ou délivrer une passe décisive face à une défense d'Elche dépassée."}
+      ]
+    },
+    "rso-lev": {
+      "summary": "La Real Sociedad reçoit Levante, lanterne rouge de facto avec 26 points et 15 défaites cette saison. La Txuri-urdin veut confirmer sa forme à domicile et relancer ses ambitions européennes.",
+      "wxImpact": "Pluie à San Sebastián — terrain lourd qui freine le jeu technique mais Kubo reste efficace même dans ces conditions.",
+      "fav": "Real Sociedad", "conf": 72,
+      "GK": [{"name":"Álex Remiro","team":"Real Sociedad","score":84,"grade":"A","tags":["Clean sheet probable","Adversaire 19e","Domicile"],"ana":"Remiro face à la pire attaque de LaLiga sous la pluie. Conditions idéales pour un clean sheet et les bonus qui vont avec."}],
+      "DEF": [
+        {"name":"Aritz Elustondo","team":"Real Sociedad","score":79,"grade":"A","tags":["Clean sheet probable","Domicile","Expérience"],"ana":"Défenseur pilier de la Sociedad face à une attaque de Levante quasi nulle. Un des meilleurs picks défensifs de la journée."},
+        {"name":"Jon Pacheco","team":"Real Sociedad","score":73,"grade":"A","tags":["Montées offensives","Corners","Domicile"],"ana":"Latéral actif de la Sociedad qui participe offensivement. Peut marquer sur coup de pied arrêté et dépasse souvent."}
+      ],
+      "MID": [
+        {"name":"Mikel Merino","team":"Real Sociedad","score":86,"grade":"S","tags":["En forme","Buts de loin","Incontournable"],"ana":"Merino est dans une forme excellente et frappe puissamment de loin. Face à Levante, il aura tout l'espace nécessaire pour exprimer son talent."},
+        {"name":"Brais Méndez","team":"Real Sociedad","score":82,"grade":"A","tags":["Passes décisives","Créativité","Domicile"],"ana":"Méndez est le cerveau offensif de la Sociedad. Ses passes entre les lignes et ses dribbles font des dégâts face à des défenses faibles."}
+      ],
+      "ATT": [
+        {"name":"Takefusa Kubo","team":"Real Sociedad","score":90,"grade":"S","tags":["Star","Dribbles","Incontournable","Frappe"],"ana":"Kubo est le pick absolu de ce match. Sa technique et sa vitesse font la différence même sur terrain lourd. Face à Levante, il est irrésistible."},
+        {"name":"Mikel Oyarzabal","team":"Real Sociedad","score":79,"grade":"A","tags":["Capitaine","Sens du but","Domicile"],"ana":"Le capitaine basque est un finisseur fiable. Son intelligence de jeu dans la surface fera des dégâts face à la pire défense du championnat."}
+      ]
+    },
+    "mal-rma": {
+      "summary": "Le Real Madrid se déplace à Palma avec de grandes chances de l'emporter. Mallorca, relégable avec 28 points, a une attaque anémique. Les Merengues restent sur une victoire 3-2 dans le derby contre l'Atlético.",
+      "wxImpact": "Conditions parfaites à Palma — terrain sec et rapide, idéal pour la vitesse de Mbappé et Vinícius sur les transitions.",
+      "fav": "Real Madrid", "conf": 78,
+      "GK": [{"name":"Thibaut Courtois","team":"Real Madrid","score":74,"grade":"A","tags":["Gardien élite","Adversaire faible","Clean sheet probable"],"ana":"Courtois face à la 18e attaque de LaLiga. Mallorca crée très peu d'occasions et les conditions parfaites réduisent les risques."}],
+      "DEF": [
+        {"name":"Álvaro Carreras","team":"Real Madrid","score":79,"grade":"A","tags":["Latéral offensif","Montées","Terrain rapide"],"ana":"Le latéral gauche espagnol est titulaire et monte régulièrement. Sur terrain sec à Palma, ses accélérations peuvent créer des situations dangereuses."},
+        {"name":"Dean Huijsen","team":"Real Madrid","score":72,"grade":"A","tags":["Solide","Adversaire faible","Clean sheet"],"ana":"Le défenseur central gère confortablement les rares assauts de Mallorca. Bon pick défensif avec bonus potentiel."}
+      ],
+      "MID": [
+        {"name":"Jude Bellingham","team":"Real Madrid","score":93,"grade":"S","tags":["Meilleur milieu","Buts","Passes déc.","Incontournable"],"ana":"Bellingham est en état de grâce. Face à Mallorca, relégable, sur un terrain rapide, il est le pick milieu absolu de toute la Jornada 30."},
+        {"name":"Federico Valverde","team":"Real Madrid","score":83,"grade":"A","tags":["Box-to-box","Énergie","Frappe lointaine"],"ana":"Valverde est le moteur du milieu madrilène. Sa puissance physique et ses frappes de loin peuvent punir Mallorca à tout moment."}
+      ],
+      "ATT": [
+        {"name":"Kylian Mbappé","team":"Real Madrid","score":96,"grade":"S","tags":["38 buts","Top pick absolu","Vitesse","Conditions idéales"],"ana":"Mbappé est en état de grâce avec 38 buts toutes compétitions. Terrain rapide à Palma, adversaire faible — c'est le pick numéro 1 absolu de toute la Jornada."},
+        {"name":"Vinícius Jr.","team":"Real Madrid","score":89,"grade":"S","tags":["Dribbles","Buts","Forme excellente"],"ana":"Vinícius a marqué dans le derby contre l'Atlético. Sa forme est au top et il va torturer la défense mallorquine sur terrain rapide."}
+      ]
+    },
+    "rbb-esp": {
+      "summary": "Le Real Betis reçoit l'Espanyol dans un match important pour la course à l'Europe. Les Verdiblancos (5e) ont un effectif renouvelé avec Cucho Hernández et Isco en grande forme.",
+      "wxImpact": "Conditions agréables à Séville — terrain sec et rapide, favorable au jeu technique de Lo Celso et à la mobilité de Cucho Hernández.",
+      "fav": "Real Betis", "conf": 67,
+      "GK": [{"name":"Adrián","team":"Real Betis","score":72,"grade":"A","tags":["Expérience","Domicile","Adversaire moyen"],"ana":"Adrián est un gardien expérimenté. Face à l'Espanyol, ses chances de clean sheet sont raisonnables dans un match que Betis devrait contrôler."}],
+      "DEF": [
+        {"name":"Héctor Bellerín","team":"Real Betis","score":75,"grade":"A","tags":["Latéral offensif","Centres","Domicile"],"ana":"Bellerín est un latéral très actif dont les montées alimentent constamment l'attaque. Ses centres pour Cucho sont redoutables."},
+        {"name":"Marc Bartra","team":"Real Betis","score":73,"grade":"A","tags":["Expérience","Leader","Set pieces"],"ana":"Bartra est le patron de la défense verte et blanche. Sa présence sur les coups de pied arrêtés et sa lecture du jeu sont précieuses."}
+      ],
+      "MID": [
+        {"name":"Isco","team":"Real Betis","score":86,"grade":"S","tags":["Maestro","Passes déc.","Domicile","En forme"],"ana":"Isco est le cerveau du Betis et excelle à domicile à Séville. Sa créativité et sa capacité à marquer en font le pick milieu numéro 1 de ce match."},
+        {"name":"Giovanni Lo Celso","team":"Real Betis","score":80,"grade":"A","tags":["Créativité","Passes entre les lignes","Technique"],"ana":"Lo Celso est l'un des meilleurs milieux offensifs de LaLiga. Ses passes décisives et ses dribbles déstabilisent les défenses organisées comme celle d'Espanyol."}
+      ],
+      "ATT": [
+        {"name":"Cucho Hernández","team":"Real Betis","score":83,"grade":"A","tags":["Explosif","En forme","Domicile","Nouveau signing"],"ana":"Cucho Hernández est l'attaquant vedette du Betis cette saison. Son explosivité et sa finesse technique en font le profil idéal sur terrain rapide à Séville."},
+        {"name":"Antony","team":"Real Betis","score":75,"grade":"A","tags":["Vitesse","Dribbles","Prêt Man United"],"ana":"Antony a retrouvé confiance au Betis. Sa vitesse sur le côté peut créer des espaces et aboutir à des passes décisives ou des buts."}
+      ]
+    },
+    "atm-bar": {
+      "summary": "LE choc de la Jornada 30 ! Le Barça leader (73pts) se rend au Metropolitano de l'Atlético (57pts). L'Atlético a un effectif renouvelé et ambitieux avec Sørloth, Julián Álvarez et le retour de Lookman.",
+      "wxImpact": "Vent modéré et nuages à Madrid — conditions qui favorisent le pressing intense de Simeone et pourraient gêner le jeu combiné du Barça.",
+      "fav": "FC Barcelona", "conf": 56,
+      "GK": [{"name":"Jan Oblak","team":"Atlético Madrid","score":76,"grade":"A","tags":["Vice-capitaine","Réflexes","Grand match"],"ana":"Oblak est l'un des meilleurs gardiens d'Europe. Dans ce choc, ses réflexes et sa solidité seront testés par les stars du Barça."}],
+      "DEF": [
+        {"name":"Ronald Araújo","team":"FC Barcelona","score":81,"grade":"A","tags":["Physique","Leadership","Grand match"],"ana":"Araújo sera au cœur de la défense barcelonaise face aux attaquants puissants de l'Atlético. Sa domination physique est déterminante."},
+        {"name":"Pau Cubarsí","team":"FC Barcelona","score":77,"grade":"A","tags":["Talent","Sérénité","Technique"],"ana":"À seulement 18 ans, Cubarsí est titulaire indiscutable. Sa lecture du jeu et son calme balle au pied en font un pick solide même dans les grands matchs."}
+      ],
+      "MID": [
+        {"name":"Pedri","team":"FC Barcelona","score":92,"grade":"S","tags":["Génie","Passes clés","Grand match","Incontournable"],"ana":"Pedri se transcende dans les grands rendez-vous. Sa vision du jeu et ses dribbles au Metropolitano en font le pick milieu absolu de cette Jornada."},
+        {"name":"Frenkie de Jong","team":"FC Barcelona","score":82,"grade":"A","tags":["Box-to-box","Pressing","Passes clés"],"ana":"De Jong est crucial pour casser les lignes de pressing de Simeone. Sa résistance physique et sa technique en font un pick solide dans ce choc."}
+      ],
+      "ATT": [
+        {"name":"Robert Lewandowski","team":"FC Barcelona","score":92,"grade":"S","tags":["31 buts","Grand match","Incontournable","Sang-froid"],"ana":"Lewandowski est l'homme des grands matchs — 31 buts cette saison. Même face à la défense de l'Atlético, il trouve toujours le chemin des filets."},
+        {"name":"Antoine Griezmann","team":"Atlético Madrid","score":86,"grade":"S","tags":["Légende","Ex-Barça","Motivation max","Domicile"],"ana":"Griezmann a une revanche à prendre contre son ancien club devant son public. Sa motivation maximale et son intelligence de jeu en font un pick premium."}
+      ]
+    },
+    "get-ath": {
+      "summary": "Duel équilibré entre Getafe et Athletic Bilbao, deux équipes à égalité de points (38). Match très physique et tactique attendu, typique des confrontations entre ces clubs qui jouent direct.",
+      "wxImpact": "Conditions neutres à Madrid — vent léger qui peut gêner les passes longues des deux équipes.",
+      "fav": "Athletic Bilbao", "conf": 52,
+      "GK": [{"name":"David Soria","team":"Getafe CF","score":70,"grade":"A","tags":["Solide","Match serré","Réflexes"],"ana":"Soria est un gardien fiable dans les matchs fermés. Si Getafe défend bas, un clean sheet est possible dans ce duel tactique."}],
+      "DEF": [
+        {"name":"Yeray Álvarez","team":"Athletic Bilbao","score":75,"grade":"A","tags":["Physique","Domination aérienne","Solide"],"ana":"Yeray est le patron de la défense basque. Face au jeu direct de Getafe, sa robustesse physique est essentielle pour dominer les duels."},
+        {"name":"Óscar de Marcos","team":"Athletic Bilbao","score":70,"grade":"A","tags":["Expérience","Montées","Capitaine"],"ana":"De Marcos apporte son expérience et ses montées sur le flanc droit. Sa régularité en fait un pick fiable dans ce match serré."}
+      ],
+      "MID": [
+        {"name":"Oihan Sancet","team":"Athletic Bilbao","score":79,"grade":"A","tags":["Box-to-box","Buts","En forme"],"ana":"Sancet est l'un des joueurs les plus en vue d'Athletic. Son profil box-to-box et sa capacité à surgir dans la surface en font le pick milieu de ce match."},
+        {"name":"Mauro Arambarri","team":"Getafe CF","score":73,"grade":"A","tags":["Récupération","Pressing","Domicile"],"ana":"Arambarri est le cœur du pressing getafiste. Dans un match physique, il peut récupérer des ballons et lancer des transitions rapides."}
+      ],
+      "ATT": [
+        {"name":"Iñaki Williams","team":"Athletic Bilbao","score":82,"grade":"A","tags":["Vitesse","Physique","Inlassable"],"ana":"Williams est le joueur le plus dangereux de ce match. Son énergie et sa vitesse perturbent même les défenses les plus organisées comme celle de Getafe."},
+        {"name":"Nico Williams","team":"Athletic Bilbao","score":78,"grade":"A","tags":["Dribbles","Champion d'Europe","Vitesse"],"ana":"Nico continue sa progression. Sa vivacité sur le flanc gauche peut faire la différence face à une défense getafiste parfois vulnérable en transition."}
+      ]
+    },
+    "vcf-rcc": {
+      "summary": "Valencia reçoit Celta de Vigo dans un match offensif prometteur. Deux équipes qui aiment construire et le soleil à Mestalla favorise un jeu ouvert avec des buts probables.",
+      "wxImpact": "Soleil et terrain rapide à Valence — idéal pour les attaquants des deux équipes. Aspas et Hugo Duro seront dans des conditions optimales.",
+      "fav": "Valencia CF", "conf": 58,
+      "GK": [{"name":"Giorgi Mamardashvili","team":"Valencia CF","score":72,"grade":"A","tags":["Talent","Domicile","Gardien moderne"],"ana":"Le jeune gardien géorgien est l'un des meilleurs espoirs d'Europe. Dans ce match offensif, ses arrêts réflexes peuvent faire la différence."}],
+      "DEF": [
+        {"name":"José Gayà","team":"Valencia CF","score":75,"grade":"A","tags":["International","Montées","Domicile"],"ana":"Gayà est un latéral gauche redoutable à Mestalla. Ses montées et ses centres alimentent constamment l'attaque valencienste."},
+        {"name":"Hugo Mallo","team":"RC Celta de Vigo","score":72,"grade":"A","tags":["Expérience","Capitaine","Montées"],"ana":"Mallo est le capitaine du Celta et monte régulièrement. Sa connexion avec Aspas sur les phases offensives peut créer du danger."}
+      ],
+      "MID": [
+        {"name":"Javi Guerra","team":"Valencia CF","score":78,"grade":"A","tags":["Talent","Box-to-box","Domicile"],"ana":"Guerra est la pépite du milieu valencien. Dans un match ouvert à Mestalla, il peut peser offensivement et contribuer à un but."},
+        {"name":"Fran Beltrán","team":"RC Celta de Vigo","score":74,"grade":"A","tags":["Vision","Passes","Régulier"],"ana":"Beltrán orchestre le jeu du Celta avec sa vision et sa précision. Ses passes permettent de trouver Aspas dans les meilleures positions."}
+      ],
+      "ATT": [
+        {"name":"Iago Aspas","team":"RC Celta de Vigo","score":89,"grade":"S","tags":["Légende","Incontournable","38 ans","Régulier"],"ana":"Aspas continue de marquer et d'assister à 38 ans avec une régularité déconcertante. À Mestalla en plein soleil, il est le pick numéro 1 absolu de ce match."},
+        {"name":"Hugo Duro","team":"Valencia CF","score":79,"grade":"A","tags":["Buteur","Physique","Domicile"],"ana":"Duro est le buteur de référence de Valence. Sa force physique et son placement dans la surface font de lui un attaquant redoutable à domicile."}
+      ]
+    },
+    "ovi-sev": {
+      "summary": "Fond de tableau entre Oviedo (dernier, 21pts) et Séville (15e, 31pts). Les deux équipes sont en difficulté mais Séville a plus de qualité individuelle pour s'imposer en Asturies sous la pluie.",
+      "wxImpact": "Pluie et froid à Oviedo — terrain glissant qui avantage les profils physiques comme En-Nesyri et neutralise le jeu technique.",
+      "fav": "Sevilla FC", "conf": 54,
+      "GK": [{"name":"Yassine Bounou","team":"Sevilla FC","score":74,"grade":"A","tags":["International","Expérience","Adversaire 20e"],"ana":"Bounou face à la pire attaque de LaLiga. Malgré la pluie, ses chances de clean sheet sont bonnes contre la dernière équipe du championnat."}],
+      "DEF": [
+        {"name":"Marcos Acuña","team":"Sevilla FC","score":72,"grade":"A","tags":["Robustesse","Adapté à la pluie","Expérience"],"ana":"Acuña est un latéral robuste parfaitement taillé pour jouer sous la pluie. Sa solidité défensive est clé contre les tentatives désespérées d'Oviedo."},
+        {"name":"Loïc Badé","team":"Sevilla FC","score":70,"grade":"A","tags":["Aérien","Physique","Pluie favorable"],"ana":"Badé domine dans les duels aériens — une qualité précieuse sur terrain lourd. Face aux attaquants limités d'Oviedo, il devrait gérer sans problème."}
+      ],
+      "MID": [
+        {"name":"Lucas Ocampos","team":"Sevilla FC","score":76,"grade":"A","tags":["Intensité","Physique","Adapté aux conditions"],"ana":"Ocampos est taillé pour les matchs difficiles sous la pluie. Son profil athlétique et son intensité font la différence dans ce contexte hostile."},
+        {"name":"Iván Rakitić","team":"Sevilla FC","score":73,"grade":"A","tags":["Légende","Vision","Leadership"],"ana":"Rakitić continue d'influencer le jeu du Séville FC. Sa lecture tactique et ses passes précises peuvent faire la différence même sous la pluie."}
+      ],
+      "ATT": [
+        {"name":"Youssef En-Nesyri","team":"Sevilla FC","score":78,"grade":"A","tags":["Physique","Aérien","Adversaire 20e","Conditions adaptées"],"ana":"En-Nesyri est parfaitement taillé pour ces conditions difficiles. Sa force et sa domination aérienne lui permettent de peser face au dernier du championnat."},
+        {"name":"Borja Bastón","team":"Real Oviedo","score":62,"grade":"B","tags":["Domicile","Expérience","Désespoir"],"ana":"Bastón est la principale menace offensive d'Oviedo mais son équipe est très limitée. Option risquée dans un match que Séville devrait contrôler."}
+      ]
+    },
+    "ala-osa": {
+      "summary": "Alavés (16e, 31pts) affronte Osasuna (10e, 37pts) dans un duel crucial. Alavés a besoin de points pour s'éloigner de la relégation tandis qu'Osasuna vise le top 10. Match accroché prévu.",
+      "wxImpact": "Conditions neutres à Vitoria — vent léger sans impact majeur sur le jeu des deux équipes.",
+      "fav": "Deportivo Alavés", "conf": 54,
+      "GK": [{"name":"Aitor Fernández","team":"CA Osasuna","score":73,"grade":"A","tags":["Expérience","Régularité","Fiable"],"ana":"Fernández est l'un des gardiens les plus réguliers de LaLiga. Dans ce match serré, sa concentration peut valoir un clean sheet précieux."}],
+      "DEF": [
+        {"name":"Luis Rioja","team":"Deportivo Alavés","score":74,"grade":"A","tags":["Vitesse","Domicile","Tranchant"],"ana":"Rioja est le joueur le plus tranchant d'Alavés. Sa vitesse sur les côtés peut créer des espaces et débloquer ce match fermé."},
+        {"name":"Rubén García","team":"CA Osasuna","score":71,"grade":"A","tags":["Technique","Passes décisives","Créativité"],"ana":"Rubén García est le plus créatif d'Osasuna. Ses passes entre les lignes peuvent déstabiliser la défense d'Alavés."}
+      ],
+      "MID": [
+        {"name":"Rubén García","team":"CA Osasuna","score":76,"grade":"A","tags":["Créativité","Passes déc.","Régulier"],"ana":"Le milieu créatif d'Osasuna, capable de trouver les espaces et de créer des occasions. Pick solide dans un match tactique."},
+        {"name":"Jon Guridi","team":"Deportivo Alavés","score":68,"grade":"B","tags":["Pressing","Intensité","Domicile"],"ana":"Guridi apporte l'intensité et le pressing nécessaires pour ce match vital pour Alavés. Profil de dépannage mais fiable."}
+      ],
+      "ATT": [
+        {"name":"Kike García","team":"CA Osasuna","score":78,"grade":"A","tags":["Buteur","Physique","En forme"],"ana":"Kike García est le buteur de référence d'Osasuna. Sa combativité et son efficacité devant le but en font le pick offensif numéro 1 de ce match."},
+        {"name":"Kebé","team":"Deportivo Alavés","score":72,"grade":"A","tags":["Vitesse","Domicile","Danger"],"ana":"L'attaquant d'Alavés est motivé par l'enjeu à domicile. Sa vitesse peut créer des espaces et punir Osasuna sur les transitions rapides."}
+      ]
+    },
+    "gir-vil": {
+      "summary": "Villarreal (3e, 58pts) se déplace à Gérone pour conforter sa place sur le podium. Le sous-marin jaune est en excellente forme avec Moleiro (8 buts) et Parejo qui régale. Girona peut créer la surprise à domicile.",
+      "wxImpact": "Bonnes conditions à Gérone — terrain rapide favorable au pressing haut et au jeu technique de Villarreal.",
+      "fav": "Villarreal CF", "conf": 62,
+      "GK": [{"name":"Luiz Júnior","team":"Villarreal CF","score":74,"grade":"A","tags":["Titulaire","Clean sheet potentiel","Expérience"],"ana":"Le gardien brésilien de Villarreal face à une attaque de Girona limitée à domicile. Bonnes chances de garder sa cage inviolée."}],
+      "DEF": [
+        {"name":"Alfonso Pedraza","team":"Villarreal CF","score":77,"grade":"A","tags":["Latéral offensif","Centres","4e capitaine"],"ana":"Pedraza est l'un des latéraux les plus offensifs de LaLiga. Ses montées et ses centres alimentent constamment l'attaque du sous-marin jaune."},
+        {"name":"Juan Foyth","team":"Villarreal CF","score":73,"grade":"A","tags":["Expérience","3e capitaine","Solide"],"ana":"Foyth est un défenseur polyvalent et expérimenté. Sa solidité défensive sera clé pour maintenir le zéro face à Girona."}
+      ],
+      "MID": [
+        {"name":"Dani Parejo","team":"Villarreal CF","score":85,"grade":"S","tags":["Capitaine","Vision","Set pieces","Leader"],"ana":"Parejo est le chef d'orchestre absolu de Villarreal. Sa vision du jeu et ses coups de pied arrêtés en font le pick milieu incontournable de ce match."},
+        {"name":"Alberto Moleiro","team":"Villarreal CF","score":84,"grade":"A","tags":["8 buts","Révélation","En forme","Explosif"],"ana":"Moleiro est la révélation de la saison à Villarreal avec 8 buts. Son explosivité et son sens du but en font un pick premium contre Girona."}
+      ],
+      "ATT": [
+        {"name":"Georges Mikautadze","team":"Villarreal CF","score":82,"grade":"A","tags":["Buteur","International géorgien","Technique"],"ana":"Mikautadze est l'attaquant de pointe de Villarreal. Sa finesse technique et son sens du but en font un pick très intéressant dans ce déplacement."},
+        {"name":"Ayoze Pérez","team":"Villarreal CF","score":79,"grade":"A","tags":["Expérience","Technique","Polyvalent"],"ana":"Ayoze apporte son expérience et sa technique à l'attaque de Villarreal. Sa régularité en fait un pick solide dans ce déplacement à Gérone."}
+      ]
     }
-    throw e;
+  },
+  "topPicks": {
+    "GK": [
+      {"rank":1,"name":"Álex Remiro","team":"Real Sociedad","match":"vs Levante","score":84,"grade":"A","reason":"Levante avant-dernier, clean sheet très probable sous la pluie à San Sebastián."},
+      {"rank":2,"name":"Augusto Batalla","team":"Rayo Vallecano","match":"vs Elche","score":78,"grade":"A","reason":"Elche dernière attaque de LaLiga. Clean sheet attendu à Vallecas."},
+      {"rank":3,"name":"Thibaut Courtois","team":"Real Madrid","match":"vs Mallorca","score":74,"grade":"A","reason":"Mallorca relégable. Terrain rapide à Palma, peu de danger offensif."}
+    ],
+    "DEF": [
+      {"rank":1,"name":"Álvaro Carreras","team":"Real Madrid","match":"vs Mallorca","score":79,"grade":"A","reason":"Latéral offensif en pleine forme, terrain parfait à Palma. Clean sheet + bonus offensifs."},
+      {"rank":2,"name":"Ronald Araújo","team":"FC Barcelona","match":"vs Atlético","score":81,"grade":"A","reason":"Leader de la défense barcelonaise dans le choc du titre au Metropolitano."},
+      {"rank":3,"name":"Aritz Elustondo","team":"Real Sociedad","match":"vs Levante","score":79,"grade":"A","reason":"Clean sheet quasi assuré contre la pire attaque. Domicile à San Sebastián."}
+    ],
+    "MID": [
+      {"rank":1,"name":"Jude Bellingham","team":"Real Madrid","match":"vs Mallorca","score":93,"grade":"S","reason":"Meilleur milieu de LaLiga face à une équipe relégable. Conditions parfaites à Palma."},
+      {"rank":2,"name":"Pedri","team":"FC Barcelona","match":"vs Atlético","score":92,"grade":"S","reason":"Se transcende dans les grands matchs. Incontournable au Metropolitano."},
+      {"rank":3,"name":"Dani Parejo","team":"Villarreal CF","match":"vs Girona","score":85,"grade":"S","reason":"Capitaine et chef d'orchestre de Villarreal en grande forme. Set pieces, vision, leadership."}
+    ],
+    "ATT": [
+      {"rank":1,"name":"Kylian Mbappé","team":"Real Madrid","match":"vs Mallorca","score":96,"grade":"S","reason":"38 buts toutes compétitions ! Terrain parfait à Palma face à une équipe relégable. Pick absolu."},
+      {"rank":2,"name":"Robert Lewandowski","team":"FC Barcelona","match":"vs Atlético","score":92,"grade":"S","reason":"31 buts cette saison. L'homme des grands rendez-vous sera décisif au Metropolitano."},
+      {"rank":3,"name":"Iago Aspas","team":"Celta de Vigo","match":"vs Valencia","score":89,"grade":"S","reason":"Légende du Celta toujours aussi efficace à 38 ans. Soleil à Mestalla, conditions idéales."}
+    ]
   }
+};
+
+const MATCHES=[
+{id:‘rvc-elc’,home:‘Rayo Vallecano’,away:‘Elche CF’,hr:14,ar:17,prob:{h:52.2,d:26.5,a:21.3},date:‘Ven 3 Avr · 20h00’,wx:{i:‘⛅’,d:‘16°C nuageux’},hpts:32,apts:29},
+{id:‘rso-lev’,home:‘Real Sociedad’,away:‘Levante UD’,hr:7,ar:19,prob:{h:62.6,d:21.6,a:15.8},date:‘Sam 4 Avr · 13h00’,wx:{i:‘🌧’,d:‘12°C pluie’},hpts:38,apts:26},
+{id:‘mal-rma’,home:‘RCD Mallorca’,away:‘Real Madrid’,hr:18,ar:2,prob:{h:17.7,d:22.1,a:60.2},date:‘Sam 4 Avr · 15h15’,wx:{i:‘☀️’,d:‘19°C ensoleillé’},hpts:28,apts:69},
+{id:‘rbb-esp’,home:‘Real Betis’,away:‘Espanyol’,hr:5,ar:11,prob:{h:56.3,d:24,a:19.7},date:‘Sam 4 Avr · 17h30’,wx:{i:‘🌤’,d:‘18°C nuageux’},hpts:44,apts:37},
+{id:‘atm-bar’,home:‘Atlético Madrid’,away:‘FC Barcelona’,hr:4,ar:1,prob:{h:32.4,d:24.3,a:43.3},date:‘Sam 4 Avr · 19h00’,wx:{i:‘⛅’,d:‘16°C nuageux’},hpts:57,apts:73},
+{id:‘get-ath’,home:‘Getafe CF’,away:‘Athletic Bilbao’,hr:8,ar:9,prob:{h:32.5,d:32.1,a:35.4},date:‘Dim 5 Avr · 13h00’,wx:{i:‘⛅’,d:‘16°C nuageux’},hpts:38,apts:38},
+{id:‘vcf-rcc’,home:‘Valencia CF’,away:‘Celta de Vigo’,hr:12,ar:6,prob:{h:39.5,d:28.3,a:32.2},date:‘Dim 5 Avr · 15h15’,wx:{i:‘☀️’,d:‘17°C ensoleillé’},hpts:35,apts:41},
+{id:‘ovi-sev’,home:‘Real Oviedo’,away:‘Sevilla FC’,hr:20,ar:15,prob:{h:34.4,d:28.9,a:36.7},date:‘Dim 5 Avr · 17h30’,wx:{i:‘🌧’,d:‘11°C pluie’},hpts:21,apts:31},
+{id:‘ala-osa’,home:‘Deportivo Alavés’,away:‘CA Osasuna’,hr:16,ar:10,prob:{h:39.3,d:30,a:30.7},date:‘Dim 5 Avr · 19h00’,wx:{i:‘⛅’,d:‘14°C nuageux’},hpts:31,apts:37},
+{id:‘gir-vil’,home:‘Girona FC’,away:‘Villarreal CF’,hr:13,ar:3,prob:{h:33.1,d:26.4,a:40.5},date:‘Lun 6 Avr · 19h00’,wx:{i:‘🌤’,d:‘15°C nuageux’},hpts:34,apts:58},
+];
+
+const ST=[
+{r:1,n:‘FC Barcelona’,pts:73,w:24,d:1,l:4,f:[‘fw’,‘fw’,‘fw’,‘dn’,‘fw’]},
+{r:2,n:‘Real Madrid’,pts:69,w:22,d:3,l:4,f:[‘fw’,‘fw’,‘fw’,‘fw’,‘ls’]},
+{r:3,n:‘Villarreal CF’,pts:58,w:18,d:4,l:7,f:[‘fw’,‘fw’,‘ls’,‘fw’,‘fw’]},
+{r:4,n:‘Atlético Madrid’,pts:57,w:17,d:6,l:6,f:[‘fw’,‘ls’,‘fw’,‘dn’,‘fw’]},
+{r:5,n:‘Real Betis’,pts:44,w:11,d:11,l:7,f:[‘dn’,‘fw’,‘ls’,‘fw’,‘dn’]},
+{r:6,n:‘Celta de Vigo’,pts:41,w:10,d:11,l:8,f:[‘ls’,‘fw’,‘dn’,‘fw’,‘ls’]},
+{r:7,n:‘Real Sociedad’,pts:38,w:10,d:8,l:11,f:[‘ls’,‘fw’,‘dn’,‘ls’,‘fw’]},
+{r:8,n:‘Getafe CF’,pts:38,w:11,d:5,l:13,f:[‘fw’,‘ls’,‘fw’,‘ls’,‘fw’]},
+{r:9,n:‘Athletic Bilbao’,pts:38,w:11,d:5,l:13,f:[‘fw’,‘fw’,‘ls’,‘fw’,‘ls’]},
+{r:10,n:‘CA Osasuna’,pts:37,w:10,d:7,l:12,f:[‘fw’,‘dn’,‘ls’,‘fw’,‘dn’]},
+{r:11,n:‘Espanyol’,pts:37,w:10,d:7,l:12,f:[‘ls’,‘fw’,‘dn’,‘fw’,‘ls’]},
+{r:12,n:‘Valencia CF’,pts:35,w:9,d:8,l:12,f:[‘fw’,‘fw’,‘ls’,‘dn’,‘fw’]},
+{r:13,n:‘Girona FC’,pts:34,w:8,d:10,l:11,f:[‘dn’,‘ls’,‘fw’,‘dn’,‘ls’]},
+{r:14,n:‘Rayo Vallecano’,pts:32,w:7,d:11,l:11,f:[‘dn’,‘fw’,‘ls’,‘dn’,‘fw’]},
+{r:15,n:‘Sevilla FC’,pts:31,w:8,d:7,l:14,f:[‘ls’,‘dn’,‘fw’,‘ls’,‘ls’]},
+{r:16,n:‘Deportivo Alavés’,pts:31,w:8,d:7,l:14,f:[‘fw’,‘ls’,‘dn’,‘ls’,‘fw’]},
+{r:17,n:‘Elche CF’,pts:29,w:6,d:11,l:12,f:[‘dn’,‘ls’,‘fw’,‘dn’,‘ls’]},
+{r:18,n:‘RCD Mallorca’,pts:28,w:7,d:7,l:15,f:[‘ls’,‘ls’,‘fw’,‘dn’,‘ls’]},
+{r:19,n:‘Levante UD’,pts:26,w:6,d:8,l:15,f:[‘ls’,‘fw’,‘ls’,‘ls’,‘dn’]},
+{r:20,n:‘Real Oviedo’,pts:21,w:4,d:9,l:16,f:[‘ls’,‘ls’,‘dn’,‘ls’,‘ls’]},
+];
+
+function renderMatches(){
+document.getElementById(‘mgrid’).innerHTML=MATCHES.map(m=>{
+const max=Math.max(m.prob.h,m.prob.d,m.prob.a);
+const fav=m.prob.h===max?m.home:m.prob.a===max?m.away:‘Nul’;
+return ‘<div class="mc" id="mc-'+m.id+'" onclick="analyze(\''+m.id+'\')">’ +
+‘<div class="mdate">’+m.date+’</div><div class="mwx">’+m.wx.i+’ ‘+m.wx.d+’</div>’ +
+‘<div class="mteams"><div class="tb"><div class="tname">’+m.home+’</div><div class="trank">#’+m.hr+’ · ‘+m.hpts+‘pts</div></div>’ +
+‘<div class="vs">VS</div>’ +
+‘<div class="tb r"><div class="tname">’+m.away+’</div><div class="trank">’+m.apts+‘pts · #’+m.ar+’</div></div></div>’ +
+‘<div class="pbars"><div class="pb" style="width:'+m.prob.h+'%;background:var(--grn);opacity:.7"></div>’ +
+‘<div class="pb" style="width:'+m.prob.d+'%;background:var(--mut);opacity:.5"></div>’ +
+‘<div class="pb" style="width:'+m.prob.a+'%;background:var(--blu);opacity:.7"></div></div>’ +
+‘<div class="plbls"><span class="pl '+(m.prob.h===max?'hl':'')+'">’+m.prob.h+’%</span>’ +
+‘<span class="pl">Fav: <b>’+fav+’</b></span>’ +
+‘<span class="pl '+(m.prob.a===max?'hl':'')+'">’+m.prob.a+’%</span></div></div>’;
+}).join(’’);
 }
 
-// ══════════════════════════════════════
-// LAUNCH
-// ══════════════════════════════════════
-async function launch() {
-  const k = document.getElementById('apiKey').value.trim();
-  if (!k||k.length<8) { alert('Merci de saisir un token API valide.'); return; }
-  TOKEN = k;
-  document.getElementById('setup').style.display='none';
-  document.getElementById('app').style.display='block';
-  await loadAll();
-}
-function resetApp() {
-  TOKEN=''; DATA={teams:[],squads:{},matches:[],standings:[],scorers:[],stats:{}};
-  document.getElementById('setup').style.display='flex';
-  document.getElementById('app').style.display='none';
-  document.getElementById('apiKey').value='';
+function tagCls(t){
+const tl=t.toLowerCase();
+if(tl.includes(‘form’)||tl.includes(‘but’)||tl.includes(‘pass’)||tl.includes(‘incontour’)||tl.includes(‘buts’)||tl.includes(‘révélation’)) return ‘tf’;
+if(tl.includes(‘domic’)||tl.includes(‘advers’)||tl.includes(‘faible’)||tl.includes(‘clean’)||tl.includes(‘solide’)) return ‘tx’;
+if(tl.includes(‘météo’)||tl.includes(‘pluie’)||tl.includes(‘soleil’)||tl.includes(‘terrain’)||tl.includes(‘adapté’)||tl.includes(‘rapide’)) return ‘tw’;
+return ‘tn’;
 }
 
-// ══════════════════════════════════════
-// LOAD ALL — skip /competitions/PD root
-// ══════════════════════════════════════
-async function loadAll() {
-  document.getElementById('mgrid').innerHTML = `<div class="load-wrap">
-    <div class="loader-ring"></div>
-    <div class="load-steps">
-      <div class="ls active" id="ls1"><span class="li">⏳</span>Connexion à football-data.org…</div>
-      <div class="ls" id="ls2"><span class="li">·</span>Équipes & effectifs…</div>
-      <div class="ls" id="ls3"><span class="li">·</span>Matchs à venir…</div>
-      <div class="ls" id="ls4"><span class="li">·</span>Classement & buteurs…</div>
-    </div>
-  </div>`;
-  try {
-    // STEP 1 — test token with standings (most reliable free-tier endpoint)
-    // We skip /competitions/PD root because it can 404 on some free accounts
-    const sData = await api('/competitions/PD/standings');
-    const total = (sData.standings||[]).find(s=>s.type==='TOTAL');
-    DATA.standings = total ? total.table : [];
-    DATA.standings.forEach(r => {
-      DATA.stats[r.team.id] = {
-        wins:r.won, draws:r.draw, losses:r.lost,
-        goalsFor:r.goalsFor, goalsAgainst:r.goalsAgainst,
-        points:r.points, position:r.position, played:r.playedGames
-      };
-    });
-    // Extract season label from response
-    if (sData.season) {
-      const sy=sData.season.startDate?.slice(0,4)||'2025';
-      const ey=sData.season.endDate?.slice(2,4)||'26';
-      document.getElementById('seasonLabel').textContent=`${sy}/${ey}`;
-      document.getElementById('standSub').textContent=`Saison ${sy}-${ey} · J${sData.season.currentMatchday||'?'} disputées`;
-    }
-    done(1);
-
-    // STEP 2 — teams + squads
-    const tData = await api('/competitions/PD/teams');
-    DATA.teams = tData.teams||[];
-    DATA.teams.forEach(t=>{ if(t.squad?.length) DATA.squads[t.id]=t.squad; });
-    done(2);
-
-    // STEP 3 — upcoming matches
-    const today  = new Date().toISOString().slice(0,10);
-    const future = new Date(Date.now()+21*864e5).toISOString().slice(0,10);
-    const mData  = await api(`/competitions/PD/matches?status=SCHEDULED&dateFrom=${today}&dateTo=${future}&limit=20`);
-    DATA.matches = (mData.matches||[]).slice(0,20);
-    done(3);
-
-    // STEP 4 — scorers
-    const scData = await api('/competitions/PD/scorers?limit=30');
-    DATA.scorers = scData.scorers||[];
-    done(4);
-
-    renderMatches();
-    renderScorers();
-    renderSquadTabs();
-    renderStandings();
-    buildTopPicks();
-
-  } catch(e) {
-    document.getElementById('mgrid').innerHTML = `
-      <div class="errbox">
-        ⚠️ <strong>Erreur de connexion :</strong> ${e.message}<br><br>
-        • Vérifie que ton token est valide sur <a href="https://www.football-data.org" target="_blank">football-data.org</a><br>
-        • Assure-toi d'être bien inscrit (vérifie l'email de confirmation)<br>
-        • Le plan gratuit donne accès à La Liga (code <strong>PD</strong>)
-      </div>`;
-  }
-}
-function done(n) {
-  const el=document.getElementById('ls'+n);
-  if(el){el.classList.remove('active');el.classList.add('done');el.querySelector('.li').textContent='✓';}
-  const nx=document.getElementById('ls'+(n+1));
-  if(nx) nx.classList.add('active');
+function playerHTML(p){
+const tags=(p.tags||[]).map(t=>’<span class="tag '+tagCls(t)+'">’+t+’</span>’).join(’’);
+return ‘<div class="pcard"><div class="ptop"><div><div class="pname">’+p.name+’</div><div class="pclub">’+p.team+’</div></div>’ +
+‘<div class="pscore s'+p.grade+'">’+p.score+’</div></div>’ +
+‘<div class="ptags">’+tags+’</div>’ +
+‘<div class="pana">’+p.ana+’</div></div>’;
 }
 
-// ══════════════════════════════════════
-// RENDER MATCHES
-// ══════════════════════════════════════
-function renderMatches() {
-  const g=document.getElementById('mgrid');
-  if(!DATA.matches.length){ g.innerHTML='<p style="color:var(--sub);font-size:13px;grid-column:1/-1">Aucun match à venir dans les 21 prochains jours.</p>'; return; }
-  const mds=[...new Set(DATA.matches.map(m=>m.matchday))];
-  document.getElementById('mdLabel').textContent=`Jornada${mds.length>1?'s':''} ${mds.join(', ')}`;
-  g.innerHTML=DATA.matches.map(m=>{
-    const hs=DATA.stats[m.homeTeam.id]||{}, as_=DATA.stats[m.awayTeam.id]||{};
-    const dt=new Date(m.utcDate).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
-    const w=wx(m.venue||'');
-    const hp=hs.points||1, ap=as_.points||1, tot=hp+ap+15;
-    const hP=Math.round(hp/tot*100), aP=Math.round(ap/tot*100), dP=100-hP-aP;
-    const max=Math.max(hP,dP,aP);
-    const fav=hP===max?(m.homeTeam.shortName||m.homeTeam.name):aP===max?(m.awayTeam.shortName||m.awayTeam.name):'Nul';
-    return `<div class="mc" id="mc-${m.id}" onclick="analyze(${m.id})">
-      <div class="mdate">${dt}</div>
-      <div class="mwx">${w.i} ${w.d}</div>
-      <div class="mteams">
-        <div class="tb">
-          ${m.homeTeam.crest?`<img class="tcrest" src="${m.homeTeam.crest}" onerror="this.style.display='none'" alt="">`:''}
-          <div class="tname">${m.homeTeam.shortName||m.homeTeam.name}</div>
-          <div class="trank">#${hs.position||'?'} · ${hp}pts</div>
-        </div>
-        <div class="vs">VS</div>
-        <div class="tb away">
-          ${m.awayTeam.crest?`<img class="tcrest r" src="${m.awayTeam.crest}" onerror="this.style.display='none'" alt="">`:''}
-          <div class="tname">${m.awayTeam.shortName||m.awayTeam.name}</div>
-          <div class="trank">${ap}pts · #${as_.position||'?'}</div>
-        </div>
-      </div>
-      <div class="pbars">
-        <div class="pb" style="width:${hP}%;background:var(--green);opacity:.7"></div>
-        <div class="pb" style="width:${dP}%;background:var(--muted);opacity:.5"></div>
-        <div class="pb" style="width:${aP}%;background:var(--blue);opacity:.7"></div>
-      </div>
-      <div class="plbls">
-        <span class="pl ${hP===max?'hl':''}">${hP}% dom.</span>
-        <span class="pl">Fav: <b>${fav}</b></span>
-        <span class="pl ${aP===max?'hl':''}">${aP}% ext.</span>
-      </div>
-    </div>`;
-  }).join('');
+function analyze(id){
+document.querySelectorAll(’.mc’).forEach(c=>c.classList.remove(‘on’));
+const card=document.getElementById(‘mc-’+id);
+if(card){card.classList.add(‘on’);card.scrollIntoView({behavior:‘smooth’,block:‘nearest’});}
+const m=MATCHES.find(x=>x.id===id);
+const d=AN.matches[id];
+if(!m||!d){document.getElementById(‘apanel’).innerHTML=’<div class="empty"><p>Analyse non disponible</p></div>’;return;}
+document.getElementById(‘asub’).textContent=m.home+’ vs ‘+m.away+’ · ‘+m.date;
+const cc=d.conf>=70?‘chi’:d.conf>=55?‘cmd’:‘clo’;
+const posL={GK:‘Gardiens’,DEF:‘Défenseurs’,MID:‘Milieux’,ATT:‘Attaquants’};
+const posC={GK:‘pGK’,DEF:‘pDEF’,MID:‘pMID’,ATT:‘pATT’};
+const pgrid=Object.entries(posL).map(([k,l])=>
+‘<div><span class="plbl '+posC[k]+'">’+l+’</span>’+(d[k]||[]).map(playerHTML).join(’’)+’</div>’
+).join(’’);
+document.getElementById(‘apanel’).innerHTML=’<div class="fade">’ +
+‘<div class="rtop"><div>’ +
+‘<div class="rtitle">’+m.home+’ <span style="color:var(--sub)">vs</span> ‘+m.away+’</div>’ +
+‘<div class="rmeta">’+m.date+’ · ‘+m.wx.i+’ ‘+m.wx.d+’</div>’ +
+‘<div class="rsumm">’+d.summary+’</div>’ +
+‘<div class="rwx">⚡ ‘+d.wxImpact+’</div></div>’ +
+‘<div class="rbadges"><div class="rb"><div class="rbv '+cc+'">’+d.conf+’</div><div class="rbl">Confiance</div></div>’ +
+‘<div class="rb"><div class="rbv" style="font-size:11px;color:var(--txt)">’+d.fav+’</div><div class="rbl">Favori</div></div></div></div>’ +
+‘<div class="pgrid">’+pgrid+’</div></div>’;
 }
 
-// ══════════════════════════════════════
-// ANALYZE MATCH
-// ══════════════════════════════════════
-function analyze(id) {
-  document.querySelectorAll('.mc').forEach(c=>c.classList.remove('active'));
-  const card=document.getElementById('mc-'+id);
-  if(card){card.classList.add('active');card.scrollIntoView({behavior:'smooth',block:'nearest'});}
-  const m=DATA.matches.find(x=>x.id===id); if(!m) return;
-  document.getElementById('aSub').textContent=`${m.homeTeam.name} vs ${m.awayTeam.name}`;
-
-  const hs=DATA.stats[m.homeTeam.id]||{}, as_=DATA.stats[m.awayTeam.id]||{};
-  const w=wx(m.venue||'');
-  const dt=new Date(m.utcDate).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
-  const scMap={}; DATA.scorers.forEach(s=>{if(s.player) scMap[s.player.id]={g:s.goals||0,a:s.assists||0};});
-
-  function score(p, isHome, own, opp) {
-    const sc=scMap[p.id]||{};
-    let base=58+((sc.g||0)*3)+((sc.a||0)*2);
-    if(isHome) base+=4;
-    const pos=POSMAP[p.position];
-    if(pos==='ATT'&&(opp.goalsAgainst||0)>28) base+=7;
-    if((pos==='GK'||pos==='DEF')&&(opp.goalsFor||0)<22) base+=6;
-    return Math.min(97,Math.round(base));
-  }
-  const grade=s=>s>=82?'S':s>=70?'A':'B';
-
-  function section(squad, isHome, posKey, max) {
-    const own=isHome?hs:as_, opp=isHome?as_:hs;
-    const team=isHome?(m.homeTeam.shortName||m.homeTeam.name):(m.awayTeam.shortName||m.awayTeam.name);
-    const opp_name=isHome?(m.awayTeam.shortName||m.awayTeam.name):(m.homeTeam.shortName||m.homeTeam.name);
-    return squad.filter(p=>POSMAP[p.position]===posKey)
-      .map(p=>({...p,sc:score(p,isHome,own,opp),stats:scMap[p.id]||{}}))
-      .sort((a,b)=>b.sc-a.sc).slice(0,max)
-      .map(p=>{
-        const g=grade(p.sc), goals=p.stats.g||0, assists=p.stats.a||0;
-        const tags=[];
-        if(goals>=5) tags.push(['tf',`⚡ ${goals} buts`]);
-        else if(goals>=2) tags.push(['tf',`${goals} buts`]);
-        if(assists>=3) tags.push(['tf',`${assists} passes déc.`]);
-        tags.push(isHome?['tx','Domicile']:['tn','Extérieur']);
-        if(posKey==='ATT'&&(opp.goalsAgainst||0)>28) tags.push(['tx','Défense faible']);
-        if((posKey==='GK'||posKey==='DEF')&&(opp.goalsFor||0)<22) tags.push(['tx','Adv. peu dangereux']);
-        if(w.i==='🌧') tags.push(['tw','Terrain lourd']);
-        else if(w.i==='☀️') tags.push(['tw','Terrain rapide ☀️']);
-        let ana='';
-        if(posKey==='GK') ana=`${p.name} face à ${opp_name}. `+((opp.goalsFor||0)<22?`Adversaire peu dangereux (${opp.goalsFor} buts) → clean sheet probable.`:`Match ouvert, vigilance requise.`);
-        else if(posKey==='DEF') ana=`${p.name} ${isHome?'à domicile':'en déplacement'}. `+(goals>0?`${goals} but${goals>1?'s':''} en championnat. `:'')+`Équipe : ${own.wins||0}V ${own.draws||0}N ${own.losses||0}D.`;
-        else if(posKey==='MID') ana=`${p.name} au milieu. `+(goals||assists?`${goals} buts et ${assists} passes décisives. `:'Profil équilibré. ')+(w.i==='🌧'?'Pluie gêne les frappes lointaines.':w.i==='☀️'?'Terrain rapide, transitions favorisées.':'');
-        else ana=`${p.name} en attaque. `+(goals>=5?`${goals} buts, l'un des meilleurs finisseurs. `:goals>=2?`${goals} buts au compteur. `:'Peu de buts mais profil dangereux. ')+((opp.goalsAgainst||0)>28?`Défense adverse poreuse (${opp.goalsAgainst} buts concédés).`:'');
-        return `<div class="pcard">
-          <div class="ptop"><div><div class="pname">${p.name||'Joueur'}</div><div class="pclub">${team}</div></div><div class="pscore s${g}">${p.sc}</div></div>
-          <div class="pstats"><div class="pst">⚽ <span>${goals}</span></div><div class="pst">🎯 <span>${assists}</span></div>${p.shirtNumber?`<div class="pst">nº <span>${p.shirtNumber}</span></div>`:''}</div>
-          <div class="ptags">${tags.map(([c,l])=>`<span class="tag ${c}">${l}</span>`).join('')}</div>
-          <div class="pana">${ana}</div>
-        </div>`;
-      }).join('');
-  }
-
-  const hSq=DATA.squads[m.homeTeam.id]||[], aSq=DATA.squads[m.awayTeam.id]||[];
-  const posConf={GK:1,DEF:2,MID:2,ATT:2};
-  const posL={GK:'Gardiens',DEF:'Défenseurs',MID:'Milieux',ATT:'Attaquants'};
-  const posC={GK:'pGK',DEF:'pDEF',MID:'pMID',ATT:'pATT'};
-  const pgrid=Object.entries(posL).map(([k,l])=>{
-    const h=section(hSq,true,k,posConf[k]);
-    const a=section(aSq,false,k,k==='GK'?1:1);
-    return `<div><span class="plbl ${posC[k]}">${l}</span>${h}${a}${!h&&!a?'<p style="font-size:11px;color:var(--sub);padding:4px 0">Aucun joueur disponible</p>':''}</div>`;
-  }).join('');
-
-  const diff=Math.abs((hs.points||0)-(as_.points||0));
-  const conf=Math.min(92,Math.round(50+diff*0.9));
-  const cc=conf>=70?'chi':conf>=55?'cmd':'clo';
-  const fav=(hs.points||0)>=(as_.points||0)?m.homeTeam.name:m.awayTeam.name;
-
-  document.getElementById('apanel').innerHTML=`<div class="fade">
-    <div class="rtop">
-      <div>
-        <div class="rtitle">${m.homeTeam.name} <span style="color:var(--sub)">vs</span> ${m.awayTeam.name}</div>
-        <div class="rmeta">${dt}${m.venue?' · '+m.venue:''} · ${w.i} ${w.d}</div>
-        <div class="rsumm">
-          ${m.homeTeam.name} <b>#${hs.position||'?'}</b> · ${hs.points||0}pts (${hs.wins||0}V ${hs.draws||0}N ${hs.losses||0}D) · ⚽${hs.goalsFor||0}/${hs.goalsAgainst||0}
-          &nbsp;|&nbsp;
-          ${m.awayTeam.name} <b>#${as_.position||'?'}</b> · ${as_.points||0}pts (${as_.wins||0}V ${as_.draws||0}N ${as_.losses||0}D) · ⚽${as_.goalsFor||0}/${as_.goalsAgainst||0}
-        </div>
-        <div class="rwx">⚡ ${w.i==='🌧'?'Terrain lourd — frappes longues gênées, physique favorisé.':w.i==='☀️'?'Terrain sec et rapide — idéal pour les attaquants techniques.':'Conditions neutres.'}</div>
-      </div>
-      <div class="rbadges">
-        <div class="rb"><div class="rbv ${cc}">${conf}</div><div class="rbl">Confiance</div></div>
-        <div class="rb"><div class="rbv" style="font-size:11px;color:var(--text);max-width:72px">${fav}</div><div class="rbl">Favori</div></div>
-      </div>
-    </div>
-    <div class="pgrid">${pgrid}</div>
-  </div>`;
+function renderPicks(){
+const posL={GK:‘Gardiens’,DEF:‘Défenseurs’,MID:‘Milieux’,ATT:‘Attaquants’};
+const posC={GK:‘var(–blu)’,DEF:‘var(–grn)’,MID:‘var(–gold)’,ATT:‘var(–red)’};
+let html=’’;
+for(const [pos,list] of Object.entries(AN.topPicks)){
+html+=’<div class="ptitle">’+posL[pos]+’</div><div class="pkgrid">’;
+list.forEach((p,i)=>{
+html+=’<div class="pkcard"><div class="pknum">’+String(i+1).padStart(2,‘0’)+’</div>’ +
+‘<div class="pkpos" style="color:'+posC[pos]+'">’+posL[pos]+’</div>’ +
+‘<div class="pkname">’+p.name+’</div><div class="pkclub">’+p.team+’ · ‘+p.match+’</div>’ +
+‘<div class="pksrow"><div class="pkscore s'+p.grade+'">’+p.score+’</div><div class="pksl">Score<br>Fantasy</div></div>’ +
+‘<div class="pkr">’+p.reason+’</div></div>’;
+});
+html+=’</div>’;
+}
+document.getElementById(‘picksEl’).innerHTML=html;
 }
 
-// ══════════════════════════════════════
-// SCORERS
-// ══════════════════════════════════════
-function renderScorers() {
-  const c=document.getElementById('scorersContainer');
-  if(!DATA.scorers.length){c.innerHTML='<p style="color:var(--sub)">Aucun buteur disponible.</p>';return;}
-  c.innerHTML=DATA.scorers.map((s,i)=>`
-    <div class="sccard">
-      <div class="scrank ${i<3?'top':''}">${i+1}</div>
-      ${s.team?.crest?`<img src="${s.team.crest}" style="width:22px;height:22px;object-fit:contain;flex-shrink:0" onerror="this.style.display='none'" alt="">`:''}
-      <div>
-        <div class="scname">${s.player?.name||'?'}</div>
-        <div class="scclub">${s.team?.shortName||s.team?.name||'?'}</div>
-        <div class="scnums">
-          <div class="scnum">⚽ <span>${s.goals||0}</span> buts</div>
-          ${s.assists!=null?`<div class="scnum">🎯 <span>${s.assists}</span> passes</div>`:''}
-          ${s.playedMatches?`<div class="scnum">📋 <span>${s.playedMatches}</span> matchs</div>`:''}
-        </div>
-      </div>
-    </div>`).join('');
+function renderStandings(){
+document.getElementById(‘standEl’).innerHTML=ST.map(s=>{
+const rc=s.r<=4?‘gc’:s.r>=18?‘rc’:’’;
+return ‘<div class="trow"><div class="trk '+rc+'">’+s.r+’</div><div class="tnm">’+s.n+’</div>’ +
+‘<div class="tfrm">’+s.f.map(f=>’<div class="fd '+f+'"></div>’).join(’’)+’</div>’ +
+‘<div class="twdl">’+s.w+‘V ‘+s.d+‘N ‘+s.l+‘D</div>’ +
+‘<div class="tpts '+rc+'">’+s.pts+’</div></div>’;
+}).join(’’);
 }
 
-// ══════════════════════════════════════
-// SQUADS
-// ══════════════════════════════════════
-function renderSquadTabs() {
-  document.getElementById('squadTabs').innerHTML=DATA.teams
-    .map((t,i)=>`<button class="stab ${i===0?'active':''}" onclick="showSquad(${t.id},this)">${t.tla||t.shortName}</button>`)
-    .join('');
-  if(DATA.teams.length) showSquad(DATA.teams[0].id,null);
-}
-function showSquad(tid, btn) {
-  if(btn){document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-  const sq=DATA.squads[tid]||[];
-  const c=document.getElementById('squadContainer');
-  if(!sq.length){c.innerHTML='<p style="color:var(--sub);font-size:13px">Effectif non disponible.</p>';return;}
-  const scMap={}; DATA.scorers.forEach(s=>{if(s.player) scMap[s.player.id]={g:s.goals||0,a:s.assists||0};});
-  const grp={GK:[],DEF:[],MID:[],ATT:[]};
-  sq.forEach(p=>{const pos=POSMAP[p.position];if(pos) grp[pos].push(p);});
-  let html='';
-  [['GK','Gardiens'],['DEF','Défenseurs'],['MID','Milieux'],['ATT','Attaquants']].forEach(([k,l])=>{
-    if(!grp[k].length) return;
-    html+=`<div style="margin-bottom:14px">
-      <div style="font-family:'Bebas Neue';font-size:13px;letter-spacing:2px;color:var(--sub);margin-bottom:6px">${l}</div>
-      <div class="sqgrid">${grp[k].map(p=>{
-        const sc=scMap[p.id]||{};
-        return `<div class="sqcard">
-          <div class="sqnum">${p.shirtNumber||'·'}</div>
-          <div style="flex:1;min-width:0">
-            <div class="sqname">${p.name||'Joueur'}</div>
-            <div class="sqnat">${p.nationality||''}${sc.g>0?` · ⚽${sc.g}`:''}${sc.a>0?` · 🎯${sc.a}`:''}</div>
-          </div>
-          <span class="sqbadge b${k}">${k}</span>
-        </div>`;
-      }).join('')}</div></div>`;
-  });
-  c.innerHTML=html||'<p style="color:var(--sub)">Effectif vide.</p>';
+function sw(id){
+document.querySelectorAll(’.tab’).forEach((t,i)=>t.classList.toggle(‘on’,[‘matches’,‘picks’,‘standings’][i]===id));
+document.querySelectorAll(’.tc’).forEach(c=>c.classList.remove(‘on’));
+document.getElementById(‘tc-’+id).classList.add(‘on’);
 }
 
-// ══════════════════════════════════════
-// TOP PICKS
-// ══════════════════════════════════════
-function buildTopPicks() {
-  const c=document.getElementById('picksContainer');
-  if(!DATA.matches.length){c.innerHTML='<p style="color:var(--sub)">Pas de matchs chargés.</p>';return;}
-  const scMap={}; DATA.scorers.forEach(s=>{if(s.player) scMap[s.player.id]={g:s.goals||0,a:s.assists||0};});
-  const picks={GK:[],DEF:[],MID:[],ATT:[]};
-  DATA.matches.forEach(m=>{
-    [[m.homeTeam,true],[m.awayTeam,false]].forEach(([t,isHome])=>{
-      const sq=DATA.squads[t.id]||[];
-      const own=DATA.stats[t.id]||{}, opp=DATA.stats[isHome?m.awayTeam.id:m.homeTeam.id]||{};
-      const w=wx(m.venue||'');
-      const dt=new Date(m.utcDate).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
-      sq.forEach(p=>{
-        const pos=POSMAP[p.position]; if(!pos) return;
-        const sc=scMap[p.id]||{};
-        let score=58+((sc.g||0)*3)+((sc.a||0)*2);
-        if(isHome) score+=4;
-        if(pos==='ATT'&&(opp.goalsAgainst||0)>28) score+=7;
-        if((pos==='GK'||pos==='DEF')&&(opp.goalsFor||0)<22) score+=6;
-        score=Math.min(97,Math.round(score)); if(score<61) return;
-        const opp_name=isHome?(m.awayTeam.shortName||m.awayTeam.name):(m.homeTeam.shortName||m.homeTeam.name);
-        let r='';
-        if((sc.g||0)>=5) r+=`${sc.g} buts cette saison. `;
-        else if((sc.g||0)>=2) r+=`${sc.g} buts. `;
-        if((sc.a||0)>=3) r+=`${sc.a} passes déc. `;
-        if(isHome) r+='Domicile. ';
-        if(pos==='ATT'&&(opp.goalsAgainst||0)>28) r+=`Défense poreuse (${opp.goalsAgainst} buts concédés). `;
-        if((pos==='GK'||pos==='DEF')&&(opp.goalsFor||0)<22) r+=`Adv. peu dangereux (${opp.goalsFor} buts). `;
-        if(w.i==='☀️') r+='Terrain rapide.'; else if(w.i==='🌧') r+='Profil physique adapté.';
-        if(!r) r='Titulaire régulier dans un contexte favorable.';
-        picks[pos].push({
-          name:p.name||'?', club:t.shortName||t.name,
-          match:`vs ${opp_name} (${dt})`,
-          score, grade:score>=82?'S':score>=70?'A':'B',
-          g:sc.g||0, a:sc.a||0, reason:r
-        });
-      });
-    });
-  });
-  const labels={GK:'Gardiens',DEF:'Défenseurs',MID:'Milieux',ATT:'Attaquants'};
-  const colors={GK:'var(--blue)',DEF:'var(--green)',MID:'var(--gold)',ATT:'var(--red)'};
-  let html='';
-  for(const [pos,list] of Object.entries(picks)){
-    const top=[...new Map(list.map(p=>[p.name,p])).values()].sort((a,b)=>b.score-a.score).slice(0,3);
-    if(!top.length) continue;
-    html+=`<div class="ptitle">${labels[pos]}</div><div class="pkgrid">`;
-    top.forEach((p,i)=>{
-      html+=`<div class="pkcard">
-        <div class="pknum">${String(i+1).padStart(2,'0')}</div>
-        <div class="pkpos" style="color:${colors[pos]}">${labels[pos]}</div>
-        <div class="pkname">${p.name}</div>
-        <div class="pkclub">${p.club} · ${p.match}</div>
-        <div class="pksrow"><div class="pkscore s${p.grade}">${p.score}</div><div class="pksl">Score<br>Fantasy</div></div>
-        <div class="pkstats"><div class="pkst">⚽ <span>${p.g}</span></div><div class="pkst">🎯 <span>${p.a}</span></div></div>
-        <div class="pkr">${p.reason}</div>
-      </div>`;
-    });
-    html+='</div>';
-  }
-  c.innerHTML=html||'<p style="color:var(--sub)">Aucun pick disponible.</p>';
-}
-
-// ══════════════════════════════════════
-// STANDINGS
-// ══════════════════════════════════════
-function renderStandings() {
-  const c=document.getElementById('standingsContainer');
-  if(!DATA.standings.length){c.innerHTML='<p style="padding:16px;color:var(--sub)">Classement indisponible.</p>';return;}
-  c.innerHTML=DATA.standings.map(r=>{
-    const pos=r.position, rc=pos<=4?'gc':pos>=18?'rc':'';
-    const rawF=(r.form||'').split(',').slice(-5).map(f=>f==='W'?'fw':f==='D'?'dn':'ls');
-    const form=rawF.length>=5?rawF:Array(5).fill('dn');
-    return `<div class="trow">
-      <div class="trk ${rc}">${pos}</div>
-      ${r.team?.crest?`<img class="tcr" src="${r.team.crest}" onerror="this.style.display='none'" alt="">`:'<div style="width:19px"></div>'}
-      <div class="tnm">${r.team?.name||'?'}</div>
-      <div class="tfrm">${form.map(f=>`<div class="fd ${f}"></div>`).join('')}</div>
-      <div class="twdl">${r.won}V ${r.draw}N ${r.lost}D</div>
-      <div class="tpts ${rc}">${r.points}</div>
-    </div>`;
-  }).join('');
-}
-
-// ══════════════════════════════════════
-// TABS
-// ══════════════════════════════════════
-function switchTab(id) {
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['matches','picks','scorers','squads','standings'][i]===id));
-  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-}
-document.getElementById('apiKey').addEventListener('keydown',e=>{if(e.key==='Enter')launch();});
+renderMatches();
+renderPicks();
+renderStandings();
 </script>
 
 </body>
