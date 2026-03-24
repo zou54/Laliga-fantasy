@@ -23,13 +23,12 @@ main{padding:16px;max-width:1400px;margin:0 auto;}
 .tabs{display:flex;gap:2px;margin-bottom:18px;background:var(--sur);padding:4px;border-radius:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .tab{padding:7px 12px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;color:var(--sub);border:none;background:none;white-space:nowrap;transition:all .15s;}
 .tab.on{background:var(--card);color:var(--txt);box-shadow:0 1px 5px rgba(0,0,0,.5);}
-.tc{display:none;}
-.tc.on{display:block;}
+.tc{display:none;}.tc.on{display:block;}
 .sec{display:flex;align-items:flex-end;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bor);}
 .sec-t{font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;}
 .sec-s{font-size:10px;color:var(--sub);letter-spacing:1px;text-transform:uppercase;padding-bottom:1px;}
 .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:20px;}
-.mc{background:var(--card);border:1.5px solid var(--bor);border-radius:11px;padding:13px;cursor:pointer;transition:border-color .2s,transform .15s;position:relative;overflow:hidden;}
+.mc{background:var(--card);border:1.5px solid var(--bor);border-radius:11px;padding:13px;cursor:pointer;transition:border-color .2s;position:relative;overflow:hidden;}
 .mc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),transparent);opacity:0;transition:opacity .2s;}
 .mc:hover,.mc.on{border-color:var(--red);}
 .mc:hover::after,.mc.on::after{opacity:1;}
@@ -37,20 +36,17 @@ main{padding:16px;max-width:1400px;margin:0 auto;}
 .mdate{font-family:'Roboto Mono',monospace;font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;}
 .mwx{font-size:11px;color:var(--sub);margin-top:2px;}
 .mteams{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:8px 0;}
-.tb{flex:1;}
-.tb.r{text-align:right;}
+.tb{flex:1;}.tb.r{text-align:right;}
 .tname{font-weight:500;font-size:13px;line-height:1.2;}
 .trank{font-size:10px;color:var(--sub);margin-top:1px;}
 .vs{background:var(--sur);border:1px solid var(--bor);border-radius:4px;padding:3px 6px;font-family:'Bebas Neue';font-size:11px;letter-spacing:2px;color:var(--sub);flex-shrink:0;}
-.pbars{display:flex;gap:2px;border-radius:3px;overflow:hidden;}
-.pb{height:3px;}
+.pbars{display:flex;gap:2px;border-radius:3px;overflow:hidden;}.pb{height:3px;}
 .plbls{display:flex;justify-content:space-between;margin-top:3px;}
 .pl{font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sub);}
 .pl.hl{color:var(--gold);font-weight:500;}
 .apanel{background:var(--card);border:1px solid var(--bor);border-radius:12px;padding:18px;margin-bottom:20px;min-height:140px;}
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px;color:var(--sub);gap:8px;text-align:center;}
-.empty svg{opacity:.2;}
-.empty p{font-size:12px;letter-spacing:1px;text-transform:uppercase;}
+.empty svg{opacity:.2;}.empty p{font-size:12px;letter-spacing:1px;text-transform:uppercase;}
 .rtop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--bor);flex-wrap:wrap;}
 .rtitle{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;}
 .rmeta{font-size:10px;color:var(--sub);font-family:'Roboto Mono',monospace;margin-top:2px;}
@@ -58,11 +54,8 @@ main{padding:16px;max-width:1400px;margin:0 auto;}
 .rwx{font-size:11px;color:var(--gold);margin-top:4px;}
 .rbadges{display:flex;gap:6px;flex-shrink:0;}
 .rb{background:var(--sur);border:1px solid var(--bor2);border-radius:7px;padding:6px 10px;text-align:center;}
-.rbv{font-family:'Bebas Neue';font-size:15px;}
-.rbl{font-size:9px;color:var(--sub);letter-spacing:1px;text-transform:uppercase;}
-.chi{color:var(--grn);}
-.cmd{color:var(--gold);}
-.clo{color:var(--red);}
+.rbv{font-family:'Bebas Neue';font-size:15px;}.rbl{font-size:9px;color:var(--sub);letter-spacing:1px;text-transform:uppercase;}
+.chi{color:var(--grn);}.cmd{color:var(--gold);}.clo{color:var(--red);}
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
 @media(max-width:800px){.pgrid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:440px){.pgrid{grid-template-columns:1fr;}}
@@ -73,12 +66,9 @@ main{padding:16px;max-width:1400px;margin:0 auto;}
 .pATT{background:rgba(255,45,75,.08);color:var(--red);border:1px solid rgba(255,45,75,.2);}
 .pcard{background:var(--sur);border:1px solid var(--bor);border-radius:8px;padding:10px;margin-bottom:7px;}
 .ptop{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;}
-.pname{font-weight:500;font-size:13px;}
-.pclub{font-size:10px;color:var(--sub);margin-top:1px;}
+.pname{font-weight:500;font-size:13px;}.pclub{font-size:10px;color:var(--sub);margin-top:1px;}
 .pscore{font-family:'Bebas Neue';font-size:20px;line-height:1;}
-.sS{color:var(--grn);}
-.sA{color:var(--gold);}
-.sB{color:var(--red);}
+.sS{color:var(--grn);}.sA{color:var(--gold);}.sB{color:var(--red);}
 .ptags{display:flex;flex-wrap:wrap;gap:3px;margin:5px 0;}
 .tag{font-size:9px;padding:2px 6px;border-radius:8px;font-weight:500;}
 .tf{background:rgba(16,217,130,.08);color:var(--grn);}
@@ -104,13 +94,10 @@ main{padding:16px;max-width:1400px;margin:0 auto;}
 .tnm{flex:1;font-size:12px;}
 .tfrm{display:flex;gap:3px;}
 .fd{width:7px;height:7px;border-radius:50%;}
-.fw{background:var(--grn);}
-.dn{background:var(--gold);}
-.ls{background:var(--red);}
+.fw{background:var(--grn);}.dn{background:var(--gold);}.ls{background:var(--red);}
 .twdl{font-size:10px;color:var(--sub);font-family:'Roboto Mono',monospace;width:72px;text-align:right;}
 .tpts{font-family:'Roboto Mono',monospace;font-size:12px;font-weight:500;width:24px;text-align:right;}
-.gc{color:var(--gold);}
-.rc{color:var(--red);}
+.gc{color:var(--gold);}.rc{color:var(--red);}
 .fade{animation:fade .3s ease;}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 ::-webkit-scrollbar{width:4px;height:4px;}
@@ -121,20 +108,20 @@ main{padding:16px;max-width:1400px;margin:0 auto;}
 <header>
   <div class="hlogo">
     <div class="hli">LL</div>
-    <div><div class="hln">Fantasy Scout</div><div class="hls">LaLiga · IA Live</div></div>
+    <div><div class="hln">Fantasy Scout</div><div class="hls">LaLiga - IA Live</div></div>
   </div>
-  <div class="hbadge"><span class="hdot"></span>Jornada 30 · Avr 2026</div>
+  <div class="hbadge"><span class="hdot"></span>Jornada 30 - Avr 2026</div>
 </header>
 <main>
   <div class="tabs">
-    <button class="tab on" onclick="sw('matches')">🗓 Matchs</button>
-    <button class="tab" onclick="sw('picks')">⚡ Top Picks</button>
-    <button class="tab" onclick="sw('standings')">📊 Classement</button>
+    <button class="tab on" onclick="sw('matches')">Matchs</button>
+    <button class="tab" onclick="sw('picks')">Top Picks</button>
+    <button class="tab" onclick="sw('standings')">Classement</button>
   </div>
   <div class="tc on" id="tc-matches">
-    <div class="sec"><div class="sec-t">Matchs à venir</div><div class="sec-s">Jornada 30 · 3–6 Avril 2026 · Clique pour l'analyse</div></div>
+    <div class="sec"><div class="sec-t">Matchs a venir</div><div class="sec-s">Jornada 30 - 3-6 Avril 2026 - Clique pour l'analyse</div></div>
     <div class="mgrid" id="mgrid"></div>
-    <div class="sec"><div class="sec-t">Analyse Fantasy</div><div class="sec-s" id="asub">Sélectionne un match</div></div>
+    <div class="sec"><div class="sec-t">Analyse Fantasy</div><div class="sec-s" id="asub">Selectionne un match</div></div>
     <div class="apanel" id="apanel">
       <div class="empty">
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -143,240 +130,35 @@ main{padding:16px;max-width:1400px;margin:0 auto;}
     </div>
   </div>
   <div class="tc" id="tc-picks">
-    <div class="sec"><div class="sec-t">Top Picks Jornada 30</div><div class="sec-s">Meilleurs joueurs à aligner · Effectifs 2025-26 vérifiés</div></div>
+    <div class="sec"><div class="sec-t">Top Picks Jornada 30</div><div class="sec-s">Meilleurs joueurs a aligner - Effectifs 2025-26</div></div>
     <div id="picksEl"></div>
   </div>
   <div class="tc" id="tc-standings">
-    <div class="sec"><div class="sec-t">Classement LaLiga</div><div class="sec-s">Saison 2025-26 · Journée 29</div></div>
+    <div class="sec"><div class="sec-t">Classement LaLiga</div><div class="sec-s">Saison 2025-26 - Journee 29</div></div>
     <div class="twrap" id="standEl"></div>
   </div>
 </main>
 <script>
-const AN = {
-  "matches": {
-    "rvc-elc": {
-      "summary": "Rayo Vallecano reçoit un Elche en grande difficulté, 17e avec seulement 29 points et l'une des pires attaques du championnat. À domicile à Vallecas, Rayo est clairement favori pour décrocher 3 points précieux.",
-      "wxImpact": "Vent modéré à Madrid, conditions neutres qui n'avantage aucun style de jeu particulier.",
-      "fav": "Rayo Vallecano", "conf": 64,
-      "GK": [{"name":"Augusto Batalla","team":"Rayo Vallecano","score":78,"grade":"A","tags":["Clean sheet probable","Adversaire faible","Domicile"],"ana":"Face à la pire attaque de LaLiga, Batalla a d'excellentes chances de garder sa cage inviolée. Elche ne marque que 0.8 buts par match en moyenne."}],
-      "DEF": [
-        {"name":"Andrei Rațiu","team":"Rayo Vallecano","score":74,"grade":"A","tags":["Montées offensives","Domicile","Adversaire faible"],"ana":"Le latéral roumain monte régulièrement et peut contribuer offensivement face à une défense d'Elche vulnérable."},
-        {"name":"Florian Lejeune","team":"Rayo Vallecano","score":68,"grade":"B","tags":["Expérience","Clean sheet potentiel"],"ana":"Défenseur solide pour un match qui devrait être dominé par Rayo. Bonus clean sheet à portée."}
-      ],
-      "MID": [
-        {"name":"Óscar Trejo","team":"Rayo Vallecano","score":80,"grade":"A","tags":["Capitaine","Passes clés","Domicile"],"ana":"Le capitaine historique de Rayo orchestre le jeu et peut marquer sur coup de pied arrêté. Incontournable à domicile contre Elche."},
-        {"name":"Isi Palazón","team":"Rayo Vallecano","score":75,"grade":"A","tags":["Frappe lointaine","Offensif"],"ana":"Palazón se projette fréquemment dans la surface et frappe de loin. Sa capacité à marquer en fait un bon pick milieu."}
-      ],
-      "ATT": [
-        {"name":"Sergio Camello","team":"Rayo Vallecano","score":84,"grade":"A","tags":["En forme","Adversaire faible","Domicile","Buteur"],"ana":"Le meilleur buteur de Rayo face à la pire défense. C'est le pick numéro 1 de ce match — il devrait trouver le chemin des filets."},
-        {"name":"Jorge de Frutos","team":"Rayo Vallecano","score":76,"grade":"A","tags":["Vitesse","Domicile","Danger"],"ana":"De Frutos apporte de la vivacité et peut marquer ou délivrer une passe décisive face à une défense d'Elche dépassée."}
-      ]
-    },
-    "rso-lev": {
-      "summary": "La Real Sociedad reçoit Levante, lanterne rouge de facto avec 26 points et 15 défaites cette saison. La Txuri-urdin veut confirmer sa forme à domicile et relancer ses ambitions européennes.",
-      "wxImpact": "Pluie à San Sebastián — terrain lourd qui freine le jeu technique mais Kubo reste efficace même dans ces conditions.",
-      "fav": "Real Sociedad", "conf": 72,
-      "GK": [{"name":"Álex Remiro","team":"Real Sociedad","score":84,"grade":"A","tags":["Clean sheet probable","Adversaire 19e","Domicile"],"ana":"Remiro face à la pire attaque de LaLiga sous la pluie. Conditions idéales pour un clean sheet et les bonus qui vont avec."}],
-      "DEF": [
-        {"name":"Aritz Elustondo","team":"Real Sociedad","score":79,"grade":"A","tags":["Clean sheet probable","Domicile","Expérience"],"ana":"Défenseur pilier de la Sociedad face à une attaque de Levante quasi nulle. Un des meilleurs picks défensifs de la journée."},
-        {"name":"Jon Pacheco","team":"Real Sociedad","score":73,"grade":"A","tags":["Montées offensives","Corners","Domicile"],"ana":"Latéral actif de la Sociedad qui participe offensivement. Peut marquer sur coup de pied arrêté et dépasse souvent."}
-      ],
-      "MID": [
-        {"name":"Mikel Merino","team":"Real Sociedad","score":86,"grade":"S","tags":["En forme","Buts de loin","Incontournable"],"ana":"Merino est dans une forme excellente et frappe puissamment de loin. Face à Levante, il aura tout l'espace nécessaire pour exprimer son talent."},
-        {"name":"Brais Méndez","team":"Real Sociedad","score":82,"grade":"A","tags":["Passes décisives","Créativité","Domicile"],"ana":"Méndez est le cerveau offensif de la Sociedad. Ses passes entre les lignes et ses dribbles font des dégâts face à des défenses faibles."}
-      ],
-      "ATT": [
-        {"name":"Takefusa Kubo","team":"Real Sociedad","score":90,"grade":"S","tags":["Star","Dribbles","Incontournable","Frappe"],"ana":"Kubo est le pick absolu de ce match. Sa technique et sa vitesse font la différence même sur terrain lourd. Face à Levante, il est irrésistible."},
-        {"name":"Mikel Oyarzabal","team":"Real Sociedad","score":79,"grade":"A","tags":["Capitaine","Sens du but","Domicile"],"ana":"Le capitaine basque est un finisseur fiable. Son intelligence de jeu dans la surface fera des dégâts face à la pire défense du championnat."}
-      ]
-    },
-    "mal-rma": {
-      "summary": "Le Real Madrid se déplace à Palma avec de grandes chances de l'emporter. Mallorca, relégable avec 28 points, a une attaque anémique. Les Merengues restent sur une victoire 3-2 dans le derby contre l'Atlético.",
-      "wxImpact": "Conditions parfaites à Palma — terrain sec et rapide, idéal pour la vitesse de Mbappé et Vinícius sur les transitions.",
-      "fav": "Real Madrid", "conf": 78,
-      "GK": [{"name":"Thibaut Courtois","team":"Real Madrid","score":74,"grade":"A","tags":["Gardien élite","Adversaire faible","Clean sheet probable"],"ana":"Courtois face à la 18e attaque de LaLiga. Mallorca crée très peu d'occasions et les conditions parfaites réduisent les risques."}],
-      "DEF": [
-        {"name":"Álvaro Carreras","team":"Real Madrid","score":79,"grade":"A","tags":["Latéral offensif","Montées","Terrain rapide"],"ana":"Le latéral gauche espagnol est titulaire et monte régulièrement. Sur terrain sec à Palma, ses accélérations peuvent créer des situations dangereuses."},
-        {"name":"Dean Huijsen","team":"Real Madrid","score":72,"grade":"A","tags":["Solide","Adversaire faible","Clean sheet"],"ana":"Le défenseur central gère confortablement les rares assauts de Mallorca. Bon pick défensif avec bonus potentiel."}
-      ],
-      "MID": [
-        {"name":"Jude Bellingham","team":"Real Madrid","score":93,"grade":"S","tags":["Meilleur milieu","Buts","Passes déc.","Incontournable"],"ana":"Bellingham est en état de grâce. Face à Mallorca, relégable, sur un terrain rapide, il est le pick milieu absolu de toute la Jornada 30."},
-        {"name":"Federico Valverde","team":"Real Madrid","score":83,"grade":"A","tags":["Box-to-box","Énergie","Frappe lointaine"],"ana":"Valverde est le moteur du milieu madrilène. Sa puissance physique et ses frappes de loin peuvent punir Mallorca à tout moment."}
-      ],
-      "ATT": [
-        {"name":"Kylian Mbappé","team":"Real Madrid","score":96,"grade":"S","tags":["38 buts","Top pick absolu","Vitesse","Conditions idéales"],"ana":"Mbappé est en état de grâce avec 38 buts toutes compétitions. Terrain rapide à Palma, adversaire faible — c'est le pick numéro 1 absolu de toute la Jornada."},
-        {"name":"Vinícius Jr.","team":"Real Madrid","score":89,"grade":"S","tags":["Dribbles","Buts","Forme excellente"],"ana":"Vinícius a marqué dans le derby contre l'Atlético. Sa forme est au top et il va torturer la défense mallorquine sur terrain rapide."}
-      ]
-    },
-    "rbb-esp": {
-      "summary": "Le Real Betis reçoit l'Espanyol dans un match important pour la course à l'Europe. Les Verdiblancos (5e) ont un effectif renouvelé avec Cucho Hernández et Isco en grande forme.",
-      "wxImpact": "Conditions agréables à Séville — terrain sec et rapide, favorable au jeu technique de Lo Celso et à la mobilité de Cucho Hernández.",
-      "fav": "Real Betis", "conf": 67,
-      "GK": [{"name":"Adrián","team":"Real Betis","score":72,"grade":"A","tags":["Expérience","Domicile","Adversaire moyen"],"ana":"Adrián est un gardien expérimenté. Face à l'Espanyol, ses chances de clean sheet sont raisonnables dans un match que Betis devrait contrôler."}],
-      "DEF": [
-        {"name":"Héctor Bellerín","team":"Real Betis","score":75,"grade":"A","tags":["Latéral offensif","Centres","Domicile"],"ana":"Bellerín est un latéral très actif dont les montées alimentent constamment l'attaque. Ses centres pour Cucho sont redoutables."},
-        {"name":"Marc Bartra","team":"Real Betis","score":73,"grade":"A","tags":["Expérience","Leader","Set pieces"],"ana":"Bartra est le patron de la défense verte et blanche. Sa présence sur les coups de pied arrêtés et sa lecture du jeu sont précieuses."}
-      ],
-      "MID": [
-        {"name":"Isco","team":"Real Betis","score":86,"grade":"S","tags":["Maestro","Passes déc.","Domicile","En forme"],"ana":"Isco est le cerveau du Betis et excelle à domicile à Séville. Sa créativité et sa capacité à marquer en font le pick milieu numéro 1 de ce match."},
-        {"name":"Giovanni Lo Celso","team":"Real Betis","score":80,"grade":"A","tags":["Créativité","Passes entre les lignes","Technique"],"ana":"Lo Celso est l'un des meilleurs milieux offensifs de LaLiga. Ses passes décisives et ses dribbles déstabilisent les défenses organisées comme celle d'Espanyol."}
-      ],
-      "ATT": [
-        {"name":"Cucho Hernández","team":"Real Betis","score":83,"grade":"A","tags":["Explosif","En forme","Domicile","Nouveau signing"],"ana":"Cucho Hernández est l'attaquant vedette du Betis cette saison. Son explosivité et sa finesse technique en font le profil idéal sur terrain rapide à Séville."},
-        {"name":"Antony","team":"Real Betis","score":75,"grade":"A","tags":["Vitesse","Dribbles","Prêt Man United"],"ana":"Antony a retrouvé confiance au Betis. Sa vitesse sur le côté peut créer des espaces et aboutir à des passes décisives ou des buts."}
-      ]
-    },
-    "atm-bar": {
-      "summary": "LE choc de la Jornada 30 ! Le Barça leader (73pts) se rend au Metropolitano de l'Atlético (57pts). L'Atlético a un effectif renouvelé et ambitieux avec Sørloth, Julián Álvarez et le retour de Lookman.",
-      "wxImpact": "Vent modéré et nuages à Madrid — conditions qui favorisent le pressing intense de Simeone et pourraient gêner le jeu combiné du Barça.",
-      "fav": "FC Barcelona", "conf": 56,
-      "GK": [{"name":"Jan Oblak","team":"Atlético Madrid","score":76,"grade":"A","tags":["Vice-capitaine","Réflexes","Grand match"],"ana":"Oblak est l'un des meilleurs gardiens d'Europe. Dans ce choc, ses réflexes et sa solidité seront testés par les stars du Barça."}],
-      "DEF": [
-        {"name":"Ronald Araújo","team":"FC Barcelona","score":81,"grade":"A","tags":["Physique","Leadership","Grand match"],"ana":"Araújo sera au cœur de la défense barcelonaise face aux attaquants puissants de l'Atlético. Sa domination physique est déterminante."},
-        {"name":"Pau Cubarsí","team":"FC Barcelona","score":77,"grade":"A","tags":["Talent","Sérénité","Technique"],"ana":"À seulement 18 ans, Cubarsí est titulaire indiscutable. Sa lecture du jeu et son calme balle au pied en font un pick solide même dans les grands matchs."}
-      ],
-      "MID": [
-        {"name":"Pedri","team":"FC Barcelona","score":92,"grade":"S","tags":["Génie","Passes clés","Grand match","Incontournable"],"ana":"Pedri se transcende dans les grands rendez-vous. Sa vision du jeu et ses dribbles au Metropolitano en font le pick milieu absolu de cette Jornada."},
-        {"name":"Frenkie de Jong","team":"FC Barcelona","score":82,"grade":"A","tags":["Box-to-box","Pressing","Passes clés"],"ana":"De Jong est crucial pour casser les lignes de pressing de Simeone. Sa résistance physique et sa technique en font un pick solide dans ce choc."}
-      ],
-      "ATT": [
-        {"name":"Robert Lewandowski","team":"FC Barcelona","score":92,"grade":"S","tags":["31 buts","Grand match","Incontournable","Sang-froid"],"ana":"Lewandowski est l'homme des grands matchs — 31 buts cette saison. Même face à la défense de l'Atlético, il trouve toujours le chemin des filets."},
-        {"name":"Antoine Griezmann","team":"Atlético Madrid","score":86,"grade":"S","tags":["Légende","Ex-Barça","Motivation max","Domicile"],"ana":"Griezmann a une revanche à prendre contre son ancien club devant son public. Sa motivation maximale et son intelligence de jeu en font un pick premium."}
-      ]
-    },
-    "get-ath": {
-      "summary": "Duel équilibré entre Getafe et Athletic Bilbao, deux équipes à égalité de points (38). Match très physique et tactique attendu, typique des confrontations entre ces clubs qui jouent direct.",
-      "wxImpact": "Conditions neutres à Madrid — vent léger qui peut gêner les passes longues des deux équipes.",
-      "fav": "Athletic Bilbao", "conf": 52,
-      "GK": [{"name":"David Soria","team":"Getafe CF","score":70,"grade":"A","tags":["Solide","Match serré","Réflexes"],"ana":"Soria est un gardien fiable dans les matchs fermés. Si Getafe défend bas, un clean sheet est possible dans ce duel tactique."}],
-      "DEF": [
-        {"name":"Yeray Álvarez","team":"Athletic Bilbao","score":75,"grade":"A","tags":["Physique","Domination aérienne","Solide"],"ana":"Yeray est le patron de la défense basque. Face au jeu direct de Getafe, sa robustesse physique est essentielle pour dominer les duels."},
-        {"name":"Óscar de Marcos","team":"Athletic Bilbao","score":70,"grade":"A","tags":["Expérience","Montées","Capitaine"],"ana":"De Marcos apporte son expérience et ses montées sur le flanc droit. Sa régularité en fait un pick fiable dans ce match serré."}
-      ],
-      "MID": [
-        {"name":"Oihan Sancet","team":"Athletic Bilbao","score":79,"grade":"A","tags":["Box-to-box","Buts","En forme"],"ana":"Sancet est l'un des joueurs les plus en vue d'Athletic. Son profil box-to-box et sa capacité à surgir dans la surface en font le pick milieu de ce match."},
-        {"name":"Mauro Arambarri","team":"Getafe CF","score":73,"grade":"A","tags":["Récupération","Pressing","Domicile"],"ana":"Arambarri est le cœur du pressing getafiste. Dans un match physique, il peut récupérer des ballons et lancer des transitions rapides."}
-      ],
-      "ATT": [
-        {"name":"Iñaki Williams","team":"Athletic Bilbao","score":82,"grade":"A","tags":["Vitesse","Physique","Inlassable"],"ana":"Williams est le joueur le plus dangereux de ce match. Son énergie et sa vitesse perturbent même les défenses les plus organisées comme celle de Getafe."},
-        {"name":"Nico Williams","team":"Athletic Bilbao","score":78,"grade":"A","tags":["Dribbles","Champion d'Europe","Vitesse"],"ana":"Nico continue sa progression. Sa vivacité sur le flanc gauche peut faire la différence face à une défense getafiste parfois vulnérable en transition."}
-      ]
-    },
-    "vcf-rcc": {
-      "summary": "Valencia reçoit Celta de Vigo dans un match offensif prometteur. Deux équipes qui aiment construire et le soleil à Mestalla favorise un jeu ouvert avec des buts probables.",
-      "wxImpact": "Soleil et terrain rapide à Valence — idéal pour les attaquants des deux équipes. Aspas et Hugo Duro seront dans des conditions optimales.",
-      "fav": "Valencia CF", "conf": 58,
-      "GK": [{"name":"Giorgi Mamardashvili","team":"Valencia CF","score":72,"grade":"A","tags":["Talent","Domicile","Gardien moderne"],"ana":"Le jeune gardien géorgien est l'un des meilleurs espoirs d'Europe. Dans ce match offensif, ses arrêts réflexes peuvent faire la différence."}],
-      "DEF": [
-        {"name":"José Gayà","team":"Valencia CF","score":75,"grade":"A","tags":["International","Montées","Domicile"],"ana":"Gayà est un latéral gauche redoutable à Mestalla. Ses montées et ses centres alimentent constamment l'attaque valencienste."},
-        {"name":"Hugo Mallo","team":"RC Celta de Vigo","score":72,"grade":"A","tags":["Expérience","Capitaine","Montées"],"ana":"Mallo est le capitaine du Celta et monte régulièrement. Sa connexion avec Aspas sur les phases offensives peut créer du danger."}
-      ],
-      "MID": [
-        {"name":"Javi Guerra","team":"Valencia CF","score":78,"grade":"A","tags":["Talent","Box-to-box","Domicile"],"ana":"Guerra est la pépite du milieu valencien. Dans un match ouvert à Mestalla, il peut peser offensivement et contribuer à un but."},
-        {"name":"Fran Beltrán","team":"RC Celta de Vigo","score":74,"grade":"A","tags":["Vision","Passes","Régulier"],"ana":"Beltrán orchestre le jeu du Celta avec sa vision et sa précision. Ses passes permettent de trouver Aspas dans les meilleures positions."}
-      ],
-      "ATT": [
-        {"name":"Iago Aspas","team":"RC Celta de Vigo","score":89,"grade":"S","tags":["Légende","Incontournable","38 ans","Régulier"],"ana":"Aspas continue de marquer et d'assister à 38 ans avec une régularité déconcertante. À Mestalla en plein soleil, il est le pick numéro 1 absolu de ce match."},
-        {"name":"Hugo Duro","team":"Valencia CF","score":79,"grade":"A","tags":["Buteur","Physique","Domicile"],"ana":"Duro est le buteur de référence de Valence. Sa force physique et son placement dans la surface font de lui un attaquant redoutable à domicile."}
-      ]
-    },
-    "ovi-sev": {
-      "summary": "Fond de tableau entre Oviedo (dernier, 21pts) et Séville (15e, 31pts). Les deux équipes sont en difficulté mais Séville a plus de qualité individuelle pour s'imposer en Asturies sous la pluie.",
-      "wxImpact": "Pluie et froid à Oviedo — terrain glissant qui avantage les profils physiques comme En-Nesyri et neutralise le jeu technique.",
-      "fav": "Sevilla FC", "conf": 54,
-      "GK": [{"name":"Yassine Bounou","team":"Sevilla FC","score":74,"grade":"A","tags":["International","Expérience","Adversaire 20e"],"ana":"Bounou face à la pire attaque de LaLiga. Malgré la pluie, ses chances de clean sheet sont bonnes contre la dernière équipe du championnat."}],
-      "DEF": [
-        {"name":"Marcos Acuña","team":"Sevilla FC","score":72,"grade":"A","tags":["Robustesse","Adapté à la pluie","Expérience"],"ana":"Acuña est un latéral robuste parfaitement taillé pour jouer sous la pluie. Sa solidité défensive est clé contre les tentatives désespérées d'Oviedo."},
-        {"name":"Loïc Badé","team":"Sevilla FC","score":70,"grade":"A","tags":["Aérien","Physique","Pluie favorable"],"ana":"Badé domine dans les duels aériens — une qualité précieuse sur terrain lourd. Face aux attaquants limités d'Oviedo, il devrait gérer sans problème."}
-      ],
-      "MID": [
-        {"name":"Lucas Ocampos","team":"Sevilla FC","score":76,"grade":"A","tags":["Intensité","Physique","Adapté aux conditions"],"ana":"Ocampos est taillé pour les matchs difficiles sous la pluie. Son profil athlétique et son intensité font la différence dans ce contexte hostile."},
-        {"name":"Iván Rakitić","team":"Sevilla FC","score":73,"grade":"A","tags":["Légende","Vision","Leadership"],"ana":"Rakitić continue d'influencer le jeu du Séville FC. Sa lecture tactique et ses passes précises peuvent faire la différence même sous la pluie."}
-      ],
-      "ATT": [
-        {"name":"Youssef En-Nesyri","team":"Sevilla FC","score":78,"grade":"A","tags":["Physique","Aérien","Adversaire 20e","Conditions adaptées"],"ana":"En-Nesyri est parfaitement taillé pour ces conditions difficiles. Sa force et sa domination aérienne lui permettent de peser face au dernier du championnat."},
-        {"name":"Borja Bastón","team":"Real Oviedo","score":62,"grade":"B","tags":["Domicile","Expérience","Désespoir"],"ana":"Bastón est la principale menace offensive d'Oviedo mais son équipe est très limitée. Option risquée dans un match que Séville devrait contrôler."}
-      ]
-    },
-    "ala-osa": {
-      "summary": "Alavés (16e, 31pts) affronte Osasuna (10e, 37pts) dans un duel crucial. Alavés a besoin de points pour s'éloigner de la relégation tandis qu'Osasuna vise le top 10. Match accroché prévu.",
-      "wxImpact": "Conditions neutres à Vitoria — vent léger sans impact majeur sur le jeu des deux équipes.",
-      "fav": "Deportivo Alavés", "conf": 54,
-      "GK": [{"name":"Aitor Fernández","team":"CA Osasuna","score":73,"grade":"A","tags":["Expérience","Régularité","Fiable"],"ana":"Fernández est l'un des gardiens les plus réguliers de LaLiga. Dans ce match serré, sa concentration peut valoir un clean sheet précieux."}],
-      "DEF": [
-        {"name":"Luis Rioja","team":"Deportivo Alavés","score":74,"grade":"A","tags":["Vitesse","Domicile","Tranchant"],"ana":"Rioja est le joueur le plus tranchant d'Alavés. Sa vitesse sur les côtés peut créer des espaces et débloquer ce match fermé."},
-        {"name":"Rubén García","team":"CA Osasuna","score":71,"grade":"A","tags":["Technique","Passes décisives","Créativité"],"ana":"Rubén García est le plus créatif d'Osasuna. Ses passes entre les lignes peuvent déstabiliser la défense d'Alavés."}
-      ],
-      "MID": [
-        {"name":"Rubén García","team":"CA Osasuna","score":76,"grade":"A","tags":["Créativité","Passes déc.","Régulier"],"ana":"Le milieu créatif d'Osasuna, capable de trouver les espaces et de créer des occasions. Pick solide dans un match tactique."},
-        {"name":"Jon Guridi","team":"Deportivo Alavés","score":68,"grade":"B","tags":["Pressing","Intensité","Domicile"],"ana":"Guridi apporte l'intensité et le pressing nécessaires pour ce match vital pour Alavés. Profil de dépannage mais fiable."}
-      ],
-      "ATT": [
-        {"name":"Kike García","team":"CA Osasuna","score":78,"grade":"A","tags":["Buteur","Physique","En forme"],"ana":"Kike García est le buteur de référence d'Osasuna. Sa combativité et son efficacité devant le but en font le pick offensif numéro 1 de ce match."},
-        {"name":"Kebé","team":"Deportivo Alavés","score":72,"grade":"A","tags":["Vitesse","Domicile","Danger"],"ana":"L'attaquant d'Alavés est motivé par l'enjeu à domicile. Sa vitesse peut créer des espaces et punir Osasuna sur les transitions rapides."}
-      ]
-    },
-    "gir-vil": {
-      "summary": "Villarreal (3e, 58pts) se déplace à Gérone pour conforter sa place sur le podium. Le sous-marin jaune est en excellente forme avec Moleiro (8 buts) et Parejo qui régale. Girona peut créer la surprise à domicile.",
-      "wxImpact": "Bonnes conditions à Gérone — terrain rapide favorable au pressing haut et au jeu technique de Villarreal.",
-      "fav": "Villarreal CF", "conf": 62,
-      "GK": [{"name":"Luiz Júnior","team":"Villarreal CF","score":74,"grade":"A","tags":["Titulaire","Clean sheet potentiel","Expérience"],"ana":"Le gardien brésilien de Villarreal face à une attaque de Girona limitée à domicile. Bonnes chances de garder sa cage inviolée."}],
-      "DEF": [
-        {"name":"Alfonso Pedraza","team":"Villarreal CF","score":77,"grade":"A","tags":["Latéral offensif","Centres","4e capitaine"],"ana":"Pedraza est l'un des latéraux les plus offensifs de LaLiga. Ses montées et ses centres alimentent constamment l'attaque du sous-marin jaune."},
-        {"name":"Juan Foyth","team":"Villarreal CF","score":73,"grade":"A","tags":["Expérience","3e capitaine","Solide"],"ana":"Foyth est un défenseur polyvalent et expérimenté. Sa solidité défensive sera clé pour maintenir le zéro face à Girona."}
-      ],
-      "MID": [
-        {"name":"Dani Parejo","team":"Villarreal CF","score":85,"grade":"S","tags":["Capitaine","Vision","Set pieces","Leader"],"ana":"Parejo est le chef d'orchestre absolu de Villarreal. Sa vision du jeu et ses coups de pied arrêtés en font le pick milieu incontournable de ce match."},
-        {"name":"Alberto Moleiro","team":"Villarreal CF","score":84,"grade":"A","tags":["8 buts","Révélation","En forme","Explosif"],"ana":"Moleiro est la révélation de la saison à Villarreal avec 8 buts. Son explosivité et son sens du but en font un pick premium contre Girona."}
-      ],
-      "ATT": [
-        {"name":"Georges Mikautadze","team":"Villarreal CF","score":82,"grade":"A","tags":["Buteur","International géorgien","Technique"],"ana":"Mikautadze est l'attaquant de pointe de Villarreal. Sa finesse technique et son sens du but en font un pick très intéressant dans ce déplacement."},
-        {"name":"Ayoze Pérez","team":"Villarreal CF","score":79,"grade":"A","tags":["Expérience","Technique","Polyvalent"],"ana":"Ayoze apporte son expérience et sa technique à l'attaque de Villarreal. Sa régularité en fait un pick solide dans ce déplacement à Gérone."}
-      ]
-    }
-  },
-  "topPicks": {
-    "GK": [
-      {"rank":1,"name":"Álex Remiro","team":"Real Sociedad","match":"vs Levante","score":84,"grade":"A","reason":"Levante avant-dernier, clean sheet très probable sous la pluie à San Sebastián."},
-      {"rank":2,"name":"Augusto Batalla","team":"Rayo Vallecano","match":"vs Elche","score":78,"grade":"A","reason":"Elche dernière attaque de LaLiga. Clean sheet attendu à Vallecas."},
-      {"rank":3,"name":"Thibaut Courtois","team":"Real Madrid","match":"vs Mallorca","score":74,"grade":"A","reason":"Mallorca relégable. Terrain rapide à Palma, peu de danger offensif."}
-    ],
-    "DEF": [
-      {"rank":1,"name":"Álvaro Carreras","team":"Real Madrid","match":"vs Mallorca","score":79,"grade":"A","reason":"Latéral offensif en pleine forme, terrain parfait à Palma. Clean sheet + bonus offensifs."},
-      {"rank":2,"name":"Ronald Araújo","team":"FC Barcelona","match":"vs Atlético","score":81,"grade":"A","reason":"Leader de la défense barcelonaise dans le choc du titre au Metropolitano."},
-      {"rank":3,"name":"Aritz Elustondo","team":"Real Sociedad","match":"vs Levante","score":79,"grade":"A","reason":"Clean sheet quasi assuré contre la pire attaque. Domicile à San Sebastián."}
-    ],
-    "MID": [
-      {"rank":1,"name":"Jude Bellingham","team":"Real Madrid","match":"vs Mallorca","score":93,"grade":"S","reason":"Meilleur milieu de LaLiga face à une équipe relégable. Conditions parfaites à Palma."},
-      {"rank":2,"name":"Pedri","team":"FC Barcelona","match":"vs Atlético","score":92,"grade":"S","reason":"Se transcende dans les grands matchs. Incontournable au Metropolitano."},
-      {"rank":3,"name":"Dani Parejo","team":"Villarreal CF","match":"vs Girona","score":85,"grade":"S","reason":"Capitaine et chef d'orchestre de Villarreal en grande forme. Set pieces, vision, leadership."}
-    ],
-    "ATT": [
-      {"rank":1,"name":"Kylian Mbappé","team":"Real Madrid","match":"vs Mallorca","score":96,"grade":"S","reason":"38 buts toutes compétitions ! Terrain parfait à Palma face à une équipe relégable. Pick absolu."},
-      {"rank":2,"name":"Robert Lewandowski","team":"FC Barcelona","match":"vs Atlético","score":92,"grade":"S","reason":"31 buts cette saison. L'homme des grands rendez-vous sera décisif au Metropolitano."},
-      {"rank":3,"name":"Iago Aspas","team":"Celta de Vigo","match":"vs Valencia","score":89,"grade":"S","reason":"Légende du Celta toujours aussi efficace à 38 ans. Soleil à Mestalla, conditions idéales."}
-    ]
-  }
-};
+var AN={"matches":{"rvc-elc":{"summary":"Rayo Vallecano recoit un Elche en grande difficulte, 17e avec 29 points et la pire attaque du championnat. A domicile a Vallecas, Rayo est clairement favori.","wxImpact":"Vent modere a Madrid, conditions neutres sans avantage particulier.","fav":"Rayo Vallecano","conf":64,"GK":[{"name":"Augusto Batalla","team":"Rayo Vallecano","score":78,"grade":"A","tags":["Clean sheet probable","Adversaire faible","Domicile"],"ana":"Face a la pire attaque de LaLiga, Batalla a d'excellentes chances de garder sa cage inviolee. Elche ne marque que 0.8 buts par match."}],"DEF":[{"name":"Andrei Ratiu","team":"Rayo Vallecano","score":74,"grade":"A","tags":["Montees offensives","Domicile","Adversaire faible"],"ana":"Le lateral roumain monte regulierement et peut contribuer offensivement face a une defense d'Elche vulnerable."},{"name":"Florian Lejeune","team":"Rayo Vallecano","score":68,"grade":"B","tags":["Experience","Clean sheet potentiel"],"ana":"Defenseur solide pour un match domine par Rayo. Bonus clean sheet a portee."}],"MID":[{"name":"Oscar Trejo","team":"Rayo Vallecano","score":80,"grade":"A","tags":["Capitaine","Passes cles","Domicile"],"ana":"Le capitaine historique de Rayo orchestre le jeu et peut marquer sur coup de pied arrete. Incontournable a domicile."},{"name":"Isi Palazon","team":"Rayo Vallecano","score":75,"grade":"A","tags":["Frappe lointaine","Offensif"],"ana":"Palazon se projette frequemment dans la surface et frappe de loin. Bon pick milieu offensif."}],"ATT":[{"name":"Sergio Camello","team":"Rayo Vallecano","score":84,"grade":"A","tags":["En forme","Adversaire faible","Domicile","Buteur"],"ana":"Le meilleur buteur de Rayo face a la pire defense. Pick numero 1 de ce match."},{"name":"Jorge de Frutos","team":"Rayo Vallecano","score":76,"grade":"A","tags":["Vitesse","Domicile","Danger"],"ana":"De Frutos apporte de la vivacite et peut marquer ou delivrer une passe decisive."}]},"rso-lev":{"summary":"La Real Sociedad recoit Levante, avant-dernier avec 26 points et 15 defaites cette saison. La Txuri-urdin veut confirmer sa forme a domicile.","wxImpact":"Pluie a San Sebastian - terrain lourd mais Kubo reste redoutable meme dans ces conditions.","fav":"Real Sociedad","conf":72,"GK":[{"name":"Alex Remiro","team":"Real Sociedad","score":84,"grade":"A","tags":["Clean sheet probable","Adversaire 19e","Domicile"],"ana":"Remiro face a la pire attaque de LaLiga sous la pluie. Conditions ideales pour un clean sheet."}],"DEF":[{"name":"Aritz Elustondo","team":"Real Sociedad","score":79,"grade":"A","tags":["Clean sheet probable","Domicile","Experience"],"ana":"Defenseur pilier face a une attaque de Levante quasi nulle. Un des meilleurs picks defensifs de la journee."},{"name":"Jon Pacheco","team":"Real Sociedad","score":73,"grade":"A","tags":["Montees offensives","Corners","Domicile"],"ana":"Lateral actif qui participe offensivement. Peut marquer sur coup de pied arrete."}],"MID":[{"name":"Mikel Merino","team":"Real Sociedad","score":86,"grade":"S","tags":["En forme","Buts de loin","Incontournable"],"ana":"Merino est dans une forme excellente et frappe puissamment de loin. Face a Levante, il aura tout l'espace necessaire."},{"name":"Brais Mendez","team":"Real Sociedad","score":82,"grade":"A","tags":["Passes decisives","Creativite","Domicile"],"ana":"Mendez est le cerveau offensif de la Sociedad. Ses passes entre les lignes font des degats face aux defenses faibles."}],"ATT":[{"name":"Takefusa Kubo","team":"Real Sociedad","score":90,"grade":"S","tags":["Star","Dribbles","Incontournable","Frappe"],"ana":"Kubo est le pick absolu de ce match. Sa technique et sa vitesse font la difference meme sur terrain lourd."},{"name":"Mikel Oyarzabal","team":"Real Sociedad","score":79,"grade":"A","tags":["Capitaine","Sens du but","Domicile"],"ana":"Le capitaine basque est un finisseur fiable face a la pire defense du championnat."}]},"mal-rma":{"summary":"Le Real Madrid se deplace a Palma avec de grandes chances de l'emporter. Mallorca rel\u00e9gable (28pts) a une attaque anemique. Les Merengues restent sur une victoire 3-2 dans le derby.","wxImpact":"Conditions parfaites a Palma - terrain sec et rapide, ideal pour Mbappe et Vinicius sur les transitions.","fav":"Real Madrid","conf":78,"GK":[{"name":"Thibaut Courtois","team":"Real Madrid","score":74,"grade":"A","tags":["Gardien elite","Adversaire faible","Clean sheet probable"],"ana":"Courtois face a la 18e attaque de LaLiga. Mallorca cree tres peu d'occasions."}],"DEF":[{"name":"Alvaro Carreras","team":"Real Madrid","score":79,"grade":"A","tags":["Lateral offensif","Montees","Terrain rapide"],"ana":"Le lateral gauche titulaire monte regulierement. Sur terrain sec a Palma, ses accelerations creent du danger."},{"name":"Dean Huijsen","team":"Real Madrid","score":72,"grade":"A","tags":["Solide","Adversaire faible","Clean sheet"],"ana":"Le defenseur central gere confortablement les rares assauts de Mallorca."}],"MID":[{"name":"Jude Bellingham","team":"Real Madrid","score":93,"grade":"S","tags":["Meilleur milieu","Buts","Passes dec.","Incontournable"],"ana":"Bellingham est en etat de grace. Face a Mallorca relegable sur terrain rapide, il est le pick milieu absolu de la Jornada 30."},{"name":"Federico Valverde","team":"Real Madrid","score":83,"grade":"A","tags":["Box-to-box","Energie","Frappe lointaine"],"ana":"Valverde est le moteur du milieu madrilene. Ses frappes de loin peuvent punir Mallorca a tout moment."}],"ATT":[{"name":"Kylian Mbappe","team":"Real Madrid","score":96,"grade":"S","tags":["38 buts","Top pick absolu","Vitesse","Conditions ideales"],"ana":"Mbappe est en etat de grace avec 38 buts toutes competitions. Terrain rapide a Palma, adversaire faible - pick numero 1 de toute la Jornada."},{"name":"Vinicius Jr.","team":"Real Madrid","score":89,"grade":"S","tags":["Dribbles","Buts","Forme excellente"],"ana":"Vinicius a marque dans le derby contre l'Atletico. Sa forme est au top et il va torturer la defense mallorquine."}]},"rbb-esp":{"summary":"Le Real Betis recoit l'Espanyol dans un match important pour la course a l'Europe. Les Verdiblancos (5e, 44pts) ont un effectif renove avec Cucho Hernandez et Isco en grande forme.","wxImpact":"Conditions agreables a Seville - terrain sec et rapide, favorable au jeu technique de Lo Celso et a la mobilite de Cucho.","fav":"Real Betis","conf":67,"GK":[{"name":"Adrian","team":"Real Betis","score":72,"grade":"A","tags":["Experience","Domicile","Adversaire moyen"],"ana":"Adrian est un gardien experimente. Face a l'Espanyol, ses chances de clean sheet sont raisonnables."}],"DEF":[{"name":"Hector Bellerin","team":"Real Betis","score":75,"grade":"A","tags":["Lateral offensif","Centres","Domicile"],"ana":"Bellerin est un lateral tres actif dont les montees alimentent constamment l'attaque. Ses centres pour Cucho sont redoutables."},{"name":"Marc Bartra","team":"Real Betis","score":73,"grade":"A","tags":["Experience","Leader","Set pieces"],"ana":"Bartra est le patron de la defense verte et blanche. Sa presence sur les coups de pied arretes est precieuse."}],"MID":[{"name":"Isco","team":"Real Betis","score":86,"grade":"S","tags":["Maestro","Passes dec.","Domicile","En forme"],"ana":"Isco est le cerveau du Betis et excelle a domicile a Seville. Sa creativite en fait le pick milieu numero 1 de ce match."},{"name":"Giovanni Lo Celso","team":"Real Betis","score":80,"grade":"A","tags":["Creativite","Passes entre les lignes","Technique"],"ana":"Lo Celso est l'un des meilleurs milieux offensifs de LaLiga. Ses passes decisives desequilibrent les defenses organisees."}],"ATT":[{"name":"Cucho Hernandez","team":"Real Betis","score":83,"grade":"A","tags":["Explosif","En forme","Domicile","Nouveau signing"],"ana":"Cucho Hernandez est l'attaquant vedette du Betis. Son explosivite et sa finesse technique en font le profil ideal sur terrain rapide."},{"name":"Antony","team":"Real Betis","score":75,"grade":"A","tags":["Vitesse","Dribbles","Pret Man United"],"ana":"Antony a retrouve confiance au Betis. Sa vitesse peut creer des espaces et aboutir a des passes decisives."}]},"atm-bar":{"summary":"LE choc de la Jornada 30 ! Le Barca leader (73pts) se rend au Metropolitano de l'Atletico (57pts). Match de titans avec Sorloth, Julian Alvarez, Lookman face a Lewandowski, Lamine Yamal, Pedri.","wxImpact":"Vent modere et nuages a Madrid - conditions qui favorisent le pressing intense de Simeone.","fav":"FC Barcelona","conf":56,"GK":[{"name":"Jan Oblak","team":"Atletico Madrid","score":76,"grade":"A","tags":["Vice-capitaine","Reflexes","Grand match"],"ana":"Oblak est l'un des meilleurs gardiens d'Europe. Dans ce choc, ses reflexes et sa solidite seront testes par les stars du Barca."}],"DEF":[{"name":"Ronald Araujo","team":"FC Barcelona","score":81,"grade":"A","tags":["Physique","Leadership","Grand match"],"ana":"Araujo sera au coeur de la defense barcelonaise face aux attaquants puissants de l'Atletico. Sa domination physique est determinante."},{"name":"Pau Cubarsi","team":"FC Barcelona","score":77,"grade":"A","tags":["Talent","Serenite","Technique"],"ana":"A seulement 18 ans, Cubarsi est titulaire indiscutable. Sa lecture du jeu en fait un pick solide meme dans les grands matchs."}],"MID":[{"name":"Pedri","team":"FC Barcelona","score":92,"grade":"S","tags":["Genie","Passes cles","Grand match","Incontournable"],"ana":"Pedri se transcende dans les grands rendez-vous. Sa vision du jeu au Metropolitano en fait le pick milieu absolu de cette Jornada."},{"name":"Frenkie de Jong","team":"FC Barcelona","score":82,"grade":"A","tags":["Box-to-box","Pressing","Passes cles"],"ana":"De Jong est crucial pour casser les lignes de pressing de Simeone. Sa resistance physique en fait un pick solide dans ce choc."}],"ATT":[{"name":"Robert Lewandowski","team":"FC Barcelona","score":92,"grade":"S","tags":["31 buts","Grand match","Incontournable","Sang-froid"],"ana":"Lewandowski est l'homme des grands matchs avec 31 buts cette saison. Meme face a la defense de l'Atletico, il trouve toujours le chemin des filets."},{"name":"Antoine Griezmann","team":"Atletico Madrid","score":86,"grade":"S","tags":["Legende","Ex-Barca","Motivation max","Domicile"],"ana":"Griezmann a une revanche a prendre contre son ancien club. Sa motivation maximale et son intelligence de jeu en font un pick premium."}]},"get-ath":{"summary":"Duel equilibre entre Getafe et Athletic Bilbao, deux equipes a egalite de points (38). Match tres physique et tactique attendu entre ces clubs qui jouent direct.","wxImpact":"Conditions neutres a Madrid - vent leger pouvant gener les passes longues des deux equipes.","fav":"Athletic Bilbao","conf":52,"GK":[{"name":"David Soria","team":"Getafe CF","score":70,"grade":"A","tags":["Solide","Match serre","Reflexes"],"ana":"Soria est un gardien fiable dans les matchs fermes. Un clean sheet est possible dans ce duel tactique."}],"DEF":[{"name":"Yeray Alvarez","team":"Athletic Bilbao","score":75,"grade":"A","tags":["Physique","Domination aerienne","Solide"],"ana":"Yeray est le patron de la defense basque. Face au jeu direct de Getafe, sa robustesse physique est essentielle."},{"name":"Oscar de Marcos","team":"Athletic Bilbao","score":70,"grade":"A","tags":["Experience","Montees","Capitaine"],"ana":"De Marcos apporte son experience et ses montees sur le flanc droit. Regulier dans un match serre."}],"MID":[{"name":"Oihan Sancet","team":"Athletic Bilbao","score":79,"grade":"A","tags":["Box-to-box","Buts","En forme"],"ana":"Sancet est l'un des joueurs les plus en vue d'Athletic. Son profil box-to-box et sa capacite a surgir en font le pick milieu de ce match."},{"name":"Mauro Arambarri","team":"Getafe CF","score":73,"grade":"A","tags":["Recuperation","Pressing","Domicile"],"ana":"Arambarri est le coeur du pressing getafiste. Dans un match physique, il recupere des ballons et lance des transitions rapides."}],"ATT":[{"name":"Inaki Williams","team":"Athletic Bilbao","score":82,"grade":"A","tags":["Vitesse","Physique","Inlassable"],"ana":"Williams est le joueur le plus dangereux de ce match. Son energie et sa vitesse perturbent meme les defenses les plus organisees."},{"name":"Nico Williams","team":"Athletic Bilbao","score":78,"grade":"A","tags":["Dribbles","Champion d'Europe","Vitesse"],"ana":"Nico continue sa progression. Sa vivacite sur le flanc gauche peut faire la difference face a Getafe."}]},"vcf-rcc":{"summary":"Valencia recoit Celta de Vigo dans un match offensif prometteur. Deux equipes qui aiment construire et le soleil a Mestalla favorise un jeu ouvert.","wxImpact":"Soleil et terrain rapide a Valence - ideal pour les attaquants des deux equipes. Aspas et Hugo Duro dans des conditions optimales.","fav":"Valencia CF","conf":58,"GK":[{"name":"Giorgi Mamardashvili","team":"Valencia CF","score":72,"grade":"A","tags":["Talent","Domicile","Gardien moderne"],"ana":"Le jeune gardien georgien est l'un des meilleurs espoirs d'Europe. Ses arrets reflexes peuvent faire la difference."}],"DEF":[{"name":"Jose Gaya","team":"Valencia CF","score":75,"grade":"A","tags":["International","Montees","Domicile"],"ana":"Gaya est un lateral gauche redoutable a Mestalla. Ses montees et ses centres alimentent constamment l'attaque valencienste."},{"name":"Hugo Mallo","team":"RC Celta de Vigo","score":72,"grade":"A","tags":["Experience","Capitaine","Montees"],"ana":"Mallo est le capitaine du Celta et monte regulierement. Sa connexion avec Aspas sur les phases offensives est dangereuse."}],"MID":[{"name":"Javi Guerra","team":"Valencia CF","score":78,"grade":"A","tags":["Talent","Box-to-box","Domicile"],"ana":"Guerra est la pepite du milieu valencien. Dans un match ouvert a Mestalla, il peut peser offensivement et contribuer a un but."},{"name":"Fran Beltran","team":"RC Celta de Vigo","score":74,"grade":"A","tags":["Vision","Passes","Regulier"],"ana":"Beltran orchestre le jeu du Celta avec sa vision et sa precision. Ses passes permettent de trouver Aspas dans les meilleures positions."}],"ATT":[{"name":"Iago Aspas","team":"RC Celta de Vigo","score":89,"grade":"S","tags":["Legende","Incontournable","Regulier","38 ans"],"ana":"Aspas continue de marquer et d'assister a 38 ans. A Mestalla en plein soleil, il est le pick numero 1 absolu de ce match."},{"name":"Hugo Duro","team":"Valencia CF","score":79,"grade":"A","tags":["Buteur","Physique","Domicile"],"ana":"Duro est le buteur de reference de Valence. Sa force physique et son placement font de lui un attaquant redoutable a domicile."}]},"ovi-sev":{"summary":"Fond de tableau entre Oviedo (dernier, 21pts) et Seville (15e, 31pts). Les deux equipes sont en difficulte mais Seville a plus de qualite individuelle sous la pluie asturienne.","wxImpact":"Pluie et froid a Oviedo - terrain glissant qui avantage les profils physiques comme En-Nesyri et neutralise le jeu technique.","fav":"Sevilla FC","conf":54,"GK":[{"name":"Yassine Bounou","team":"Sevilla FC","score":74,"grade":"A","tags":["International","Experience","Adversaire 20e"],"ana":"Bounou face a la pire attaque de LaLiga. Malgre la pluie, ses chances de clean sheet sont bonnes contre le dernier du championnat."}],"DEF":[{"name":"Marcos Acuna","team":"Sevilla FC","score":72,"grade":"A","tags":["Robustesse","Adapte a la pluie","Experience"],"ana":"Acuna est un lateral robuste parfaitement taille pour jouer sous la pluie. Sa solidite defensive est cle contre Oviedo."},{"name":"Loic Bade","team":"Sevilla FC","score":70,"grade":"A","tags":["Aerien","Physique","Pluie favorable"],"ana":"Bade domine dans les duels aeriens - une qualite precieuse sur terrain lourd face aux attaquants limites d'Oviedo."}],"MID":[{"name":"Lucas Ocampos","team":"Sevilla FC","score":76,"grade":"A","tags":["Intensite","Physique","Adapte aux conditions"],"ana":"Ocampos est taille pour les matchs difficiles sous la pluie. Son profil athletique et son intensite font la difference."},{"name":"Ivan Rakitic","team":"Sevilla FC","score":73,"grade":"A","tags":["Legende","Vision","Leadership"],"ana":"Rakitic continue d'influencer le jeu du Seville FC. Sa lecture tactique peut faire la difference meme sous la pluie."}],"ATT":[{"name":"Youssef En-Nesyri","team":"Sevilla FC","score":78,"grade":"A","tags":["Physique","Aerien","Adversaire 20e","Conditions adaptees"],"ana":"En-Nesyri est parfaitement taille pour ces conditions difficiles. Sa force et sa domination aerienne lui permettent de peser face au dernier du championnat."},{"name":"Borja Baston","team":"Real Oviedo","score":62,"grade":"B","tags":["Domicile","Experience"],"ana":"Baston est la principale menace offensive d'Oviedo mais son equipe est tres limitee. Option risquee dans un match que Seville devrait controler."}]},"ala-osa":{"summary":"Alaves (16e, 31pts) affronte Osasuna (10e, 37pts) dans un duel crucial. Alaves a besoin de points pour s'eloigner de la relegation tandis qu'Osasuna vise le top 10.","wxImpact":"Conditions neutres a Vitoria - vent leger sans impact majeur sur le jeu des deux equipes.","fav":"Deportivo Alaves","conf":54,"GK":[{"name":"Aitor Fernandez","team":"CA Osasuna","score":73,"grade":"A","tags":["Experience","Regularite","Fiable"],"ana":"Fernandez est l'un des gardiens les plus reguliers de LaLiga. Dans ce match serre, sa concentration peut valoir un clean sheet."}],"DEF":[{"name":"Luis Rioja","team":"Deportivo Alaves","score":74,"grade":"A","tags":["Vitesse","Domicile","Tranchant"],"ana":"Rioja est le joueur le plus tranchant d'Alaves. Sa vitesse sur les cotes peut creer des espaces et debloquer ce match ferme."},{"name":"Ruben Garcia","team":"CA Osasuna","score":71,"grade":"A","tags":["Technique","Passes decisives","Creativite"],"ana":"Ruben Garcia est le plus creatif d'Osasuna. Ses passes entre les lignes peuvent desequilibrer la defense d'Alaves."}],"MID":[{"name":"Ruben Garcia","team":"CA Osasuna","score":76,"grade":"A","tags":["Creativite","Passes dec.","Regulier"],"ana":"Le milieu creatif d'Osasuna, capable de trouver les espaces et de creer des occasions. Pick solide dans un match tactique."},{"name":"Jon Guridi","team":"Deportivo Alaves","score":68,"grade":"B","tags":["Pressing","Intensite","Domicile"],"ana":"Guridi apporte l'intensite necessaire pour ce match vital pour Alaves. Profil de depannage mais fiable."}],"ATT":[{"name":"Kike Garcia","team":"CA Osasuna","score":78,"grade":"A","tags":["Buteur","Physique","En forme"],"ana":"Kike Garcia est le buteur de reference d'Osasuna. Sa combativite et son efficacite devant le but en font le pick offensif numero 1."},{"name":"Kebe","team":"Deportivo Alaves","score":72,"grade":"A","tags":["Vitesse","Domicile","Danger"],"ana":"L'attaquant d'Alaves est motive par l'enjeu a domicile. Sa vitesse peut creer des espaces sur les transitions rapides."}]},"gir-vil":{"summary":"Villarreal (3e, 58pts) se deplace a Gerone pour consolider sa place sur le podium. Le sous-marin jaune est en excellente forme avec Moleiro (8 buts) et Parejo qui regale.","wxImpact":"Bonnes conditions a Gerone - terrain rapide favorable au pressing haut et au jeu technique de Villarreal.","fav":"Villarreal CF","conf":62,"GK":[{"name":"Luiz Junior","team":"Villarreal CF","score":74,"grade":"A","tags":["Titulaire","Clean sheet potentiel","Experience"],"ana":"Le gardien bresilien de Villarreal face a une attaque de Girona limitee a domicile. Bonnes chances de garder sa cage inviolee."}],"DEF":[{"name":"Alfonso Pedraza","team":"Villarreal CF","score":77,"grade":"A","tags":["Lateral offensif","Centres","4e capitaine"],"ana":"Pedraza est l'un des lateraux les plus offensifs de LaLiga. Ses montees et ses centres alimentent constamment l'attaque."},{"name":"Juan Foyth","team":"Villarreal CF","score":73,"grade":"A","tags":["Experience","3e capitaine","Solide"],"ana":"Foyth est un defenseur polyvalent et experimente. Sa solidite defensive sera cle face a Girona."}],"MID":[{"name":"Dani Parejo","team":"Villarreal CF","score":85,"grade":"S","tags":["Capitaine","Vision","Set pieces","Leader"],"ana":"Parejo est le chef d'orchestre absolu de Villarreal. Sa vision du jeu et ses coups de pied arretes en font le pick milieu incontournable."},{"name":"Alberto Moleiro","team":"Villarreal CF","score":84,"grade":"A","tags":["8 buts","Revelation","En forme","Explosif"],"ana":"Moleiro est la revelation de la saison a Villarreal avec 8 buts. Son explosivite et son sens du but en font un pick premium."}],"ATT":[{"name":"Georges Mikautadze","team":"Villarreal CF","score":82,"grade":"A","tags":["Buteur","International georgien","Technique"],"ana":"Mikautadze est l'attaquant de pointe de Villarreal. Sa finesse technique et son sens du but en font un pick tres interessant."},{"name":"Ayoze Perez","team":"Villarreal CF","score":79,"grade":"A","tags":["Experience","Technique","Polyvalent"],"ana":"Ayoze apporte son experience et sa technique. Sa regularite en fait un pick solide dans ce deplacement a Gerone."}]}},"topPicks":{"GK":[{"rank":1,"name":"Alex Remiro","team":"Real Sociedad","match":"vs Levante","score":84,"grade":"A","reason":"Levante avant-dernier, clean sheet tres probable sous la pluie a San Sebastian."},{"rank":2,"name":"Augusto Batalla","team":"Rayo Vallecano","match":"vs Elche","score":78,"grade":"A","reason":"Elche derniere attaque de LaLiga. Clean sheet attendu a domicile a Vallecas."},{"rank":3,"name":"Thibaut Courtois","team":"Real Madrid","match":"vs Mallorca","score":74,"grade":"A","reason":"Mallorca relegable. Terrain rapide a Palma, peu de danger offensif adverse."}],"DEF":[{"rank":1,"name":"Ronald Araujo","team":"FC Barcelona","match":"vs Atletico","score":81,"grade":"A","reason":"Leader de la defense barcelonaise dans le choc du titre au Metropolitano."},{"rank":2,"name":"Alvaro Carreras","team":"Real Madrid","match":"vs Mallorca","score":79,"grade":"A","reason":"Lateral offensif titulaire. Terrain parfait a Palma. Clean sheet + bonus offensifs."},{"rank":3,"name":"Aritz Elustondo","team":"Real Sociedad","match":"vs Levante","score":79,"grade":"A","reason":"Clean sheet quasi assure contre la pire attaque. Domicile a San Sebastian."}],"MID":[{"rank":1,"name":"Jude Bellingham","team":"Real Madrid","match":"vs Mallorca","score":93,"grade":"S","reason":"Meilleur milieu de LaLiga face a une equipe relegable. Conditions parfaites a Palma."},{"rank":2,"name":"Pedri","team":"FC Barcelona","match":"vs Atletico","score":92,"grade":"S","reason":"Se transcende dans les grands matchs. Incontournable au Metropolitano pour le choc du titre."},{"rank":3,"name":"Dani Parejo","team":"Villarreal CF","match":"vs Girona","score":85,"grade":"S","reason":"Capitaine et chef d'orchestre de Villarreal. Set pieces, vision et leadership au top."}],"ATT":[{"rank":1,"name":"Kylian Mbappe","team":"Real Madrid","match":"vs Mallorca","score":96,"grade":"S","reason":"38 buts toutes competitions ! Terrain parfait a Palma face a une equipe relegable. Pick absolu."},{"rank":2,"name":"Robert Lewandowski","team":"FC Barcelona","match":"vs Atletico","score":92,"grade":"S","reason":"31 buts cette saison. L'homme des grands rendez-vous sera decisif au Metropolitano."},{"rank":3,"name":"Iago Aspas","team":"Celta de Vigo","match":"vs Valencia","score":89,"grade":"S","reason":"Legende du Celta toujours efficace a 38 ans. Soleil a Mestalla, conditions ideales."}]}};
 
-const MATCHES=[
-{id:‘rvc-elc’,home:‘Rayo Vallecano’,away:‘Elche CF’,hr:14,ar:17,prob:{h:52.2,d:26.5,a:21.3},date:‘Ven 3 Avr · 20h00’,wx:{i:‘⛅’,d:‘16°C nuageux’},hpts:32,apts:29},
-{id:‘rso-lev’,home:‘Real Sociedad’,away:‘Levante UD’,hr:7,ar:19,prob:{h:62.6,d:21.6,a:15.8},date:‘Sam 4 Avr · 13h00’,wx:{i:‘🌧’,d:‘12°C pluie’},hpts:38,apts:26},
-{id:‘mal-rma’,home:‘RCD Mallorca’,away:‘Real Madrid’,hr:18,ar:2,prob:{h:17.7,d:22.1,a:60.2},date:‘Sam 4 Avr · 15h15’,wx:{i:‘☀️’,d:‘19°C ensoleillé’},hpts:28,apts:69},
-{id:‘rbb-esp’,home:‘Real Betis’,away:‘Espanyol’,hr:5,ar:11,prob:{h:56.3,d:24,a:19.7},date:‘Sam 4 Avr · 17h30’,wx:{i:‘🌤’,d:‘18°C nuageux’},hpts:44,apts:37},
-{id:‘atm-bar’,home:‘Atlético Madrid’,away:‘FC Barcelona’,hr:4,ar:1,prob:{h:32.4,d:24.3,a:43.3},date:‘Sam 4 Avr · 19h00’,wx:{i:‘⛅’,d:‘16°C nuageux’},hpts:57,apts:73},
-{id:‘get-ath’,home:‘Getafe CF’,away:‘Athletic Bilbao’,hr:8,ar:9,prob:{h:32.5,d:32.1,a:35.4},date:‘Dim 5 Avr · 13h00’,wx:{i:‘⛅’,d:‘16°C nuageux’},hpts:38,apts:38},
-{id:‘vcf-rcc’,home:‘Valencia CF’,away:‘Celta de Vigo’,hr:12,ar:6,prob:{h:39.5,d:28.3,a:32.2},date:‘Dim 5 Avr · 15h15’,wx:{i:‘☀️’,d:‘17°C ensoleillé’},hpts:35,apts:41},
-{id:‘ovi-sev’,home:‘Real Oviedo’,away:‘Sevilla FC’,hr:20,ar:15,prob:{h:34.4,d:28.9,a:36.7},date:‘Dim 5 Avr · 17h30’,wx:{i:‘🌧’,d:‘11°C pluie’},hpts:21,apts:31},
-{id:‘ala-osa’,home:‘Deportivo Alavés’,away:‘CA Osasuna’,hr:16,ar:10,prob:{h:39.3,d:30,a:30.7},date:‘Dim 5 Avr · 19h00’,wx:{i:‘⛅’,d:‘14°C nuageux’},hpts:31,apts:37},
-{id:‘gir-vil’,home:‘Girona FC’,away:‘Villarreal CF’,hr:13,ar:3,prob:{h:33.1,d:26.4,a:40.5},date:‘Lun 6 Avr · 19h00’,wx:{i:‘🌤’,d:‘15°C nuageux’},hpts:34,apts:58},
+var MATCHES=[
+{id:‘rvc-elc’,home:‘Rayo Vallecano’,away:‘Elche CF’,hr:14,ar:17,prob:{h:52.2,d:26.5,a:21.3},date:‘Ven 3 Avr - 20h00’,wx:{i:’⛅’,d:‘16C nuageux’},hpts:32,apts:29},
+{id:‘rso-lev’,home:‘Real Sociedad’,away:‘Levante UD’,hr:7,ar:19,prob:{h:62.6,d:21.6,a:15.8},date:‘Sam 4 Avr - 13h00’,wx:{i:’🌧’,d:‘12C pluie’},hpts:38,apts:26},
+{id:‘mal-rma’,home:‘RCD Mallorca’,away:‘Real Madrid’,hr:18,ar:2,prob:{h:17.7,d:22.1,a:60.2},date:‘Sam 4 Avr - 15h15’,wx:{i:’☀’,d:‘19C ensoleille’},hpts:28,apts:69},
+{id:‘rbb-esp’,home:‘Real Betis’,away:‘Espanyol’,hr:5,ar:11,prob:{h:56.3,d:24,a:19.7},date:‘Sam 4 Avr - 17h30’,wx:{i:’🌤’,d:‘18C nuageux’},hpts:44,apts:37},
+{id:‘atm-bar’,home:‘Atletico Madrid’,away:‘FC Barcelona’,hr:4,ar:1,prob:{h:32.4,d:24.3,a:43.3},date:‘Sam 4 Avr - 19h00’,wx:{i:’⛅’,d:‘16C nuageux’},hpts:57,apts:73},
+{id:‘get-ath’,home:‘Getafe CF’,away:‘Athletic Bilbao’,hr:8,ar:9,prob:{h:32.5,d:32.1,a:35.4},date:‘Dim 5 Avr - 13h00’,wx:{i:’⛅’,d:‘16C nuageux’},hpts:38,apts:38},
+{id:‘vcf-rcc’,home:‘Valencia CF’,away:‘Celta de Vigo’,hr:12,ar:6,prob:{h:39.5,d:28.3,a:32.2},date:‘Dim 5 Avr - 15h15’,wx:{i:’☀’,d:‘17C ensoleille’},hpts:35,apts:41},
+{id:‘ovi-sev’,home:‘Real Oviedo’,away:‘Sevilla FC’,hr:20,ar:15,prob:{h:34.4,d:28.9,a:36.7},date:‘Dim 5 Avr - 17h30’,wx:{i:’🌧’,d:‘11C pluie’},hpts:21,apts:31},
+{id:‘ala-osa’,home:‘Deportivo Alaves’,away:‘CA Osasuna’,hr:16,ar:10,prob:{h:39.3,d:30,a:30.7},date:‘Dim 5 Avr - 19h00’,wx:{i:’⛅’,d:‘14C nuageux’},hpts:31,apts:37},
+{id:‘gir-vil’,home:‘Girona FC’,away:‘Villarreal CF’,hr:13,ar:3,prob:{h:33.1,d:26.4,a:40.5},date:‘Lun 6 Avr - 19h00’,wx:{i:’🌤’,d:‘15C nuageux’},hpts:34,apts:58}
 ];
 
-const ST=[
+var ST=[
 {r:1,n:‘FC Barcelona’,pts:73,w:24,d:1,l:4,f:[‘fw’,‘fw’,‘fw’,‘dn’,‘fw’]},
 {r:2,n:‘Real Madrid’,pts:69,w:22,d:3,l:4,f:[‘fw’,‘fw’,‘fw’,‘fw’,‘ls’]},
 {r:3,n:‘Villarreal CF’,pts:58,w:18,d:4,l:7,f:[‘fw’,‘fw’,‘ls’,‘fw’,‘fw’]},
-{r:4,n:‘Atlético Madrid’,pts:57,w:17,d:6,l:6,f:[‘fw’,‘ls’,‘fw’,‘dn’,‘fw’]},
+{r:4,n:‘Atletico Madrid’,pts:57,w:17,d:6,l:6,f:[‘fw’,‘ls’,‘fw’,‘dn’,‘fw’]},
 {r:5,n:‘Real Betis’,pts:44,w:11,d:11,l:7,f:[‘dn’,‘fw’,‘ls’,‘fw’,‘dn’]},
 {r:6,n:‘Celta de Vigo’,pts:41,w:10,d:11,l:8,f:[‘ls’,‘fw’,‘dn’,‘fw’,‘ls’]},
 {r:7,n:‘Real Sociedad’,pts:38,w:10,d:8,l:11,f:[‘ls’,‘fw’,‘dn’,‘ls’,‘fw’]},
@@ -388,103 +170,63 @@ const ST=[
 {r:13,n:‘Girona FC’,pts:34,w:8,d:10,l:11,f:[‘dn’,‘ls’,‘fw’,‘dn’,‘ls’]},
 {r:14,n:‘Rayo Vallecano’,pts:32,w:7,d:11,l:11,f:[‘dn’,‘fw’,‘ls’,‘dn’,‘fw’]},
 {r:15,n:‘Sevilla FC’,pts:31,w:8,d:7,l:14,f:[‘ls’,‘dn’,‘fw’,‘ls’,‘ls’]},
-{r:16,n:‘Deportivo Alavés’,pts:31,w:8,d:7,l:14,f:[‘fw’,‘ls’,‘dn’,‘ls’,‘fw’]},
+{r:16,n:‘Deportivo Alaves’,pts:31,w:8,d:7,l:14,f:[‘fw’,‘ls’,‘dn’,‘ls’,‘fw’]},
 {r:17,n:‘Elche CF’,pts:29,w:6,d:11,l:12,f:[‘dn’,‘ls’,‘fw’,‘dn’,‘ls’]},
 {r:18,n:‘RCD Mallorca’,pts:28,w:7,d:7,l:15,f:[‘ls’,‘ls’,‘fw’,‘dn’,‘ls’]},
 {r:19,n:‘Levante UD’,pts:26,w:6,d:8,l:15,f:[‘ls’,‘fw’,‘ls’,‘ls’,‘dn’]},
-{r:20,n:‘Real Oviedo’,pts:21,w:4,d:9,l:16,f:[‘ls’,‘ls’,‘dn’,‘ls’,‘ls’]},
+{r:20,n:‘Real Oviedo’,pts:21,w:4,d:9,l:16,f:[‘ls’,‘ls’,‘dn’,‘ls’,‘ls’]}
 ];
 
+function tg(t){var tl=t.toLowerCase();if(tl.includes(‘form’)||tl.includes(‘but’)||tl.includes(‘incontour’)||tl.includes(‘revelation’)||tl.includes(‘regulier’)||tl.includes(‘legende’))return ‘tf’;if(tl.includes(‘domic’)||tl.includes(‘advers’)||tl.includes(‘faible’)||tl.includes(‘clean’)||tl.includes(‘solide’)||tl.includes(‘titulaire’))return ‘tx’;if(tl.includes(‘pluie’)||tl.includes(‘soleil’)||tl.includes(‘terrain’)||tl.includes(‘adapte’)||tl.includes(‘rapide’))return ‘tw’;return ‘tn’;}
+
+function pH(p){return ‘<div class="pcard"><div class="ptop"><div><div class="pname">’+p.name+’</div><div class="pclub">’+p.team+’</div></div><div class="pscore s'+p.grade+'">’+p.score+’</div></div><div class="ptags">’+(p.tags||[]).map(function(t){return ‘<span class="tag '+tg(t)+'">’+t+’</span>’;}).join(’’)+’</div><div class="pana">’+p.ana+’</div></div>’;}
+
+function analyze(id){
+document.querySelectorAll(’.mc’).forEach(function(c){c.classList.remove(‘on’);});
+var card=document.getElementById(‘mc-’+id);
+if(card){card.classList.add(‘on’);card.scrollIntoView({behavior:‘smooth’,block:‘nearest’});}
+var m=MATCHES.find(function(x){return x.id===id;});
+var d=AN.matches[id];
+if(!m||!d){document.getElementById(‘apanel’).innerHTML=’<div class="empty"><p>Analyse non disponible</p></div>’;return;}
+document.getElementById(‘asub’).textContent=m.home+’ vs ‘+m.away+’ - ‘+m.date;
+var cc=d.conf>=70?‘chi’:d.conf>=55?‘cmd’:‘clo’;
+var posL={GK:‘Gardiens’,DEF:‘Defenseurs’,MID:‘Milieux’,ATT:‘Attaquants’};
+var posC={GK:‘pGK’,DEF:‘pDEF’,MID:‘pMID’,ATT:‘pATT’};
+var pgrid=Object.entries(posL).map(function(e){var k=e[0],l=e[1];return ‘<div><span class="plbl '+posC[k]+'">’+l+’</span>’+(d[k]||[]).map(pH).join(’’)+’</div>’;}).join(’’);
+document.getElementById(‘apanel’).innerHTML=’<div class="fade"><div class="rtop"><div><div class="rtitle">’+m.home+’ <span style="color:var(--sub)">vs</span> ‘+m.away+’</div><div class="rmeta">’+m.date+’ - ‘+m.wx.i+’ ‘+m.wx.d+’</div><div class="rsumm">’+d.summary+’</div><div class="rwx">Impact meteo: ‘+d.wxImpact+’</div></div><div class="rbadges"><div class="rb"><div class="rbv '+cc+'">’+d.conf+’</div><div class="rbl">Confiance</div></div><div class="rb"><div class="rbv" style="font-size:11px;color:var(--txt)">’+d.fav+’</div><div class="rbl">Favori</div></div></div></div><div class="pgrid">’+pgrid+’</div></div>’;
+}
+
 function renderMatches(){
-document.getElementById(‘mgrid’).innerHTML=MATCHES.map(m=>{
-const max=Math.max(m.prob.h,m.prob.d,m.prob.a);
-const fav=m.prob.h===max?m.home:m.prob.a===max?m.away:‘Nul’;
-return ‘<div class="mc" id="mc-'+m.id+'" onclick="analyze(\''+m.id+'\')">’ +
-‘<div class="mdate">’+m.date+’</div><div class="mwx">’+m.wx.i+’ ‘+m.wx.d+’</div>’ +
-‘<div class="mteams"><div class="tb"><div class="tname">’+m.home+’</div><div class="trank">#’+m.hr+’ · ‘+m.hpts+‘pts</div></div>’ +
-‘<div class="vs">VS</div>’ +
-‘<div class="tb r"><div class="tname">’+m.away+’</div><div class="trank">’+m.apts+‘pts · #’+m.ar+’</div></div></div>’ +
-‘<div class="pbars"><div class="pb" style="width:'+m.prob.h+'%;background:var(--grn);opacity:.7"></div>’ +
-‘<div class="pb" style="width:'+m.prob.d+'%;background:var(--mut);opacity:.5"></div>’ +
-‘<div class="pb" style="width:'+m.prob.a+'%;background:var(--blu);opacity:.7"></div></div>’ +
-‘<div class="plbls"><span class="pl '+(m.prob.h===max?'hl':'')+'">’+m.prob.h+’%</span>’ +
-‘<span class="pl">Fav: <b>’+fav+’</b></span>’ +
-‘<span class="pl '+(m.prob.a===max?'hl':'')+'">’+m.prob.a+’%</span></div></div>’;
+document.getElementById(‘mgrid’).innerHTML=MATCHES.map(function(m){
+var max=Math.max(m.prob.h,m.prob.d,m.prob.a);
+var fav=m.prob.h===max?m.home:m.prob.a===max?m.away:‘Nul’;
+return ‘<div class="mc" id="mc-'+m.id+'" onclick="analyze(\''+m.id+'\')"><div class="mdate">’+m.date+’</div><div class="mwx">’+m.wx.i+’ ‘+m.wx.d+’</div><div class="mteams"><div class="tb"><div class="tname">’+m.home+’</div><div class="trank">#’+m.hr+’ - ‘+m.hpts+‘pts</div></div><div class="vs">VS</div><div class="tb r"><div class="tname">’+m.away+’</div><div class="trank">’+m.apts+‘pts - #’+m.ar+’</div></div></div><div class="pbars"><div class="pb" style="width:'+m.prob.h+'%;background:var(--grn);opacity:.7"></div><div class="pb" style="width:'+m.prob.d+'%;background:var(--mut);opacity:.5"></div><div class="pb" style="width:'+m.prob.a+'%;background:var(--blu);opacity:.7"></div></div><div class="plbls"><span class="pl '+(m.prob.h===max?'hl':'')+'" >’+m.prob.h+’%</span><span class="pl">Fav: <b>’+fav+’</b></span><span class="pl '+(m.prob.a===max?'hl':'')+'">’+m.prob.a+’%</span></div></div>’;
 }).join(’’);
 }
 
-function tagCls(t){
-const tl=t.toLowerCase();
-if(tl.includes(‘form’)||tl.includes(‘but’)||tl.includes(‘pass’)||tl.includes(‘incontour’)||tl.includes(‘buts’)||tl.includes(‘révélation’)) return ‘tf’;
-if(tl.includes(‘domic’)||tl.includes(‘advers’)||tl.includes(‘faible’)||tl.includes(‘clean’)||tl.includes(‘solide’)) return ‘tx’;
-if(tl.includes(‘météo’)||tl.includes(‘pluie’)||tl.includes(‘soleil’)||tl.includes(‘terrain’)||tl.includes(‘adapté’)||tl.includes(‘rapide’)) return ‘tw’;
-return ‘tn’;
-}
-
-function playerHTML(p){
-const tags=(p.tags||[]).map(t=>’<span class="tag '+tagCls(t)+'">’+t+’</span>’).join(’’);
-return ‘<div class="pcard"><div class="ptop"><div><div class="pname">’+p.name+’</div><div class="pclub">’+p.team+’</div></div>’ +
-‘<div class="pscore s'+p.grade+'">’+p.score+’</div></div>’ +
-‘<div class="ptags">’+tags+’</div>’ +
-‘<div class="pana">’+p.ana+’</div></div>’;
-}
-
-function analyze(id){
-document.querySelectorAll(’.mc’).forEach(c=>c.classList.remove(‘on’));
-const card=document.getElementById(‘mc-’+id);
-if(card){card.classList.add(‘on’);card.scrollIntoView({behavior:‘smooth’,block:‘nearest’});}
-const m=MATCHES.find(x=>x.id===id);
-const d=AN.matches[id];
-if(!m||!d){document.getElementById(‘apanel’).innerHTML=’<div class="empty"><p>Analyse non disponible</p></div>’;return;}
-document.getElementById(‘asub’).textContent=m.home+’ vs ‘+m.away+’ · ‘+m.date;
-const cc=d.conf>=70?‘chi’:d.conf>=55?‘cmd’:‘clo’;
-const posL={GK:‘Gardiens’,DEF:‘Défenseurs’,MID:‘Milieux’,ATT:‘Attaquants’};
-const posC={GK:‘pGK’,DEF:‘pDEF’,MID:‘pMID’,ATT:‘pATT’};
-const pgrid=Object.entries(posL).map(([k,l])=>
-‘<div><span class="plbl '+posC[k]+'">’+l+’</span>’+(d[k]||[]).map(playerHTML).join(’’)+’</div>’
-).join(’’);
-document.getElementById(‘apanel’).innerHTML=’<div class="fade">’ +
-‘<div class="rtop"><div>’ +
-‘<div class="rtitle">’+m.home+’ <span style="color:var(--sub)">vs</span> ‘+m.away+’</div>’ +
-‘<div class="rmeta">’+m.date+’ · ‘+m.wx.i+’ ‘+m.wx.d+’</div>’ +
-‘<div class="rsumm">’+d.summary+’</div>’ +
-‘<div class="rwx">⚡ ‘+d.wxImpact+’</div></div>’ +
-‘<div class="rbadges"><div class="rb"><div class="rbv '+cc+'">’+d.conf+’</div><div class="rbl">Confiance</div></div>’ +
-‘<div class="rb"><div class="rbv" style="font-size:11px;color:var(--txt)">’+d.fav+’</div><div class="rbl">Favori</div></div></div></div>’ +
-‘<div class="pgrid">’+pgrid+’</div></div>’;
-}
-
 function renderPicks(){
-const posL={GK:‘Gardiens’,DEF:‘Défenseurs’,MID:‘Milieux’,ATT:‘Attaquants’};
-const posC={GK:‘var(–blu)’,DEF:‘var(–grn)’,MID:‘var(–gold)’,ATT:‘var(–red)’};
-let html=’’;
-for(const [pos,list] of Object.entries(AN.topPicks)){
+var posL={GK:‘Gardiens’,DEF:‘Defenseurs’,MID:‘Milieux’,ATT:‘Attaquants’};
+var posC={GK:‘var(–blu)’,DEF:‘var(–grn)’,MID:‘var(–gold)’,ATT:‘var(–red)’};
+var html=’’;
+Object.entries(AN.topPicks).forEach(function(e){
+var pos=e[0],list=e[1];
 html+=’<div class="ptitle">’+posL[pos]+’</div><div class="pkgrid">’;
-list.forEach((p,i)=>{
-html+=’<div class="pkcard"><div class="pknum">’+String(i+1).padStart(2,‘0’)+’</div>’ +
-‘<div class="pkpos" style="color:'+posC[pos]+'">’+posL[pos]+’</div>’ +
-‘<div class="pkname">’+p.name+’</div><div class="pkclub">’+p.team+’ · ‘+p.match+’</div>’ +
-‘<div class="pksrow"><div class="pkscore s'+p.grade+'">’+p.score+’</div><div class="pksl">Score<br>Fantasy</div></div>’ +
-‘<div class="pkr">’+p.reason+’</div></div>’;
-});
+list.forEach(function(p,i){html+=’<div class="pkcard"><div class="pknum">’+String(i+1).padStart(2,‘0’)+’</div><div class="pkpos" style="color:'+posC[pos]+'">’+posL[pos]+’</div><div class="pkname">’+p.name+’</div><div class="pkclub">’+p.team+’ - ‘+p.match+’</div><div class="pksrow"><div class="pkscore s'+p.grade+'">’+p.score+’</div><div class="pksl">Score<br>Fantasy</div></div><div class="pkr">’+p.reason+’</div></div>’;});
 html+=’</div>’;
-}
+});
 document.getElementById(‘picksEl’).innerHTML=html;
 }
 
 function renderStandings(){
-document.getElementById(‘standEl’).innerHTML=ST.map(s=>{
-const rc=s.r<=4?‘gc’:s.r>=18?‘rc’:’’;
-return ‘<div class="trow"><div class="trk '+rc+'">’+s.r+’</div><div class="tnm">’+s.n+’</div>’ +
-‘<div class="tfrm">’+s.f.map(f=>’<div class="fd '+f+'"></div>’).join(’’)+’</div>’ +
-‘<div class="twdl">’+s.w+‘V ‘+s.d+‘N ‘+s.l+‘D</div>’ +
-‘<div class="tpts '+rc+'">’+s.pts+’</div></div>’;
+document.getElementById(‘standEl’).innerHTML=ST.map(function(s){
+var rc=s.r<=4?‘gc’:s.r>=18?‘rc’:’’;
+return ‘<div class="trow"><div class="trk '+rc+'">’+s.r+’</div><div class="tnm">’+s.n+’</div><div class="tfrm">’+s.f.map(function(f){return ‘<div class="fd '+f+'"></div>’;}).join(’’)+’</div><div class="twdl">’+s.w+‘V ‘+s.d+‘N ‘+s.l+‘D</div><div class="tpts '+rc+'">’+s.pts+’</div></div>’;
 }).join(’’);
 }
 
 function sw(id){
-document.querySelectorAll(’.tab’).forEach((t,i)=>t.classList.toggle(‘on’,[‘matches’,‘picks’,‘standings’][i]===id));
-document.querySelectorAll(’.tc’).forEach(c=>c.classList.remove(‘on’));
+document.querySelectorAll(’.tab’).forEach(function(t,i){t.classList.toggle(‘on’,[‘matches’,‘picks’,‘standings’][i]===id);});
+document.querySelectorAll(’.tc’).forEach(function(c){c.classList.remove(‘on’);});
 document.getElementById(‘tc-’+id).classList.add(‘on’);
 }
 
